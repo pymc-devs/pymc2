@@ -13,9 +13,11 @@ from Realization import Realization
 __all__ = ['GaussianProcess', 'GPEvaluation', 'GPSubmodel']
 
 def gp_logp(x, M, C, mesh, f_eval, M_obs, C_obs):
+    "This function raises an error when evaluated."
     raise TypeError, 'GP objects have no logp function'
 
 def gp_rand(M, C, mesh, f_eval, M_obs, C_obs, size=None):
+    "Creates a Gaussian process realization from its prior, conditional on its value on its mesh."
     # M and C are input pre-observed, so no need to
     out = pm.gp.Realization(M_obs, C_obs)
     out.x_sofar = mesh
@@ -58,12 +60,15 @@ class GaussianProcess(pm.Stochastic):
         pass
         
     def get_logp(self):
+        "Utility method."
         raise TypeError, 'Gaussian process %s has no logp.'%self.__name__
         
     def set_logp(self, new_logp):
+        "Utility method."
         raise TypeError, 'Gaussian process %s has no logp.'%self.__name__
         
     def set_value(self, new_value):
+        "Utility method."
         # If this is a new value pulled off the trace, save it the trouble of observing
         if np.all(new_value.x_sofar==pm.utils.value(self.parents['mesh'])):
             if new_value.need_init_obs:
@@ -73,11 +78,33 @@ class GaussianProcess(pm.Stochastic):
         pm.Stochastic.set_value(self, new_value)
         
     logp = property(fget = get_logp, fset = set_logp)
+    value = property(fget=pm.Stochastic.get_value, fset=set_value)
 
 # for attr in ['neg','abs','invert'] + ['add', 'mul', 'sub'] + ['iadd','isub','imul','idiv','itruediv','ifloordiv','imod','ipow','ilshift','irshift','iand','ixor','ior','unicode']:
 #     GaussianProcess.__delattr__('__%s__'%attr)
 
 class GPEvaluation(pm.MvNormalChol):
+    """
+    f = GPEvaluation(name, mu, sig, value=None, observed=False, trace=True, rseed=True, doc=None, verbose=None, debug=False)
+    
+    Stochastic variable with MvNormalChol distribution.
+    Parents are: mu, sig.
+    
+    Docstring of log-probability function:
+    
+        mv_normal_chol_like(x, mu, sig)
+    
+        Multivariate normal log-likelihood.
+    
+        .. math::
+            f(x \mid \pi, \sigma) = \frac{1}{(2\pi)^{1/2}|\sigma|)} \exp\left\{ -\frac{1}{2} (x-\mu)^{\prime}(\sigma \sigma^{\prime})^{-1}(x-\mu) \right\}
+    
+        :Parameters:
+          - `x` : (n,k)
+          - `mu` : (k) Location parameter.
+          - `sigma` : (k,k) Lower triangular matrix.
+    
+    """
     pass
     
 class GPSubmodel(pm.ObjectContainer):

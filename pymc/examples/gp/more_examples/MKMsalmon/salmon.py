@@ -1,3 +1,5 @@
+"This file defines a data structure called 'salmon'."
+
 from pymc.gp import *
 from pymc.gp.cov_funs import matern
 from numpy import *

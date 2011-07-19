@@ -1,3 +1,7 @@
+"""
+This example hands the PyMC probability model declared in PyMCModel.py to an MCMC object, runs a Markov chain Monte Carlo sampling loop, and visualizes the output.
+"""
+
 import PyMCmodel
 from pymc import *
 from pylab import *

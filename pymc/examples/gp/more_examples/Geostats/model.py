@@ -1,3 +1,5 @@
+"This file contains a PyMC probability model for the Walker lake dataset."
+
 from pymc import *
 from pymc.gp import *
 from pymc.gp.cov_funs import matern
@@ -12,6 +14,7 @@ from pylab import *
 m = Uninformative('m', value=0)
 
 def constant(x, val):
+    "A function that returns a constant vector in the shape of x."
     return zeros(x.shape[:-1],dtype=float) + val
 
 @deterministic

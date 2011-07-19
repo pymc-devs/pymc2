@@ -1,3 +1,5 @@
+"This script downloads the Walker lake dataset."
+
 from numpy import *
  
 # Download datafile

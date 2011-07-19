@@ -1,4 +1,6 @@
-# FIXME: Make sure this still works.
+"""
+This example defines an MCMC subclass called SalmonSampler that automates data acquisition, model creation, and output visualization as well as sampling.
+"""
 
 from pymc import *
 from pymc.gp import *

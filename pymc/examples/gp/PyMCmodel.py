@@ -1,3 +1,5 @@
+"This example shows how to write a function that produces a PyMC probability model involving a Gaussian process, and returns its constituent variables in a dictionary."
+
 import pymc as pm
 import pymc.gp as gp
 from pymc.gp.cov_funs import matern

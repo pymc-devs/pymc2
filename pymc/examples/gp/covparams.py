@@ -1,3 +1,7 @@
+"""
+This example illustrates the effects of the parameters of the Matern covariance function. Uncomment the commented C=Covariance... lines below to experiment.
+"""
+
 from pymc.gp import *
 from pymc.gp.cov_funs import *
 from numpy import *

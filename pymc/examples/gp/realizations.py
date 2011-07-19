@@ -1,3 +1,5 @@
+"This example shows how to create and visualize Gaussian process realizations. It uses the mean function from mean.py and the covariance function from cov.py."
+
 # Import the mean and covariance
 from mean import M
 from cov import C

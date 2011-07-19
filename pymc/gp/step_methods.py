@@ -98,6 +98,7 @@ __all__ += new_sm_dict.keys()
 locals().update(new_sm_dict)
 
 class MeshlessGPMetropolis(pm.Metropolis):
+    "A special step method that efficiently handles meshless Gaussian processes."
     def __init__(self, gp):
         pm.Metropolis.__init__(self, gp, proposal_distribution='Prior', check_before_accepting=False)
     

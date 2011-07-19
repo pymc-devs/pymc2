@@ -1,3 +1,7 @@
+"""
+This example shows how to create and use BasisCovariance objects. These objects can be more efficient than standard covariance functions when there are many observations in a low-dimensional space, and the Gaussian random field is believed to be smooth.
+"""
+
 from pymc.gp.cov_funs import *
 from numpy import *
 from copy import copy

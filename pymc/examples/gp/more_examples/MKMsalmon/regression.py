@@ -1,3 +1,5 @@
+"This example implements a simpler, linear version of the model in salmon_sampler.py."
+
 from salmon import *
 
 # Create a salmon instance for each datafile.

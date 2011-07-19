@@ -105,6 +105,7 @@ class StandardRealization(object):
         self.f_sofar = None
 
     def _init_obs(self):
+        "Utility method."
         # If initial values were specified on a mesh:
         if self.init_mesh is not None:
 
@@ -163,7 +164,7 @@ class StandardRealization(object):
             return f
 
     def draw_vals(self, x):
-
+        "Utility method."
         # First observe the internal covariance on x.
         relevant_slice, obs_mesh_new, U, Uo_Cxo = self.C_internal.observe(x, zeros(x.shape[0]), output_type='r')
 
@@ -213,7 +214,7 @@ class BasisRealization(StandardRealization):
         self.coef_vals = asarray(dot(self.C_internal.coef_U.T,normal(size=self.C_internal.m)))
         
     def draw_vals(self, x):
-
+        "Utility method."
         # If C is a BasisCovariance, just evaluate the basis over x, multiply by self's
         # values for the coefficients and add the mean.
 

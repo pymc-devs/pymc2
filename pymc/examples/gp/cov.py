@@ -1,3 +1,7 @@
+"""
+This example shows how to create and visualize Covariance, FullRankCovariance and NearlyFullRankCovariance objects. These objects are very similar, but trade off speed and tolerance for non-positive-definiteness differently.
+"""
+
 from pymc.gp import *
 from pymc.gp.cov_funs import matern
 from numpy import *

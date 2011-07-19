@@ -1,12 +1,18 @@
+"""
+This file provides a function, make_model.py, that generates PyMC probability models describing the genetic trait Duffy negativity as a spatial process.
+"""
+
 import numpy as np
 import pymc as pm
 import gc
 
 def store_africa_val(M, mesh, africa_val):
+    "A utility function used by Mean."
     M.params['meshes'].append(mesh)
     M.params['africa_vals'].append(africa_val)
 
 def retrieve_africa_val(x, meshes, africa_vals, beta):
+    "A utility function used by Mean."
     for mesh, africa_val in zip(meshes, africa_vals):
         if np.all(x == mesh):
             return africa_val*beta
@@ -15,6 +21,7 @@ def retrieve_africa_val(x, meshes, africa_vals, beta):
 
 
 def make_gp_submodel(suffix, mesh, africa_val=None, with_africa_covariate=False):
+    "A utility function used by make_model."
     
     # The partial sill.
     amp = pm.Exponential('amp_%s'%suffix, .1, value=1.)
@@ -91,6 +98,8 @@ def make_model(lon,lat,africa,n,datatype,
                 phe0,prom0,promab,
                 aphea,aphe0,
                 bpheb,bphe0):
+    
+    "Takes a dataset of georeferenced Duffy negativity observations, creates a PyMC probability model describing it, and returns the variables comprising the model as a dictionary."
     
     logp_mesh = np.vstack((lon,lat)).T*np.pi/180.
     

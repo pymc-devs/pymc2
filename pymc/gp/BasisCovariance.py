@@ -89,6 +89,7 @@ class BasisCovariance(Covariance):
         self.observed = False
 
     def get_shape_from_basis(self, basis):
+        "Utility method."
         return shape(basis)
 
     def eval_basis(self, x, regularize = True):
@@ -321,22 +322,26 @@ class BasisCovariance(Covariance):
 
     # Helper methods for Mean instances.
     def _unobs_reg(self, M):
+        "Utility method."
         # reg_mat = chol(self.basis_o.T * self.coef_cov * self.basis_o + diag(obs_V)).T.I * self.basis_o.T * self.coef_cov *
         # chol(self(obs_mesh_*, obs_mesh_*)).T.I * M.dev
         return self.Uo_cov.T * asmatrix(trisolve(self.Uo, M.dev, uplo='U', transa='T')).T
 
     def _obs_reg(self, M, dev_new, m_old):
+        "Utility method."
         # reg_mat = chol(self.basis_o.T * self.coef_cov * self.basis_o + diag(obs_V)).T.I * self.basis_o.T * self.coef_cov *
         # chol(self(obs_mesh_*, obs_mesh_*)).T.I * M.dev
         M.reg_mat = M.reg_mat + self.Uo_cov.T * asmatrix(trisolve(self.Uo, dev_new, uplo='U', transa='T')).T
         return M.reg_mat
 
     def _obs_eval(self, M, M_out, x, Uo_Cxo=None):
+        "Utility method."
         basis_x = Uo_Cxo if Uo_Cxo is not None else self.eval_basis(x, regularize=False)
         M_out += asarray(dot(basis_x.T, M.reg_mat)).squeeze()
         return M_out
 
     def _mean_under_new(self, M, obs_mesh_new):
+        "Utility method."
         if not M.observed:
             return asarray(M.eval_fun(obs_mesh_new, **M.params)).ravel()
         else:

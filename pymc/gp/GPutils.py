@@ -42,6 +42,7 @@ def fast_matrix_copy(f, t=None, n_threads=1):
     return t
 
 def zero_lower_triangle(C):
+    "Not implemented currently."
     pass
 
 def caching_call(f, x, x_sofar, f_sofar):

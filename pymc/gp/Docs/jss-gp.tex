@@ -142,7 +142,7 @@ This package's model-fitting functionality is generic enough to support, in theo
 To improve performance, all of this package's numerical computations are done in \proglang{C} or \proglang{Fortran} extensions. Covariance function evaluations are multithreaded for sufficiently large matrices. Linear algebra is delegated to the \pkg{NumPy} package \citep{numpybook}, which can be configured to use optimized, multithreaded libraries such as ATLAS \citep{atlas}. 
 
 \medskip
-This package is bundled with the \pkg{PyMC} distribution in the directory \code{pymc/gp}, but is not a part of \pkg{PyMC}'s core and was not covered by \cite{pymc}. The version of \pkg{PyMC} to which this paper refers is available at \href{https://github.com/pymc-devs/pymc/tree/jss-gp}{https://github.com/pymc-devs/pymc/tree/jss-gp}. The SHA1 hash of this version is \code{779d376aa891c916c74202077360e08cb0d7e878}. All examples can be found in the folder \code{pymc/examples/gp} in the source tree.
+This package is bundled with the \pkg{PyMC} distribution in the directory \code{pymc/gp}, but is not a part of \pkg{PyMC}'s core and was not covered by \cite{pymc}. The version of \pkg{PyMC} to which this paper refers is available at \href{https://github.com/pymc-devs/pymc/tree/jss-gp}{https://github.com/pymc-devs/pymc/tree/jss-gp}. The SHA1 hash of this version is \code{8340c86bfac101c0d2a32ea5a8522395d59d3e92}. The \pkg{PyMC} user guide, available from the downloads page, provides instructions for installation of \pkg{PyMC} and use of the portions of the package not covered by this article. All examples can be found in the folder \code{pymc/examples/gp} in the source tree. 
 
 \section{Creating a Gaussian process}\label{sub:inst}
 
@@ -575,7 +575,7 @@ Fortunately, these can be made to cancel by choosing a proposal distribution as 
 \begin{eqnarray*}
     q(f_p|f_p(x_*),P_p,f) = p(f_p|f_p(x_*), P_p).
 \end{eqnarray*}
-In other words, if $f$ is proposed from its prior conditional on $f(x_*)$ and its parents whenever $f(x_*)$ is proposed, there is no need to compute the terms in expression~\ref{eq:problem-terms} .
+In other words, if $f$ is proposed from its prior conditional on $f(x_*)$ and its parents whenever $f(x_*)$ is proposed, there is no need to compute the terms in expression~\ref{eq:problem-terms} . This device for saving computation is closely related to the Markov chain Monte Carlo strategy known as the `independence chain' \citep{tierney}. 
 
 \smallskip
 
@@ -640,18 +640,7 @@ The Duffy negativity phenotype, as modelled by \cite{Howes}, is controlled by tw
 
 For clarity, in the remainder of this section the event that \emph{FY*A} is present at the first locus will be denoted $a$, and the event that \emph{FY*B} is present by $b$. Events $a$ and $b$ are, for the purposes of this model, mutually exclusive and all-inclusive. Similarly, the event that the silencing allele is present at the second locus will be denoted $s$. The genotype of a single copy of chromosome 1 will be denoted by juxtaposing the events at the two loci: $as$, $b\neg s$, etc. The genotype of a person will be denoted by combining the genotypes of their two copies of chromosome 1 in an unordered pair: $(bs,a \neg s)$, etc.
 
-\cite{Howes} collected a comprehensive database of Duffy blood group surveys from the literature. To produce each survey in the dataset, data collectors performed a test on a randomly-selected subset of a local population. They reported the test they used, number of individuals surveyed and the number classified into each of the chosen test's output categories, as well as the time and location of the survey. The original motivations of the surveys and the definitions they used of a `population' varied. The data and data abstraction protocol are described in detail by \cite{Howes}. 
-
-Each survey in the database applied one of the following five tests to each participant:
-\begin{description}
-    \item[genotypic] This test determined participants' genotypes directly, and
-could distinguish all ten possible genotypes $(bs,bs)$, $(as,bs)$, $(b\neg s,bs)$, \ldots
-    \item[promoter] This test also determined participants' genotypes directly, but only determined whether the silencing variant was present in either or both of each participant's copies of chromosome 1.
-    \item[phenotypic] This test assayed participants' blood for proteins Fy$^\textup{a}$ and Fy$^\textup{b}$, rather than examining their genotypes directly.
-    \item[a-phenotypic] This test also assayed participants' blood for proteins, but only determined whether Fy$^\textup{a}$ was expressed.
-    \item[b-phenotypic] This test only determined whether participants expressed Fy$^\textup{b}$.
-\end{description}
-The respective abilities of the tests to distinguish between the ten possible genotypes are illustrated in table \ref{tab:surveys}.
+\cite{Howes} collected a comprehensive database of Duffy blood group surveys from the literature. To produce each survey in the dataset, data collectors performed a test on a randomly-selected subset of a local population. They reported the test they used, number of individuals surveyed and the number classified into each of the chosen test's output categories, as well as the time and location of the survey. The original motivations of the surveys and the definitions they used of a `population' varied. The data and data abstraction protocol are described in detail by \cite{Howes}. The respective abilities of the tests to distinguish between the ten possible genotypes are illustrated in table \ref{tab:surveys}.
 
 \begin{table}
     \centering

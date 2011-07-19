@@ -6,6 +6,7 @@ __all__ = ['nsmatern','nsmatern_diag','default_h']
 
 
 def default_h(x):
+    "The default relative amplitude function, which returns an array of ones in the shape of x."
     return np.ones(x.shape[:-1])
 
 def nsmatern(C,x,y,diff_degree,amp=1.,scale=1.,h=default_h,cmin=0,cmax=-1,symm=False):

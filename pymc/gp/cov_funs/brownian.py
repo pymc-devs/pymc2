@@ -7,6 +7,7 @@ from pymc import get_threadpool_size, map_noreturn
 __all__ = ['brownian']
 
 def brownian_targ(C,x,y,h,amp,cmin, cmax,symm):
+    "Utility function."
     # Compute covariance for this bit
     if h==.5:
         isotropic_cov_funs.brownian(C,x,y,cmin=0,cmax=-1,symm=symm)

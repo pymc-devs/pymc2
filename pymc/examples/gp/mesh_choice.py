@@ -1,3 +1,7 @@
+"""
+This example illustrates the effects of changing the mesh on Gaussian process proposals and acceptance probabilities.
+"""
+
 import PyMCmodel
 import pymc as pm
 import numpy as np

@@ -1,3 +1,5 @@
+"This example shows how to observe a Gaussian process (that is, fit a linear model) and visualize the results. It uses the mean function from mean.py and the covariance function from cov.py."
+
 # Import the mean and covariance
 from mean import M
 from cov import C

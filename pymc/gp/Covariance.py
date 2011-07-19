@@ -563,21 +563,23 @@ class Covariance(object):
     # Methods for Mean instances' benefit:
 
     def _unobs_reg(self, M):
-        # reg_mat = chol(C(obs_mesh_*, obs_mesh_*)).T.I * M.dev
+        "Utility method."
         return asmatrix(trisolve(self.Uo, M.dev.T, uplo='U',transa='T')).T
 
     def _obs_reg(self, M, dev_new, m_old):
-        # reg_mat = chol(C(obs_mesh_*, obs_mesh_*)).T.I * M.dev
+        "Utility method."
         reg_mat_new = -1.*dot(self.Uo[:m_old,m_old:].T , trisolve(self.Uo[:m_old,:m_old], M.dev, uplo='U', transa='T')).T
         trisolve(self.Uo[m_old:,m_old:].T, reg_mat_new, 'L', inplace=True)
         reg_mat_new += asmatrix(trisolve(self.Uo[m_old:,m_old:], dev_new.T, uplo='U', transa='T')).T
         return asmatrix(vstack((M.reg_mat,reg_mat_new)))
         
     def _obs_eval(self, M, M_out, x, Uo_Cxo=None):
+        "Utility method."
         if Uo_Cxo is None:
             Uo_Cxo = trisolve(M.Uo, self(M.obs_mesh, x, observed = False), uplo='U', transa='T')
         M_out += dot(asarray(M.reg_mat).squeeze(),asarray(Uo_Cxo)).squeeze()
         return M_out
 
     def _mean_under_new(self, M, obs_mesh_new):
+        "Utility method."
         return asarray(M.eval_fun(obs_mesh_new, **M.params)).ravel()

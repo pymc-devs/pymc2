@@ -1,3 +1,7 @@
+"""
+This example shows how to create and visualize a Mean object.
+"""
+
 from pymc.gp import *
 
 # Generate mean

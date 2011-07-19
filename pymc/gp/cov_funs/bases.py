@@ -4,8 +4,8 @@ from numpy import *
 
 __all__ = ['fourier_basis']
 
-def fourier_basis(n):
-
+def fourier_basis(n, n_dim=1):
+    "Returns a nested list of basis functions suitable for use with BasisCovariance."
     n_dim = len(n)
     basis = []
 
