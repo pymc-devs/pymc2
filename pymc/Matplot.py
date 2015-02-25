@@ -691,9 +691,31 @@ def trace(
 
 @plotwrapper
 def geweke_plot(
-    data, name, format='png', suffix='-diagnostic', path='./', fontmap=None,
-        verbose=1):
-    # Generate Geweke (1992) diagnostic plots
+    data, name, format='png', suffix='-diagnostic', path='./', fontmap=None):
+    '''
+    Generate Geweke (1992) diagnostic plots.
+    
+    :Arguments:
+        data: list
+            List (or list of lists for vector-valued variables) of Geweke diagnostics, output
+            from the `pymc.diagnostics.geweke` function .
+
+        name: string
+            The name of the plot.
+
+        format (optional): string
+            Graphic output format (defaults to png).
+
+        suffix (optional): string
+            Filename suffix (defaults to "-diagnostic").
+
+        path (optional): string
+            Specifies location for saving plots (defaults to local directory).
+
+        fontmap (optional): dict
+            Font map for plot.
+    
+    '''
 
     if fontmap is None:
         fontmap = {1: 10, 2: 8, 3: 6, 4: 5, 5: 4}
@@ -727,8 +749,34 @@ def geweke_plot(
 @plotwrapper
 def discrepancy_plot(
     data, name='discrepancy', report_p=True, format='png', suffix='-gof', path='./',
-        fontmap=None, verbose=1):
-    # Generate goodness-of-fit deviate scatter plot
+        fontmap=None):
+    '''
+    Generate goodness-of-fit deviate scatter plot.
+    
+    :Arguments:
+        data: list
+            List (or list of lists for vector-valued variables) of discrepancy values, output
+            from the `pymc.diagnostics.discrepancy` function .
+
+        name: string
+            The name of the plot.
+            
+        report_p: bool
+            Flag for annotating the p-value to the plot.
+
+        format (optional): string
+            Graphic output format (defaults to png).
+
+        suffix (optional): string
+            Filename suffix (defaults to "-gof").
+
+        path (optional): string
+            Specifies location for saving plots (defaults to local directory).
+
+        fontmap (optional): dict
+            Font map for plot.
+    
+    '''
 
     if verbose > 0:
         print_('Plotting', name + suffix)
