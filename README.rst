@@ -11,6 +11,8 @@ Introduction
 
 .. image:: https://secure.travis-ci.org/pymc-devs/pymc.png
 
+**NOTE**: The development version of PyMC (version 3) has been moved to its own repository called `pymc3`_.
+
 Purpose
 =======
 
@@ -159,3 +161,5 @@ In addition, it contains a list of the statistical distributions currently avail
 .. _`R packages`: http://cran.r-project.org/web/packages/
 
 .. _`testimonials`: https://github.com/pymc-devs/pymc/wiki/Testimonials
+
+.. _`pymc3`: https://github.com/pymc-devs/pymc3
