@@ -2813,7 +2813,7 @@ def rwishart(n, Tau):
     """
     p = np.shape(Tau)[0]
     sig = np.linalg.cholesky(Tau)
-    if n < p:
+    if n <= (p-1):
         raise ValueError('Wishart parameter n must be greater '
                          'than size of matrix.')
     norms = np.random.normal(size=(p * (p - 1)) // 2)
@@ -2884,7 +2884,7 @@ def rwishart_cov(n, C):
     # Need cholesky decomposition of precision matrix C^-1?
     sig = np.linalg.cholesky(C)
 
-    if n < p:
+    if n <= (p-1):
         raise ValueError('Wishart parameter n must be greater '
                          'than size of matrix.')
 
