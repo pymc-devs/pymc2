@@ -9,6 +9,7 @@ from pymc.examples import disaster_model
 import nose
 import warnings
 import os
+import shutil
 
 PLOT = True
 try:
@@ -39,13 +40,14 @@ class test_tiny_MCMC(TestCase):
 
 
 class test_MCMC(TestCase):
+    
+    dbname='test_MCMC'
 
     # Instantiate samplers
-    M = MCMC(disaster_model, db='pickle')
+    M = MCMC(disaster_model, db='txt', dbname=dbname)
 
     # Sample
     M.sample(2000, 100, thin=15, verbose=0, progress_bar=False)
-    M.db.close()
 
     def test_instantiation(self):
 
@@ -74,15 +76,8 @@ class test_MCMC(TestCase):
         S = self.M.early_mean.stats()
         self.M.stats()
         
-    def test_summary(self):
-        self.M.rate.summary()
-
-    def test_stats_after_reload(self):
-        db = database.pickle.load('MCMC.pickle')
-        M2 = MCMC(disaster_model, db=db)
-        M2.stats()
-        db.close()
-        os.remove('MCMC.pickle')
+    def test_float_iter(self):
+        self.M.sample(10.5, verbose=0, progress_bar=False)
 
 
 if __name__ == '__main__':
