@@ -8,9 +8,9 @@ before_install:
   - "sh -e /etc/init.d/xvfb start"
 install:
   - pip install numpy
-  - pip install scipy
-  - pip install matplotlib
-  - pip install Cython
+  - travis_wait pip install scipy
+  - travis_wait pip install matplotlib
+  - travis_wait pip install Cython
   - python setup.py build_ext --inplace
 script:
   - nosetests -s pymc/tests/
