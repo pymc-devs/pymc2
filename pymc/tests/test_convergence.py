@@ -84,7 +84,7 @@ class test_geweke(TestCase):
         # Plot diagnostics (if plotting is available)
         try:
             from pymc.Matplot import geweke_plot as plot
-            plot(scores, path=DIR, verbose=0)
+            plot(scores, path=DIR)
         except ImportError:
             pass
 

@@ -238,6 +238,8 @@ class MCMC(Sampler):
         """
 
         self.assign_step_methods(verbose=verbose)
+        
+        iter, burn, thin = np.floor([iter, burn, thin]).astype(int)
 
         if burn > iter:
             raise ValueError(
