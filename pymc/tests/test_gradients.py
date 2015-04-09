@@ -7,7 +7,7 @@ from pymc import utils
 from pymc import six
 import pymc
 
-random.seed(42)
+random.seed(21421)
 
 float_dtypes = [float, single, float_, longfloat]
 
