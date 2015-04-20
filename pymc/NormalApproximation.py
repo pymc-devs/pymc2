@@ -139,9 +139,11 @@ class MAP(Model):
     Useful attributes (after fit() is called):
     logp:               Returns the log-probability of the model
     logp_at_max:        Returns the maximum log-probability of the model
+    lnL:                The maximum log likelihood of the model
     len:                The number of free stochastic variables in the model ('k' in AIC and BIC)
     data_len:           The number of datapoints used ('n' in BIC)
     AIC:                Akaike's Information Criterion for the model
+    AICc:               Akaike's Information Criterion with correction for small samples
     BIC:                Bayesian Information Criterion for the model
 
     :Arguments:
@@ -364,7 +366,9 @@ class MAP(Model):
 
         lnL = sum([x.logp for x in self.observed_stochastics]
                   )  # log-likelihood of observed stochastics
+        self.lnL = lnL
         self.AIC = 2. * (self.len - lnL)  # 2k - 2 ln(L)
+        self.AICc = self.AIC + ((2 * k * (k + 1)) / float(n - k - 1))
         try:
             self.BIC = self.len * log(
                 self.data_len) - 2. * lnL  # k ln(n) - 2 ln(L)
