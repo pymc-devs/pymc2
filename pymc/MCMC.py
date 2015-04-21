@@ -439,8 +439,44 @@ class MCMC(Sampler):
 
         # Return twice deviance minus deviance at means
         return 2 * mean_deviance - self.deviance
+    
+    def _calc_bpic(self):
+        """Calculates Bayesian predictive information criterion"""
 
-    # Make dic a property
+        # Find mean deviance
+        mean_deviance = np.mean(self.db.trace('deviance')(), axis=0)
+
+        # Set values of all parameters to their mean
+        for stochastic in self.stochastics:
+
+            # Calculate mean of paramter
+            try:
+                mean_value = np.mean(
+                    self.db.trace(
+                        stochastic.__name__)(
+                    ),
+                    axis=0)
+
+                # Set current value to mean
+                stochastic.value = mean_value
+
+            except KeyError:
+                print_(
+                    "No trace available for %s. DIC value may not be valid." %
+                    stochastic.__name__)
+            except TypeError:
+                print_(
+                    "Not able to calculate DIC: invalid stochastic %s" %
+                    stochastic.__name__)
+                return None
+
+        # Return twice deviance minus deviance at means
+        return 3 * mean_deviance - 2 * self.deviance
+        
+    # Make ICs properties
     def _get_dic(self):
         return self._calc_dic()
-    dic = property(_get_dic)
+    def _get_bpic(self):
+        return self._calc_bpic()
+    DIC = property(_get_dic)
+    BPIC = property(_get_bpic)
