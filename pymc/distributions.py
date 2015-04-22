@@ -1297,7 +1297,7 @@ def gamma_like(x, alpha, beta):
     Gamma log-likelihood.
 
     Represents the sum of alpha exponentially distributed random variables, each
-    of which has mean beta.
+    of which has rate parameter beta.
 
     .. math::
         f(x \mid \alpha, \beta) = \frac{\beta^{\alpha}x^{\alpha-1}e^{-\beta x}}{\Gamma(\alpha)}
