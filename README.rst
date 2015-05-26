@@ -9,7 +9,14 @@ Introduction
 :Copyright: This document has been placed in the public domain.
 :License: PyMC is released under the Academic Free License.
 
-.. image:: https://secure.travis-ci.org/pymc-devs/pymc.png
+.. image:: https://secure.travis-ci.org/pymc-devs/pymc.png 
+    :target: http://travis-ci.org/pymc-devs/pymc
+.. image:: http://img.shields.io/pypi/v/pymc.svg?style=flat
+    :target: https://pypi.python.org/pypi/pymc
+.. image:: http://img.shields.io/badge/license-AFL-blue.svg?style=flat
+    :target: https://github.com/pymc-devs/pymc/blob/master/LICENSE
+
+
 
 **NOTE**: The development version of PyMC (version 3) has been moved to its own repository called `pymc3`_.
 
