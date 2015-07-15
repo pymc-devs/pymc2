@@ -436,7 +436,7 @@ class Index(pm.Deterministic):
       name : string
         The name of the variable
       x : list or variable
-        Will be multiplied against y and summed.
+        Will be indexed.
       index : integer or variable
         Index to use when computing value.
       other parameters :
