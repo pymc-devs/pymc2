@@ -797,9 +797,7 @@ def bernoulli_like(x, p):
       - :math:`Var(x)= p(1-p)`
 
     """
-
-    if np.any(p<0) or np.any(p>1):
-        return -inf
+    
     return flib.bernoulli(x, p)
 
 bernoulli_grad_like = {'p': flib.bern_grad_p}
