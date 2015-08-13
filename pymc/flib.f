@@ -3908,7 +3908,7 @@ C     Check parameter size
       ptmp = p(1)
       do i=1,nx
         if (not_scalar_p) ptmp = p(i)
-        if (ptmp .LT. 0.0) then
+        if ((ptmp .LT. 0.0) .OR. (ptmp .GT. 1.0)) then
           like = -infinity
           RETURN
         endif
