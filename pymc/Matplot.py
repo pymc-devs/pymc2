@@ -495,12 +495,12 @@ def plot(
                 rows=_rows,
                 num=_num)
 
-_sturges = lambda n: log2(n) + 1
+_sturges = lambda n: int(log2(n) + 1)
 
-_doanes = lambda data, n: 1 + log(n) + log(
-    1 + kurtosis(data) * (n / 6.) ** 0.5)
+_doanes = lambda data, n: int(1 + log(n) + log(
+    1 + kurtosis(data) * (n / 6.) ** 0.5))
 
-_sqrt_choice = lambda n: sqrt(n)
+_sqrt_choice = lambda n: int(sqrt(n))
 
 
 @plotwrapper
