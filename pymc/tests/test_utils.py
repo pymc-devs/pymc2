@@ -8,7 +8,6 @@ from pymc import utils
 from pymc import six
 xrange = six.moves.xrange
 
-
 class test_logp_of_set(TestCase):
     A = Normal('A', 0, 1)
     B = Gamma('B', 1, 1)
@@ -73,6 +72,19 @@ class test_normcdf_input_shape(TestCase):
         x = arange(8.).reshape(2, 2, 2)
         utils.normcdf(x, log=True)
 
+class test_invcdf_input_shape(TestCase):
+
+    def test_invcdf_1d_input(self):
+        x = random.random(8)
+        utils.invcdf(x)
+        
+    def test_normcdf_2d_input(self):
+        x = random.random((2, 4))
+        utils.invcdf(x)
+
+    def test_normcdf_3d_input(self):
+        x = arange.random((2, 2, 2))
+        utils.invcdf(x)
 
 if __name__ == '__main__':
     C = nose.config.Config(verbosity=1)
