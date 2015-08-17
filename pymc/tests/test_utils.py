@@ -78,12 +78,12 @@ class test_invcdf_input_shape(TestCase):
         x = random.random(8)
         utils.invcdf(x)
         
-    def test_normcdf_2d_input(self):
+    def test_invcdf_2d_input(self):
         x = random.random((2, 4))
         utils.invcdf(x)
 
-    def test_normcdf_3d_input(self):
-        x = arange.random((2, 2, 2))
+    def test_invcdf_3d_input(self):
+        x = random.random((2, 2, 2))
         utils.invcdf(x)
 
 if __name__ == '__main__':
