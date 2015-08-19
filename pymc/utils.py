@@ -445,8 +445,9 @@ def lognormcdf(x, mu, tau):
 
 def invcdf(x):
     """Inverse of normal cumulative density function."""
-    x = np.atleast_1d(x)
-    return np.array([flib.ppnd16(y, 1) for y in x])
+    x_flat = np.ravel(x)
+    x_trans = np.array([flib.ppnd16(y, 1) for y in x_flat])
+    return np.reshape(x_trans, np.shape(x))
 
 
 def ar1_gen(rho, mu, sigma, size=1):
