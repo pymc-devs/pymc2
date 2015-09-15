@@ -8,7 +8,7 @@ Installation
 :Web site: http://github.com/pymc-devs/pymc
 :Copyright: This document has been placed in the public domain.
 :License: PyMC is released under the Academic Free license.
-:Version: 2.3
+:Version: 2.3.6
 
 PyMC is known to run on Mac OS X, Linux and Windows, but in theory should be
 able to work on just about any platform for which Python, a Fortran compiler
@@ -197,10 +197,10 @@ In addition, the python-dev package may be required to install PyMC on Linux sys
 Installing from GitHub
 ======================
 
-You can check out the 2.3 branch of PyMC from the `GitHub`_
+You can check out PyMC from the `GitHub`_
 repository::
 
-    git clone -b 2.3 git://github.com/pymc-devs/pymc.git@2.3
+    git clone git://github.com/pymc-devs/pymc.git
 
 Previous versions are available in the ``/tags`` directory.
 
