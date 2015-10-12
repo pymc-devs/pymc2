@@ -305,7 +305,7 @@ class Potential(PotentialBase):
                 parameter] = lazy_logp_partial_gradients
 
     def get_logp(self):
-        
+
         if self.verbose > 1:
             print_('\t' + self.__name__ + ': log-probability accessed.')
         logp = self._logp.get()
@@ -736,9 +736,9 @@ class Stochastic(StochasticBase):
 
         # Initialize value, either from value provided or from random function.
         try:
-            # Convert Pandas DataFrames and Series to numpy arrays
-            value = getattr(value, 'values', value)
             if dtype.kind != 'O' and value is not None:
+                # Convert Pandas DataFrames and Series to numpy arrays
+                value = getattr(value, 'values', value)
                 self._value = np.array(value, dtype=dtype)
                 self._value.flags['W'] = False
             else:
