@@ -748,8 +748,8 @@ def geweke_plot(
 
 @plotwrapper
 def discrepancy_plot(
-    data, name='discrepancy', report_p=True, format='png', suffix='-gof', path='./',
-        fontmap=None):
+    data, name='discrepancy', report_p=True, format='png', suffix='-gof',
+    path='./', fontmap=None, verbose=1):
     '''
     Generate goodness-of-fit deviate scatter plot.
     
