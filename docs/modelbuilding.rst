@@ -419,14 +419,14 @@ etc.
 This situation can be handled naturally in PyMC::
 
     N = 10
-    x_0 = pymc.Normal(`x_0', mu=0, tau=1)
+    x_0 = pymc.Normal('x_0', mu=0, tau=1)
 
     x = np.empty(N, dtype=object)
     x[0] = x_0
 
     for i in range(1, N):
 
-        x[i] = pymc.Normal(`x_%i' % i, mu=x[i-1], tau=1)
+        x[i] = pymc.Normal('x_%i' % i, mu=x[i-1], tau=1)
 
     @pymc.observed
     def y(value=1, mu=x, tau=100):
