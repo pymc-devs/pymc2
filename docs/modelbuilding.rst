@@ -385,7 +385,7 @@ have similar **automatic**, **decorator**, and **direct** interfaces:
                           name = 'rate',
                           parents = {'switchpoint': switchpoint,
                                   'early_mean': early_mean,
-                                  'late_mean': late_mean}),
+                                  'late_mean': late_mean},
                           doc = 'The rate of disaster occurrence.',
                           trace = True,
                           verbose = 0,
