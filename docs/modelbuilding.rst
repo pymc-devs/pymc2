@@ -413,7 +413,7 @@ parent of some variable. Consider :math:`y` in the following model:
   \end{align*}
 
 Here, :math:`y` depends on every element of the Markov chain :math:`x`, but we
-wouldn't want to manually enter :math:`N` parent labels ```x_0'``, ```x_1'``,
+wouldn't want to manually enter :math:`N` parent labels ``'x_0'``, ``'x_1'``,
 etc.
 
 This situation can be handled naturally in PyMC::
@@ -435,7 +435,7 @@ This situation can be handled naturally in PyMC::
 PyMC automatically wraps array :math:`x` in an appropriate ``Container`` class.
 The expression ``'x_%i' % i`` labels each ``Normal`` object in the container
 with the appropriate index :math:`i`. For example, if ``i=1``, the name of the
-corresponding element becomes ```x_1'``.
+corresponding element becomes ``'x_1'``.
 
 Containers, like variables, have an attribute called ``value``. This attribute
 returns a copy of the (possibly nested) iterable that was passed into the
