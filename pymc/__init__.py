@@ -7,7 +7,7 @@ pymc only requires NumPy. All other dependencies such as matplotlib, SciPy, pyta
 
 """
 
-__version__ = '2.3.5'
+__version__ = '2.3.6'
 
 try:
     import numpy

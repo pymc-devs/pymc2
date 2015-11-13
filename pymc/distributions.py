@@ -797,7 +797,7 @@ def bernoulli_like(x, p):
       - :math:`Var(x)= p(1-p)`
 
     """
-    
+
     return flib.bernoulli(x, p)
 
 bernoulli_grad_like = {'p': flib.bern_grad_p}
@@ -2976,8 +2976,6 @@ def valuewrapper(f, arguments=None):
     """
     def wrapper(**kwds):
         value = kwds.pop('value')
-        # Handle Pandas DataFrames
-        value = getattr(value, 'values', value)
         return f(value, **kwds)
 
     if arguments is None:

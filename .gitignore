@@ -11,3 +11,4 @@ testresults
 *.tmproj
 *.py.bak
 .DS_Store
+*cpython*

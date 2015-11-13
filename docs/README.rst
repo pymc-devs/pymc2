@@ -2,13 +2,13 @@
 Introduction
 ************
 
-:Date: 3 September 2013
+:Date: 15 September 2015
 :Authors: Chris Fonnesbeck, Anand Patil, David Huard, John Salvatier
 :Contact: chris.fonnesbeck@vanderbilt.edu
 :Web site: http://github.com/pymc-devs/pymc
 :Copyright: This document has been placed in the public domain.
 :License: PyMC is released under the Academic Free License.
-:Version: 2.3
+:Version: 2.3.6
 
 
 Purpose
