@@ -74,7 +74,7 @@ class Lambda(pm.Deterministic):
     def __init__(self, name, lam_fun,
                  doc='A Deterministic made from an anonymous function', *args, **kwds):
         (parent_names, junk0, junk1,
-         parent_values) = inspect.getargspec(lam_fun)
+         parent_values) = inspect.signature(lam_fun)
 
         if junk0 is not None \
             or junk1 is not None \
@@ -535,7 +535,7 @@ def pfunc(func):
                 'Failed to create pfunc wrapper from object %s. Original error message:\n\n%s' %
                 (func, inst.message))
             six.reraise(cls, inst, tb)
-    fargs, fvarargs, fvarkw, fdefaults = inspect.getargspec(func)
+    fargs, fvarargs, fvarkw, fdefaults = inspect.signature(func)
     n_fargs = len(fargs)
 
     def dtrm_generator(*args, **kwds):

@@ -138,7 +138,7 @@ class StepMethodMeta(type):
     """
     def __init__(cls, name, bases, dict):
         type.__init__(cls, name, bases, dict)
-        args, varargs, varkw, defaults = inspect.getargspec(cls.__init__)
+        args, varargs, varkw, defaults = inspect.signature(cls.__init__)
         auto_assignment_OK = False
         if len(args) == 2:
             auto_assignment_OK = True

@@ -364,7 +364,7 @@ def stochastic_from_dist(
       new_dist_class, stochastic_from_data
     """
 
-    (args, varargs, varkw, defaults) = inspect.getargspec(logp)
+    (args, varargs, varkw, defaults) = inspect.signature(logp)
     parent_names = args[1:]
     try:
         parents_default = dict(zip(args[-len(defaults):], defaults))
@@ -501,7 +501,7 @@ def randomwrap(func):
     """
 
     # Find the order of the arguments.
-    refargs, varargs, varkw, defaults = inspect.getargspec(func)
+    refargs, varargs, varkw, defaults = inspect.signature(func)
     # vfunc = np.vectorize(self.func)
     npos = len(refargs) - len(defaults)  # Number of pos. arg.
     nkwds = len(defaults)  # Number of kwds args.

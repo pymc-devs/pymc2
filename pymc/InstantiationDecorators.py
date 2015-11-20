@@ -98,7 +98,7 @@ def _extract(__func__, kwds, keys, classname, probe=True):
                 kwds[key] = __func__
 
     # Build parents dictionary by parsing the __func__tion's arguments.
-    (args, varargs, varkw, defaults) = inspect.getargspec(__func__)
+    (args, varargs, varkw, defaults) = inspect.signature(__func__)
 
     if defaults is None:
         defaults = ()

@@ -48,7 +48,7 @@ def deterministic_from_funcs(
 
     """
 
-    (args, varargs, varkw, defaults) = inspect.getargspec(eval)
+    (args, varargs, varkw, defaults) = inspect.signature(eval)
     parent_names = args[0:]
     try:
         parents_default = dict(zip(args[-len(defaults):], defaults))

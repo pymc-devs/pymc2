@@ -71,7 +71,7 @@ def stochastic_from_scipy_dist(scipy_dist):
 
     name = scipy_dist.__class__.__name__.replace('_gen', '').capitalize()
 
-    (args, varargs, varkw, defaults) = inspect.getargspec(scipy_dist._cdf)
+    (args, varargs, varkw, defaults) = inspect.signature(scipy_dist._cdf)
     shape_args = args[2:]
     if isinstance(scipy_dist, rv_continuous):
         dtype = float
