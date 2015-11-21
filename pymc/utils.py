@@ -46,7 +46,7 @@ PY3 = sys.version_info >= (3, 3)
 
 def get_signature_py3(func):
     sig = inspect.signature(func)
-    defaults = tuple(p.default for p in sig.parameters.values() if p.default!=inspect._empty)
+    defaults = tuple(p.default for p in sig.parameters.values() if p.default is not inspect._empty)
     return list(sig.parameters.keys()), defaults
     
 def get_signature_py2(func):

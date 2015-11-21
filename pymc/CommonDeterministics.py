@@ -75,9 +75,7 @@ class Lambda(pm.Deterministic):
                  doc='A Deterministic made from an anonymous function', *args, **kwds):
         (parent_names, parent_values) = get_signature(lam_fun)
 
-        if junk0 is not None \
-            or junk1 is not None \
-                or parent_values is None:
+        if parent_values is None:
             raise ValueError(
                 '%s: All arguments to lam_fun must have default values.' %
                 name)
