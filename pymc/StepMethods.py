@@ -1,7 +1,7 @@
 from __future__ import division
 
 import numpy as np
-from .utils import msqrt, check_type, round_array, float_dtypes, integer_dtypes, bool_dtypes, safe_len, find_generations, logp_of_set, symmetrize, logp_gradient_of_set
+from .utils import msqrt, check_type, round_array, float_dtypes, integer_dtypes, bool_dtypes, safe_len, find_generations, logp_of_set, symmetrize, logp_gradient_of_set, get_signature
 from numpy import ndim, ones, zeros, log, shape, cov, ndarray, inner, reshape, sqrt, any, array, all, abs, exp, where, isscalar, iterable, multiply, transpose, tri, pi
 from numpy.linalg.linalg import LinAlgError
 from numpy.linalg import pinv, cholesky
@@ -138,7 +138,7 @@ class StepMethodMeta(type):
     """
     def __init__(cls, name, bases, dict):
         type.__init__(cls, name, bases, dict)
-        args, varargs, varkw, defaults = inspect.signature(cls.__init__)
+        args, defaults = get_signature(cls.__init__)
         auto_assignment_OK = False
         if len(args) == 2:
             auto_assignment_OK = True

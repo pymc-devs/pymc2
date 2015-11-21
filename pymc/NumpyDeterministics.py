@@ -6,7 +6,7 @@ __docformat__ = 'reStructuredText'
 from . import PyMCObjects as pm
 import numpy as np
 from numpy import sum, ones, zeros, ravel, shape, size, newaxis
-from .utils import find_element
+from .utils import find_element, get_signature
 import inspect
 
 from . import six
@@ -48,7 +48,7 @@ def deterministic_from_funcs(
 
     """
 
-    (args, varargs, varkw, defaults) = inspect.signature(eval)
+    (args, defaults) = get_signature(eval)
     parent_names = args[0:]
     try:
         parents_default = dict(zip(args[-len(defaults):], defaults))
