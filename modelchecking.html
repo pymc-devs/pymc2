@@ -6,15 +6,15 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>7. Model checking and diagnostics &mdash; PyMC 2.3.4 documentation</title>
+    <title>7. Model checking and diagnostics &mdash; PyMC 2.3.6 documentation</title>
     
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '2.3.4',
+        VERSION:     '2.3.6',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,12 +24,12 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="PyMC 2.3.4 documentation" href="index.html" />
+    <link rel="top" title="PyMC 2.3.6 documentation" href="index.html" />
     <link rel="next" title="8. Extending PyMC" href="extending.html" />
     <link rel="prev" title="6. Saving and managing sampling results" href="database.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -44,14 +44,14 @@
         <li class="right" >
           <a href="database.html" title="6. Saving and managing sampling results"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">PyMC 2.3.4 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">PyMC 2.3.6 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="model-checking-and-diagnostics">
 <span id="chap-modelchecking"></span><h1>7. Model checking and diagnostics<a class="headerlink" href="#model-checking-and-diagnostics" title="Permalink to this headline">¶</a></h1>
@@ -91,11 +91,11 @@ to the degree to which the Markov chain explores the support of the posterior
 distribution. Poor mixing may stem from inappropriate proposals (if one is
 using the Metropolis-Hastings sampler) or from attempting to estimate models
 with highly correlated variables.</p>
-<div class="figure align-center" id="mix">
-<a class="reference internal image-reference" href="_images/poormixing.png"><img alt="Poor mixing figure" src="_images/poormixing.png" /></a>
-<p class="caption">An example of a poorly-mixing sample in two dimensions. Notice that the
+<div class="figure align-center" id="id13">
+<span id="mix"></span><a class="reference internal image-reference" href="_images/poormixing.png"><img alt="Poor mixing figure" src="_images/poormixing.png" /></a>
+<p class="caption"><span class="caption-text">An example of a poorly-mixing sample in two dimensions. Notice that the
 chain is trapped in a region of low probability relative to the mean
-(dot) and variance (oval) of the true posterior quantity.</p>
+(dot) and variance (oval) of the true posterior quantity.</span></p>
 </div>
 <div class="section" id="informal-methods">
 <h3>7.1.1. Informal Methods<a class="headerlink" href="#informal-methods" title="Permalink to this headline">¶</a></h3>
@@ -126,12 +126,12 @@ called <em>ergodicity</em>. This property is guaranteed by the reversible chains
 constructed using MCMC, and should be observable using this technique. Again,
 however, this approach is only a heuristic method, and cannot always detect
 lack of convergence, even though chains may appear ergodic.</p>
-<div class="figure align-center" id="metas">
-<a class="reference internal image-reference" href="_images/metastable.png"><img alt="_images/metastable.png" src="_images/metastable.png" /></a>
-<p class="caption">An example of metastability in a two-dimensional parameter space. The
+<div class="figure align-center" id="id14">
+<span id="metas"></span><a class="reference internal image-reference" href="_images/metastable.png"><img alt="_images/metastable.png" src="_images/metastable.png" /></a>
+<p class="caption"><span class="caption-text">An example of metastability in a two-dimensional parameter space. The
 chain appears to be stable in one region of the parameter space for an
 extended period, then unpredictably jumps to another region of the
-space.</p>
+space.</span></p>
 </div>
 <p>A principal reason that evidence from informal techniques cannot guarantee
 convergence is a phenomenon called metastability. Chains may appear to have
@@ -160,7 +160,7 @@ segments are similar, it can provide evidence for convergence. PyMC calculates
 z-scores of the difference between various initial segments along the chain,
 and the last 50% of the remaining chain. If the chain has converged, the
 majority of points should fall within 2 standard deviations of zero.</p>
-<p>Diagnostic z-scores can be obtained by calling the <tt class="docutils literal"><span class="pre">geweke</span></tt> function. It
+<p>Diagnostic z-scores can be obtained by calling the <code class="docutils literal"><span class="pre">geweke</span></code> function. It
 accepts either (1) a single trace, (2) a Node or Stochastic object, or (4) an
 entire Model object:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">geweke</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">first</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">last</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">intervals</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
@@ -168,46 +168,46 @@ entire Model object:</p>
 </div>
 <p>The arguments expected are the following:</p>
 <ul class="simple">
-<li><tt class="docutils literal"><span class="pre">pymc_object</span></tt>: The object that is or contains the output trace(s).</li>
-<li><tt class="docutils literal"><span class="pre">first</span></tt> (optional): First portion of chain to be used in Geweke diagnostic.
+<li><code class="docutils literal"><span class="pre">pymc_object</span></code>: The object that is or contains the output trace(s).</li>
+<li><code class="docutils literal"><span class="pre">first</span></code> (optional): First portion of chain to be used in Geweke diagnostic.
 Defaults to 0.1 (<em>i.e.</em> first 10% of chain).</li>
-<li><tt class="docutils literal"><span class="pre">last</span></tt> (optional): Last portion of chain to be used in Geweke diagnostic.
+<li><code class="docutils literal"><span class="pre">last</span></code> (optional): Last portion of chain to be used in Geweke diagnostic.
 Defaults to 0.5 (<em>i.e.</em> last 50% of chain).</li>
-<li><tt class="docutils literal"><span class="pre">intervals</span></tt> (optional): Number of sub-chains to analyze. Defaults to 20.</li>
+<li><code class="docutils literal"><span class="pre">intervals</span></code> (optional): Number of sub-chains to analyze. Defaults to 20.</li>
 </ul>
 <p>The resulting scores are best interpreted graphically, using the
-<tt class="docutils literal"><span class="pre">geweke_plot</span></tt> function. This displays the scores in series, in relation to
+<code class="docutils literal"><span class="pre">geweke_plot</span></code> function. This displays the scores in series, in relation to
 the 2 standard deviation boundaries around zero. Hence, it is easy to see
 departures from the standard normal assumption.</p>
-<div class="figure align-center" id="geweke">
-<a class="reference internal image-reference" href="_images/geweke.png"><img alt="Geweke figure." src="_images/geweke.png" style="width: 800px;" /></a>
-<p class="caption">Sample plot of Geweke z-scores for a variable using <tt class="docutils literal"><span class="pre">geweke_plot</span></tt>.
+<div class="figure align-center" id="id15">
+<span id="geweke"></span><a class="reference internal image-reference" href="_images/geweke.png"><img alt="Geweke figure." src="_images/geweke.png" style="width: 800px;" /></a>
+<p class="caption"><span class="caption-text">Sample plot of Geweke z-scores for a variable using <code class="docutils literal"><span class="pre">geweke_plot</span></code>.
 The occurrence of the scores well within 2 standard deviations of zero
 gives not indicate of lack of convergence (top), while deviations exceeding
 2 standard deviations suggest that additional samples are requred to
-achieve convergence (bottom).</p>
+achieve convergence (bottom).</span></p>
 </div>
-<p><tt class="docutils literal"><span class="pre">geweke_plot</span></tt> takes either a single set of scores, or a dictionary of scores
-(output by <tt class="docutils literal"><span class="pre">geweke</span></tt> when an entire Sampler is passed) as its argument:</p>
+<p><code class="docutils literal"><span class="pre">geweke_plot</span></code> takes either a single set of scores, or a dictionary of scores
+(output by <code class="docutils literal"><span class="pre">geweke</span></code> when an entire Sampler is passed) as its argument:</p>
 <div class="highlight-python"><div class="highlight"><pre>def geweke_plot(scores, name=&#39;geweke&#39;, format=&#39;png&#39;, suffix=&#39;-diagnostic&#39;,
                 path=&#39;./&#39;, fontmap = {1:10, 2:8, 3:6, 4:5, 5:4}, verbose=1)
 </pre></div>
 </div>
 <p>The arguments are defined as:</p>
 <ul class="simple">
-<li><tt class="docutils literal"><span class="pre">scores</span></tt>: The object that contains the Geweke scores. Can be a list (one
+<li><code class="docutils literal"><span class="pre">scores</span></code>: The object that contains the Geweke scores. Can be a list (one
 set) or a dictionary (multiple sets).</li>
-<li><tt class="docutils literal"><span class="pre">name</span></tt> (optional): Name used for output files. For multiple scores, the
+<li><code class="docutils literal"><span class="pre">name</span></code> (optional): Name used for output files. For multiple scores, the
 dictionary keys are used as names.</li>
-<li><tt class="docutils literal"><span class="pre">format</span></tt> (optional): Graphic output file format (defaults to <em>png</em>).</li>
-<li><tt class="docutils literal"><span class="pre">suffix</span></tt> (optional): Suffix to filename (defaults to <em>-diagnostic</em>)</li>
-<li><tt class="docutils literal"><span class="pre">path</span></tt> (optional): The path for output graphics (defaults to working
+<li><code class="docutils literal"><span class="pre">format</span></code> (optional): Graphic output file format (defaults to <em>png</em>).</li>
+<li><code class="docutils literal"><span class="pre">suffix</span></code> (optional): Suffix to filename (defaults to <em>-diagnostic</em>)</li>
+<li><code class="docutils literal"><span class="pre">path</span></code> (optional): The path for output graphics (defaults to working
 directory).</li>
-<li><tt class="docutils literal"><span class="pre">fontmap</span></tt> (optional): Dictionary containing the font map for the labels of
+<li><code class="docutils literal"><span class="pre">fontmap</span></code> (optional): Dictionary containing the font map for the labels of
 the graphic.</li>
-<li><tt class="docutils literal"><span class="pre">verbose</span></tt> (optional): Verbosity level for output (defaults to 1).</li>
+<li><code class="docutils literal"><span class="pre">verbose</span></code> (optional): Verbosity level for output (defaults to 1).</li>
 </ul>
-<p>To illustrate, consider the sample model <tt class="docutils literal"><span class="pre">gelman_bioassay</span></tt> that is used to
+<p>To illustrate, consider the sample model <code class="docutils literal"><span class="pre">gelman_bioassay</span></code> that is used to
 instantiate a MCMC sampler. The sampler is then run for a given number of
 iterations:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pymc.examples</span> <span class="kn">import</span> <span class="n">gelman_bioassay</span>
@@ -215,12 +215,12 @@ iterations:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="n">burn</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>It is easiest simply to pass the entire sampler <tt class="docutils literal"><span class="pre">S</span></tt> the <tt class="docutils literal"><span class="pre">geweke</span></tt> function:</p>
+<p>It is easiest simply to pass the entire sampler <code class="docutils literal"><span class="pre">S</span></code> the <code class="docutils literal"><span class="pre">geweke</span></code> function:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">scores</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">geweke</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">intervals</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pymc</span><span class="o">.</span><span class="n">Matplot</span><span class="o">.</span><span class="n">geweke_plot</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Alternatively, individual stochastics within <tt class="docutils literal"><span class="pre">S</span></tt> can be analyzed for
+<p>Alternatively, individual stochastics within <code class="docutils literal"><span class="pre">S</span></code> can be analyzed for
 convergence:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">trace</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s">&quot;alpha&quot;</span><span class="p">)[:]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">alpha_scores</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">geweke</span><span class="p">(</span><span class="n">trace</span><span class="p">,</span> <span class="n">intervals</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
@@ -264,17 +264,17 @@ inference. Its calling convention is as follows:</p>
 </div>
 <p>The arguments are:</p>
 <ul class="simple">
-<li><tt class="docutils literal"><span class="pre">pymc_object</span></tt>: The object that contains the Geweke scores. Can be a list
+<li><code class="docutils literal"><span class="pre">pymc_object</span></code>: The object that contains the Geweke scores. Can be a list
 (one set) or a dictionary (multiple sets).</li>
-<li><tt class="docutils literal"><span class="pre">q</span></tt>: Desired quantile to be estimated.</li>
-<li><tt class="docutils literal"><span class="pre">r</span></tt>: Desired accuracy for quantile.</li>
-<li><tt class="docutils literal"><span class="pre">s</span></tt> (optional): Probability of attaining the requested accuracy (defaults
+<li><code class="docutils literal"><span class="pre">q</span></code>: Desired quantile to be estimated.</li>
+<li><code class="docutils literal"><span class="pre">r</span></code>: Desired accuracy for quantile.</li>
+<li><code class="docutils literal"><span class="pre">s</span></code> (optional): Probability of attaining the requested accuracy (defaults
 to 0.95).</li>
-<li><tt class="docutils literal"><span class="pre">epsilon</span></tt> (optional) : Half width of the tolerance interval required for
+<li><code class="docutils literal"><span class="pre">epsilon</span></code> (optional) : Half width of the tolerance interval required for
 the q-quantile (defaults to 0.001).</li>
-<li><tt class="docutils literal"><span class="pre">verbose</span></tt> (optional) : Verbosity level for output (defaults to 1).</li>
+<li><code class="docutils literal"><span class="pre">verbose</span></code> (optional) : Verbosity level for output (defaults to 1).</li>
 </ul>
-<p>The code for <tt class="docutils literal"><span class="pre">raftery_lewis</span></tt> is based on the FORTRAN program <em>gibbsit</em>
+<p>The code for <code class="docutils literal"><span class="pre">raftery_lewis</span></code> is based on the FORTRAN program <em>gibbsit</em>
 (<a class="reference internal" href="references.html#raftery1995b" id="id6">[Raftery1995b]</a>).</p>
 <p>For example, consider again a sampler S run for some model my_model:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">MCMC</span><span class="p">(</span><span class="n">my_model</span><span class="p">)</span>
@@ -348,16 +348,16 @@ for each stochastic node in the passed model:</p>
 </pre></div>
 </div>
 <p>For the best results, each chain should be initialized to highly dispersed starting values for each stochastic node.</p>
-<p>By default, when calling the <tt class="docutils literal"><span class="pre">summary_plot</span></tt> function using nodes with multiple chains, the <span class="math">\(\hat{R}\)</span> values will be plotted alongside the posterior intervals.</p>
-<div class="figure align-center" id="summary-plot">
-<a class="reference internal image-reference" href="_images/summary.png"><img alt="_images/summary.png" src="_images/summary.png" style="width: 800px;" /></a>
-<p class="caption">Summary plot of parameters from <cite>gelman_bioassay</cite> model, showing credible
-intervals on the left and the Gelman-Rubin statistic on the right.</p>
+<p>By default, when calling the <code class="docutils literal"><span class="pre">summary_plot</span></code> function using nodes with multiple chains, the <span class="math">\(\hat{R}\)</span> values will be plotted alongside the posterior intervals.</p>
+<div class="figure align-center" id="id16">
+<span id="summary-plot"></span><a class="reference internal image-reference" href="_images/summary.png"><img alt="_images/summary.png" src="_images/summary.png" style="width: 800px;" /></a>
+<p class="caption"><span class="caption-text">Summary plot of parameters from <cite>gelman_bioassay</cite> model, showing credible
+intervals on the left and the Gelman-Rubin statistic on the right.</span></p>
 </div>
 <p>Additional convergence diagnostics are available in the <a class="reference external" href="http://lib.stat.cmu.edu/r/cran/">R</a> statistical
 package (<a class="reference internal" href="references.html#r2010" id="id8">[R2010]</a>), via the <a class="reference external" href="http://www-fis.iarc.fr/coda/">CODA</a> module (<a class="reference internal" href="references.html#plummer2008" id="id9">[Plummer2008]</a>). PyMC includes a
-method <tt class="docutils literal"><span class="pre">coda</span></tt> for exporting model traces in a format that may be directly
-read by <tt class="docutils literal"><span class="pre">coda</span></tt>:</p>
+method <code class="docutils literal"><span class="pre">coda</span></code> for exporting model traces in a format that may be directly
+read by <code class="docutils literal"><span class="pre">coda</span></code>:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">pymc</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">coda</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
 
 <span class="go">Generating CODA output</span>
@@ -369,8 +369,8 @@ read by <tt class="docutils literal"><span class="pre">coda</span></tt>:</p>
 </pre></div>
 </div>
 <p>The lone argument is the PyMC sampler for which output is desired.</p>
-<p>Calling <tt class="docutils literal"><span class="pre">coda</span></tt> yields a file containing raw trace values (suffix <tt class="docutils literal"><span class="pre">.out</span></tt>)
-and a file containing indices to the trace values (suffix <tt class="docutils literal"><span class="pre">.ind</span></tt>).</p>
+<p>Calling <code class="docutils literal"><span class="pre">coda</span></code> yields a file containing raw trace values (suffix <code class="docutils literal"><span class="pre">.out</span></code>)
+and a file containing indices to the trace values (suffix <code class="docutils literal"><span class="pre">.ind</span></code>).</p>
 </div>
 </div>
 <div class="section" id="autocorrelation-plots">
@@ -391,16 +391,16 @@ of the posterior statistics for inference.</p>
 </pre></div>
 </div>
 <ul class="simple">
-<li><tt class="docutils literal"><span class="pre">pymc_object</span></tt>: The object that is or contains the output trace(s).</li>
-<li><tt class="docutils literal"><span class="pre">name</span></tt>: Name used for output files.</li>
-<li><tt class="docutils literal"><span class="pre">maxlag</span></tt>: The highest lag interval for which autocorrelation is calculated.</li>
-<li><tt class="docutils literal"><span class="pre">format</span></tt> (optional): Graphic output file format (defaults to <em>png</em>).</li>
-<li><tt class="docutils literal"><span class="pre">suffix</span></tt> (optional): Suffix to filename (defaults to <em>-diagnostic</em>)</li>
-<li><tt class="docutils literal"><span class="pre">path</span></tt> (optional): The path for output graphics (defaults to working
+<li><code class="docutils literal"><span class="pre">pymc_object</span></code>: The object that is or contains the output trace(s).</li>
+<li><code class="docutils literal"><span class="pre">name</span></code>: Name used for output files.</li>
+<li><code class="docutils literal"><span class="pre">maxlag</span></code>: The highest lag interval for which autocorrelation is calculated.</li>
+<li><code class="docutils literal"><span class="pre">format</span></code> (optional): Graphic output file format (defaults to <em>png</em>).</li>
+<li><code class="docutils literal"><span class="pre">suffix</span></code> (optional): Suffix to filename (defaults to <em>-diagnostic</em>)</li>
+<li><code class="docutils literal"><span class="pre">path</span></code> (optional): The path for output graphics (defaults to working
 directory).</li>
-<li><tt class="docutils literal"><span class="pre">fontmap</span></tt> (optional): Dictionary containing the font map for the labels of
+<li><code class="docutils literal"><span class="pre">fontmap</span></code> (optional): Dictionary containing the font map for the labels of
 the graphic.</li>
-<li><tt class="docutils literal"><span class="pre">verbose</span></tt> (optional): Verbosity level for output (defaults to 1).</li>
+<li><code class="docutils literal"><span class="pre">verbose</span></code> (optional): Verbosity level for output (defaults to 1).</li>
 </ul>
 <p>Autocorrelation plots can be obtained simply by passing the sampler to the
 <cite>autocorrelation</cite> function (within the <cite>Matplot</cite> module) directly:</p>
@@ -415,10 +415,10 @@ example, the parameter <cite>beta</cite> that was estimated using sampler <cite>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">pymc</span><span class="o">.</span><span class="n">Matplot</span><span class="o">.</span><span class="n">autocorrelation</span><span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">beta</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="figure align-center" id="autocorr">
-<a class="reference internal image-reference" href="_images/autocorr.png"><img alt="Autocorrelation figure" src="_images/autocorr.png" style="width: 560.0px;" /></a>
-<p class="caption">Sample autocorrelation plot for the switchpoint variable from the coal
-mining disasters example model.</p>
+<div class="figure align-center" id="id17">
+<span id="autocorr"></span><a class="reference internal image-reference" href="_images/autocorr.png"><img alt="Autocorrelation figure" src="_images/autocorr.png" style="width: 560.0px;" /></a>
+<p class="caption"><span class="caption-text">Sample autocorrelation plot for the switchpoint variable from the coal
+mining disasters example model.</span></p>
 </div>
 </div>
 <div class="section" id="goodness-of-fit">
@@ -477,14 +477,14 @@ observations. If there is poor fit, the true value of the data may appear in
 the tails of the histogram of replicated data, while a good fit will tend to
 show the true data in high-probability regions of the posterior predictive
 distribution (Figure 7.6).</p>
-<div class="figure align-center" id="gof">
-<a class="reference internal image-reference" href="_images/gof.png"><img alt="GOF figure" src="_images/gof.png" style="width: 560.0px;" /></a>
-<p class="caption">Data sampled from the posterior predictive distribution of a binomial random
-variate. The observed value (1) is shown by the dotted red line.</p>
+<div class="figure align-center" id="id18">
+<span id="gof"></span><a class="reference internal image-reference" href="_images/gof.png"><img alt="GOF figure" src="_images/gof.png" style="width: 560.0px;" /></a>
+<p class="caption"><span class="caption-text">Data sampled from the posterior predictive distribution of a binomial random
+variate. The observed value (1) is shown by the dotted red line.</span></p>
 </div>
 <p>The Matplot package in PyMC provides an easy way of producing such plots, via
-the <tt class="docutils literal"><span class="pre">gof_plot</span></tt> function. To illustrate, consider a single data point <tt class="docutils literal"><span class="pre">x</span></tt>
-and an array of values <tt class="docutils literal"><span class="pre">x_sim</span></tt> sampled from the posterior predictive
+the <code class="docutils literal"><span class="pre">gof_plot</span></code> function. To illustrate, consider a single data point <code class="docutils literal"><span class="pre">x</span></code>
+and an array of values <code class="docutils literal"><span class="pre">x_sim</span></code> sampled from the posterior predictive
 distribution. The histogram is generated by calling:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">pymc</span><span class="o">.</span><span class="n">Matplot</span><span class="o">.</span><span class="n">gof_plot</span><span class="p">(</span><span class="n">x_sim</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;x&#39;</span><span class="p">)</span>
 </pre></div>
@@ -510,28 +510,28 @@ corresponding observed discrepancies:</p>
 and thus is evidence of lack of fit. Graphically, data and simulated
 discrepancies plotted together should be clustered along a 45 degree line
 passing through the origin, as shown in Figure 7.7.</p>
-<div class="figure align-center" id="deviate">
-<a class="reference internal image-reference" href="_images/deviates.png"><img alt="deviates figure" src="_images/deviates.png" style="width: 640.0px;" /></a>
-<p class="caption">Plot of deviates of observed and simulated data from expected values.
+<div class="figure align-center" id="id19">
+<span id="deviate"></span><a class="reference internal image-reference" href="_images/deviates.png"><img alt="deviates figure" src="_images/deviates.png" style="width: 640.0px;" /></a>
+<p class="caption"><span class="caption-text">Plot of deviates of observed and simulated data from expected values.
 The cluster of points symmetrically about the 45 degree line (and the
-reported p-value) suggests acceptable fit for the modeled parameter.</p>
+reported p-value) suggests acceptable fit for the modeled parameter.</span></p>
 </div>
-<p>The <tt class="docutils literal"><span class="pre">discrepancy</span></tt> function in the <tt class="docutils literal"><span class="pre">diagnostics</span></tt> package can be used to
+<p>The <code class="docutils literal"><span class="pre">discrepancy</span></code> function in the <code class="docutils literal"><span class="pre">diagnostics</span></code> package can be used to
 generate discrepancy statistics from arrays of data, simulated values, and
 expected values:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">D</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">discrepancy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x_sim</span><span class="p">,</span> <span class="n">x_exp</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>For a dataset of size <span class="math">\(n\)</span> and an MCMC chain of length <span class="math">\(r\)</span>, this
-implies that <tt class="docutils literal"><span class="pre">x</span></tt> is size <tt class="docutils literal"><span class="pre">(n,)</span></tt>, <tt class="docutils literal"><span class="pre">x_sim</span></tt> is size <tt class="docutils literal"><span class="pre">(r,n)</span></tt> and <tt class="docutils literal"><span class="pre">x_exp</span></tt>
-is either size <tt class="docutils literal"><span class="pre">(r,)</span></tt> or <tt class="docutils literal"><span class="pre">(r,n)</span></tt>. A call to this function returns two
+implies that <code class="docutils literal"><span class="pre">x</span></code> is size <code class="docutils literal"><span class="pre">(n,)</span></code>, <code class="docutils literal"><span class="pre">x_sim</span></code> is size <code class="docutils literal"><span class="pre">(r,n)</span></code> and <code class="docutils literal"><span class="pre">x_exp</span></code>
+is either size <code class="docutils literal"><span class="pre">(r,)</span></code> or <code class="docutils literal"><span class="pre">(r,n)</span></code>. A call to this function returns two
 arrays of discrepancy values (simulated and observed), which can be passed to
-the <tt class="docutils literal"><span class="pre">discrepancy_plot</span></tt> function in the <cite>Matplot</cite> module to generate a scatter
+the <code class="docutils literal"><span class="pre">discrepancy_plot</span></code> function in the <cite>Matplot</cite> module to generate a scatter
 plot, and if desired, a <em>p</em> value:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">pymc</span><span class="o">.</span><span class="n">Matplot</span><span class="o">.</span><span class="n">discrepancy_plot</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="n">report_p</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Additional optional arguments for <tt class="docutils literal"><span class="pre">discrepancy_plot</span></tt> are identical to other
+<p>Additional optional arguments for <code class="docutils literal"><span class="pre">discrepancy_plot</span></code> are identical to other
 PyMC plotting functions.</p>
 <p class="rubric">Footnotes</p>
 <table class="docutils footnote" frame="void" id="id12" rules="none">
@@ -548,7 +548,7 @@ stays relatively constant over some arbitrary period.</td></tr>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
             <p class="logo"><a href="index.html">
               <img class="logo" src="_static/icon.png" alt="Logo"/>
@@ -573,12 +573,14 @@ stays relatively constant over some arbitrary period.</td></tr>
   <h4>Next topic</h4>
   <p class="topless"><a href="extending.html"
                         title="next chapter">8. Extending PyMC</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/modelchecking.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/modelchecking.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -595,7 +597,7 @@ stays relatively constant over some arbitrary period.</td></tr>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -610,12 +612,12 @@ stays relatively constant over some arbitrary period.</td></tr>
         <li class="right" >
           <a href="database.html" title="6. Saving and managing sampling results"
              >previous</a> |</li>
-        <li><a href="index.html">PyMC 2.3.4 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">PyMC 2.3.6 documentation</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2014, Christopher J. Fonnesbeck.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
     </div>
   </body>
 </html>

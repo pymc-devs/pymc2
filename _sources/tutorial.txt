@@ -174,7 +174,7 @@ the marginal distribution of the data) as follows:
 
 Even after we observe the value of `disasters`, we need to use this process
 model to make inferences about ``early_mean`` , ``switchpoint`` and
-``late_mean`` because its the only information we have about how the variables
+``late_mean`` because it's the only information we have about how the variables
 are related.
 
 Parents and children
@@ -322,7 +322,7 @@ log-densities::
 its value. Just as we created ``rate`` by decorating a function that computes
 its value, it's possible to create custom ``Stochastic`` objects by decorating
 functions that compute their log-probabilities or densities (see chapter
-:ref:`chap_modelbuilding`). Users are thus not limited to the set of of
+:ref:`chap_modelbuilding`). Users are thus not limited to the set of
 statistical distributions provided by PyMC.
 
 Using Variables as parents of other Variables

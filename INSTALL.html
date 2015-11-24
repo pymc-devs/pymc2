@@ -6,15 +6,15 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>2. Installation &mdash; PyMC 2.3.4 documentation</title>
+    <title>2. Installation &mdash; PyMC 2.3.6 documentation</title>
     
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '2.3.4',
+        VERSION:     '2.3.6',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,12 +24,12 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="PyMC 2.3.4 documentation" href="index.html" />
+    <link rel="top" title="PyMC 2.3.6 documentation" href="index.html" />
     <link rel="next" title="3. Tutorial" href="tutorial.html" />
     <link rel="prev" title="1. Introduction" href="README.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -44,14 +44,14 @@
         <li class="right" >
           <a href="README.html" title="1. Introduction"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">PyMC 2.3.4 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">PyMC 2.3.6 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="installation">
 <h1>2. Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
@@ -71,7 +71,7 @@
 </tr>
 <tr class="field-even field"><th class="field-name">License:</th><td class="field-body">PyMC is released under the Academic Free license.</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Version:</th><td class="field-body">2.3</td>
+<tr class="field-odd field"><th class="field-name">Version:</th><td class="field-body">2.3.6</td>
 </tr>
 </tbody>
 </table>
@@ -111,7 +111,7 @@ Mac OS X and Windows users, we recommend the <a class="reference external" href=
 that depending on the currency of these distributions, some packages may need
 to be updated manually.</p>
 <p>If, instead of installing the prebuilt binaries, you prefer (or have) to build
-<tt class="docutils literal"><span class="pre">pymc</span></tt> yourself, make sure you have a Fortran and a C compiler. There are
+<code class="docutils literal"><span class="pre">pymc</span></code> yourself, make sure you have a Fortran and a C compiler. There are
 free compilers (gfortran, gcc) available on all platforms. Other compilers have
 not been tested with PyMC but may work nonetheless.</p>
 </div>
@@ -186,22 +186,22 @@ python setup.py install
 </div>
 <p>The above syntax also assumes that you have gFortran installed and available.
 The <cite>sudo</cite> command may be required to install PyMC into the Python
-<tt class="docutils literal"><span class="pre">site-packages</span></tt> directory if it has restricted privileges.</p>
+<code class="docutils literal"><span class="pre">site-packages</span></code> directory if it has restricted privileges.</p>
 <p>In addition, the python-dev package may be required to install PyMC on Linux systems.</p>
 </div>
 </div>
 <div class="section" id="installing-from-github">
 <h2>2.5. Installing from GitHub<a class="headerlink" href="#installing-from-github" title="Permalink to this headline">¶</a></h2>
-<p>You can check out the 2.3 branch of PyMC from the <a class="reference external" href="https://github.com/pymc-devs/pymc">GitHub</a>
+<p>You can check out PyMC from the <a class="reference external" href="https://github.com/pymc-devs/pymc">GitHub</a>
 repository:</p>
-<div class="highlight-python"><div class="highlight"><pre>git clone -b 2.3 git://github.com/pymc-devs/pymc.git@2.3
+<div class="highlight-python"><div class="highlight"><pre>git clone git://github.com/pymc-devs/pymc.git
 </pre></div>
 </div>
-<p>Previous versions are available in the <tt class="docutils literal"><span class="pre">/tags</span></tt> directory.</p>
+<p>Previous versions are available in the <code class="docutils literal"><span class="pre">/tags</span></code> directory.</p>
 </div>
 <div class="section" id="running-the-test-suite">
 <h2>2.6. Running the test suite<a class="headerlink" href="#running-the-test-suite" title="Permalink to this headline">¶</a></h2>
-<p><tt class="docutils literal"><span class="pre">pymc</span></tt> comes with a set of tests that verify that the critical components of
+<p><code class="docutils literal"><span class="pre">pymc</span></code> comes with a set of tests that verify that the critical components of
 the code work as expected. To run these tests, users must have <a class="reference external" href="http://readthedocs.org/docs/nose/en/latest/">nose</a>
 installed. The tests are launched from a python shell:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">pymc</span>
@@ -225,7 +225,7 @@ addressed to PyMC&#8217;s <a class="reference external" href="mailto:pymc&#37;&#
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
             <p class="logo"><a href="index.html">
               <img class="logo" src="_static/icon.png" alt="Logo"/>
@@ -257,12 +257,14 @@ addressed to PyMC&#8217;s <a class="reference external" href="mailto:pymc&#37;&#
   <h4>Next topic</h4>
   <p class="topless"><a href="tutorial.html"
                         title="next chapter">3. Tutorial</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/INSTALL.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/INSTALL.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -279,7 +281,7 @@ addressed to PyMC&#8217;s <a class="reference external" href="mailto:pymc&#37;&#
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -294,12 +296,12 @@ addressed to PyMC&#8217;s <a class="reference external" href="mailto:pymc&#37;&#
         <li class="right" >
           <a href="README.html" title="1. Introduction"
              >previous</a> |</li>
-        <li><a href="index.html">PyMC 2.3.4 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">PyMC 2.3.6 documentation</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2014, Christopher J. Fonnesbeck.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
     </div>
   </body>
 </html>

@@ -385,7 +385,7 @@ have similar **automatic**, **decorator**, and **direct** interfaces:
                           name = 'rate',
                           parents = {'switchpoint': switchpoint,
                                   'early_mean': early_mean,
-                                  'late_mean': late_mean}),
+                                  'late_mean': late_mean},
                           doc = 'The rate of disaster occurrence.',
                           trace = True,
                           verbose = 0,
@@ -413,20 +413,20 @@ parent of some variable. Consider :math:`y` in the following model:
   \end{align*}
 
 Here, :math:`y` depends on every element of the Markov chain :math:`x`, but we
-wouldn't want to manually enter :math:`N` parent labels ```x_0'``, ```x_1'``,
+wouldn't want to manually enter :math:`N` parent labels ``'x_0'``, ``'x_1'``,
 etc.
 
 This situation can be handled naturally in PyMC::
 
     N = 10
-    x_0 = pymc.Normal(`x_0', mu=0, tau=1)
+    x_0 = pymc.Normal('x_0', mu=0, tau=1)
 
     x = np.empty(N, dtype=object)
     x[0] = x_0
 
     for i in range(1, N):
 
-        x[i] = pymc.Normal(`x_%i' % i, mu=x[i-1], tau=1)
+        x[i] = pymc.Normal('x_%i' % i, mu=x[i-1], tau=1)
 
     @pymc.observed
     def y(value=1, mu=x, tau=100):
@@ -435,7 +435,7 @@ This situation can be handled naturally in PyMC::
 PyMC automatically wraps array :math:`x` in an appropriate ``Container`` class.
 The expression ``'x_%i' % i`` labels each ``Normal`` object in the container
 with the appropriate index :math:`i`. For example, if ``i=1``, the name of the
-corresponding element becomes ```x_1'``.
+corresponding element becomes ``'x_1'``.
 
 Containers, like variables, have an attribute called ``value``. This attribute
 returns a copy of the (possibly nested) iterable that was passed into the

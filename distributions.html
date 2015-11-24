@@ -6,15 +6,15 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>9. Probability distributions &mdash; PyMC 2.3.4 documentation</title>
+    <title>9. Probability distributions &mdash; PyMC 2.3.6 documentation</title>
     
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '2.3.4',
+        VERSION:     '2.3.6',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,12 +24,12 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="PyMC 2.3.4 documentation" href="index.html" />
+    <link rel="top" title="PyMC 2.3.6 documentation" href="index.html" />
     <link rel="next" title="10. Conclusion" href="conclusion.html" />
     <link rel="prev" title="8. Extending PyMC" href="extending.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -44,14 +44,14 @@
         <li class="right" >
           <a href="extending.html" title="8. Extending PyMC"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">PyMC 2.3.4 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">PyMC 2.3.6 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="probability-distributions">
 <span id="chap-distributions"></span><h1>9. Probability distributions<a class="headerlink" href="#probability-distributions" title="Permalink to this headline">¶</a></h1>
@@ -67,7 +67,7 @@
 <h2>9.1. Discrete distributions<a class="headerlink" href="#discrete-distributions" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="pymc.distributions.bernoulli_like">
-<tt class="descclassname">pymc.distributions.</tt><tt class="descname">bernoulli_like</tt><big>(</big><em>x</em>, <em>p</em><big>)</big><a class="reference internal" href="_modules/pymc/distributions.html#bernoulli_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.bernoulli_like" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pymc.distributions.</code><code class="descname">bernoulli_like</code><span class="sig-paren">(</span><em>x</em>, <em>p</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#bernoulli_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.bernoulli_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bernoulli log-likelihood</p>
 <p>The Bernoulli distribution describes the probability of successes (x=1) and
 failures (x=0).</p>
@@ -103,7 +103,7 @@ failures (x=0).</p>
 
 <dl class="function">
 <dt id="pymc.distributions.binomial_like">
-<tt class="descclassname">pymc.distributions.</tt><tt class="descname">binomial_like</tt><big>(</big><em>x</em>, <em>n</em>, <em>p</em><big>)</big><a class="reference internal" href="_modules/pymc/distributions.html#binomial_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.binomial_like" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pymc.distributions.</code><code class="descname">binomial_like</code><span class="sig-paren">(</span><em>x</em>, <em>n</em>, <em>p</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#binomial_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.binomial_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Binomial log-likelihood.  The discrete probability distribution of the
 number of successes in a sequence of n independent yes/no experiments,
 each of which yields success with probability p.</p>
@@ -133,7 +133,7 @@ each of which yields success with probability p.</p>
 
 <dl class="function">
 <dt id="pymc.distributions.categorical_like">
-<tt class="descclassname">pymc.distributions.</tt><tt class="descname">categorical_like</tt><big>(</big><em>x</em>, <em>p</em><big>)</big><a class="reference internal" href="_modules/pymc/distributions.html#categorical_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.categorical_like" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pymc.distributions.</code><code class="descname">categorical_like</code><span class="sig-paren">(</span><em>x</em>, <em>p</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#categorical_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.categorical_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Categorical log-likelihood. The most general discrete distribution.</p>
 <div class="math">
 \[f(x=i \mid p) = p_i\]</div>
@@ -154,7 +154,7 @@ each of which yields success with probability p.</p>
 
 <dl class="function">
 <dt id="pymc.distributions.discrete_uniform_like">
-<tt class="descclassname">pymc.distributions.</tt><tt class="descname">discrete_uniform_like</tt><big>(</big><em>x</em>, <em>lower</em>, <em>upper</em><big>)</big><a class="reference internal" href="_modules/pymc/distributions.html#discrete_uniform_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.discrete_uniform_like" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pymc.distributions.</code><code class="descname">discrete_uniform_like</code><span class="sig-paren">(</span><em>x</em>, <em>lower</em>, <em>upper</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#discrete_uniform_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.discrete_uniform_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Discrete uniform log-likelihood.</p>
 <div class="math">
 \[f(x \mid lower, upper) = \frac{1}{upper-lower}\]</div>
@@ -175,7 +175,7 @@ each of which yields success with probability p.</p>
 
 <dl class="function">
 <dt id="pymc.distributions.geometric_like">
-<tt class="descclassname">pymc.distributions.</tt><tt class="descname">geometric_like</tt><big>(</big><em>x</em>, <em>p</em><big>)</big><a class="reference internal" href="_modules/pymc/distributions.html#geometric_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.geometric_like" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pymc.distributions.</code><code class="descname">geometric_like</code><span class="sig-paren">(</span><em>x</em>, <em>p</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#geometric_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.geometric_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Geometric log-likelihood. The probability that the first success in a
 sequence of Bernoulli trials occurs on the x&#8217;th trial.</p>
 <div class="math">
@@ -203,7 +203,7 @@ sequence of Bernoulli trials occurs on the x&#8217;th trial.</p>
 
 <dl class="function">
 <dt id="pymc.distributions.hypergeometric_like">
-<tt class="descclassname">pymc.distributions.</tt><tt class="descname">hypergeometric_like</tt><big>(</big><em>x</em>, <em>n</em>, <em>m</em>, <em>N</em><big>)</big><a class="reference internal" href="_modules/pymc/distributions.html#hypergeometric_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.hypergeometric_like" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pymc.distributions.</code><code class="descname">hypergeometric_like</code><span class="sig-paren">(</span><em>x</em>, <em>n</em>, <em>m</em>, <em>N</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#hypergeometric_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.hypergeometric_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Hypergeometric log-likelihood.</p>
 <p>Discrete probability distribution that describes the number of successes in
 a sequence of draws from a finite population without replacement.</p>
@@ -234,7 +234,7 @@ a sequence of draws from a finite population without replacement.</p>
 
 <dl class="function">
 <dt id="pymc.distributions.negative_binomial_like">
-<tt class="descclassname">pymc.distributions.</tt><tt class="descname">negative_binomial_like</tt><big>(</big><em>x</em>, <em>mu</em>, <em>alpha</em><big>)</big><a class="reference internal" href="_modules/pymc/distributions.html#negative_binomial_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.negative_binomial_like" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pymc.distributions.</code><code class="descname">negative_binomial_like</code><span class="sig-paren">(</span><em>x</em>, <em>mu</em>, <em>alpha</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#negative_binomial_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.negative_binomial_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Negative binomial log-likelihood.</p>
 <p>The negative binomial
 distribution describes a Poisson random variable whose rate
@@ -269,7 +269,7 @@ based on this mixture interpretation.</p>
 
 <dl class="function">
 <dt id="pymc.distributions.poisson_like">
-<tt class="descclassname">pymc.distributions.</tt><tt class="descname">poisson_like</tt><big>(</big><em>x</em>, <em>mu</em><big>)</big><a class="reference internal" href="_modules/pymc/distributions.html#poisson_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.poisson_like" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pymc.distributions.</code><code class="descname">poisson_like</code><span class="sig-paren">(</span><em>x</em>, <em>mu</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#poisson_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.poisson_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Poisson log-likelihood.</p>
 <p>The Poisson is a discrete probability
 distribution.  It is often used to model the number of events
@@ -301,7 +301,7 @@ a limiting case of the binomial distribution.</p>
 
 <dl class="function">
 <dt id="pymc.distributions.truncated_poisson_like">
-<tt class="descclassname">pymc.distributions.</tt><tt class="descname">truncated_poisson_like</tt><big>(</big><em>x</em>, <em>mu</em>, <em>k</em><big>)</big><a class="reference internal" href="_modules/pymc/distributions.html#truncated_poisson_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.truncated_poisson_like" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pymc.distributions.</code><code class="descname">truncated_poisson_like</code><span class="sig-paren">(</span><em>x</em>, <em>mu</em>, <em>k</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#truncated_poisson_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.truncated_poisson_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Truncated Poisson log-likelihood.</p>
 <p>The Truncated Poisson is a
 discrete probability distribution that is arbitrarily truncated to
@@ -344,7 +344,7 @@ constrained to be non-negative.</p>
 <h2>9.2. Continuous distributions<a class="headerlink" href="#continuous-distributions" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="pymc.distributions.beta_like">
-<tt class="descclassname">pymc.distributions.</tt><tt class="descname">beta_like</tt><big>(</big><em>x</em>, <em>alpha</em>, <em>beta</em><big>)</big><a class="reference internal" href="_modules/pymc/distributions.html#beta_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.beta_like" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pymc.distributions.</code><code class="descname">beta_like</code><span class="sig-paren">(</span><em>x</em>, <em>alpha</em>, <em>beta</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#beta_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.beta_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Beta log-likelihood. The conjugate prior for the parameter
 <span class="math">\(p\)</span> of the binomial distribution.</p>
 <div class="math">
@@ -380,7 +380,7 @@ constrained to be non-negative.</p>
 
 <dl class="function">
 <dt id="pymc.distributions.cauchy_like">
-<tt class="descclassname">pymc.distributions.</tt><tt class="descname">cauchy_like</tt><big>(</big><em>x</em>, <em>alpha</em>, <em>beta</em><big>)</big><a class="reference internal" href="_modules/pymc/distributions.html#cauchy_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.cauchy_like" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pymc.distributions.</code><code class="descname">cauchy_like</code><span class="sig-paren">(</span><em>x</em>, <em>alpha</em>, <em>beta</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#cauchy_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.cauchy_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Cauchy log-likelihood. The Cauchy distribution is also known as the
 Lorentz or the Breit-Wigner distribution.</p>
 <div class="math">
@@ -407,7 +407,7 @@ Lorentz or the Breit-Wigner distribution.</p>
 
 <dl class="function">
 <dt id="pymc.distributions.chi2_like">
-<tt class="descclassname">pymc.distributions.</tt><tt class="descname">chi2_like</tt><big>(</big><em>x</em>, <em>nu</em><big>)</big><a class="reference internal" href="_modules/pymc/distributions.html#chi2_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.chi2_like" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pymc.distributions.</code><code class="descname">chi2_like</code><span class="sig-paren">(</span><em>x</em>, <em>nu</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#chi2_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.chi2_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Chi-squared <span class="math">\(\chi^2\)</span> log-likelihood.</p>
 <div class="math">
 \[f(x \mid \nu) = \frac{x^{(\nu-2)/2}e^{-x/2}}{2^{\nu/2}\Gamma(\nu/2)}\]</div>
@@ -434,7 +434,7 @@ Lorentz or the Breit-Wigner distribution.</p>
 
 <dl class="function">
 <dt id="pymc.distributions.degenerate_like">
-<tt class="descclassname">pymc.distributions.</tt><tt class="descname">degenerate_like</tt><big>(</big><em>x</em>, <em>k</em><big>)</big><a class="reference internal" href="_modules/pymc/distributions.html#degenerate_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.degenerate_like" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pymc.distributions.</code><code class="descname">degenerate_like</code><span class="sig-paren">(</span><em>x</em>, <em>k</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#degenerate_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.degenerate_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Degenerate log-likelihood.</p>
 <div class="math">
 \[\begin{split}f(x \mid k) = \left\{ \begin{matrix} 1 \text{ if } x = k \\ 0 \text{ if } x \ne k\end{matrix} \right.\end{split}\]</div>
@@ -454,7 +454,7 @@ Lorentz or the Breit-Wigner distribution.</p>
 
 <dl class="function">
 <dt id="pymc.distributions.exponential_like">
-<tt class="descclassname">pymc.distributions.</tt><tt class="descname">exponential_like</tt><big>(</big><em>x</em>, <em>beta</em><big>)</big><a class="reference internal" href="_modules/pymc/distributions.html#exponential_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.exponential_like" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pymc.distributions.</code><code class="descname">exponential_like</code><span class="sig-paren">(</span><em>x</em>, <em>beta</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#exponential_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.exponential_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Exponential log-likelihood.</p>
 <p>The exponential distribution is a special case of the gamma distribution
 with alpha=1. It often describes the time until an event.</p>
@@ -484,7 +484,7 @@ with alpha=1. It often describes the time until an event.</p>
 
 <dl class="function">
 <dt id="pymc.distributions.exponweib_like">
-<tt class="descclassname">pymc.distributions.</tt><tt class="descname">exponweib_like</tt><big>(</big><em>x</em>, <em>alpha</em>, <em>k</em>, <em>loc=0</em>, <em>scale=1</em><big>)</big><a class="reference internal" href="_modules/pymc/distributions.html#exponweib_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.exponweib_like" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pymc.distributions.</code><code class="descname">exponweib_like</code><span class="sig-paren">(</span><em>x</em>, <em>alpha</em>, <em>k</em>, <em>loc=0</em>, <em>scale=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#exponweib_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.exponweib_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Exponentiated Weibull log-likelihood.</p>
 <p>The exponentiated Weibull distribution is a generalization of the Weibull
 family. Its value lies in being able to model monotone and non-monotone
@@ -511,10 +511,10 @@ z &amp; = \frac{x-loc}{scale}\end{split}\]</div>
 
 <dl class="function">
 <dt id="pymc.distributions.gamma_like">
-<tt class="descclassname">pymc.distributions.</tt><tt class="descname">gamma_like</tt><big>(</big><em>x</em>, <em>alpha</em>, <em>beta</em><big>)</big><a class="reference internal" href="_modules/pymc/distributions.html#gamma_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.gamma_like" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pymc.distributions.</code><code class="descname">gamma_like</code><span class="sig-paren">(</span><em>x</em>, <em>alpha</em>, <em>beta</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#gamma_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.gamma_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gamma log-likelihood.</p>
 <p>Represents the sum of alpha exponentially distributed random variables, each
-of which has mean beta.</p>
+of which has rate parameter beta.</p>
 <div class="math">
 \[f(x \mid \alpha, \beta) = \frac{\beta^{\alpha}x^{\alpha-1}e^{-\beta x}}{\Gamma(\alpha)}\]</div>
 <table class="docutils field-list" frame="void" rules="none">
@@ -541,7 +541,7 @@ of which has mean beta.</p>
 
 <dl class="function">
 <dt id="pymc.distributions.half_cauchy_like">
-<tt class="descclassname">pymc.distributions.</tt><tt class="descname">half_cauchy_like</tt><big>(</big><em>x</em>, <em>alpha</em>, <em>beta</em><big>)</big><a class="reference internal" href="_modules/pymc/distributions.html#half_cauchy_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.half_cauchy_like" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pymc.distributions.</code><code class="descname">half_cauchy_like</code><span class="sig-paren">(</span><em>x</em>, <em>alpha</em>, <em>beta</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#half_cauchy_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.half_cauchy_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Half-Cauchy log-likelihood. Simply the absolute value of Cauchy.</p>
 <div class="math">
 \[f(x \mid \alpha, \beta) = \frac{2}{\pi \beta [1 + (\frac{x-\alpha}{\beta})^2]}\]</div>
@@ -567,7 +567,7 @@ of which has mean beta.</p>
 
 <dl class="function">
 <dt id="pymc.distributions.half_normal_like">
-<tt class="descclassname">pymc.distributions.</tt><tt class="descname">half_normal_like</tt><big>(</big><em>x</em>, <em>tau</em><big>)</big><a class="reference internal" href="_modules/pymc/distributions.html#half_normal_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.half_normal_like" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pymc.distributions.</code><code class="descname">half_normal_like</code><span class="sig-paren">(</span><em>x</em>, <em>tau</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#half_normal_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.half_normal_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Half-normal log-likelihood, a normal distribution with mean 0 limited
 to the domain <span class="math">\(x \in [0, \infty)\)</span>.</p>
 <div class="math">
@@ -588,7 +588,7 @@ to the domain <span class="math">\(x \in [0, \infty)\)</span>.</p>
 
 <dl class="function">
 <dt id="pymc.distributions.inverse_gamma_like">
-<tt class="descclassname">pymc.distributions.</tt><tt class="descname">inverse_gamma_like</tt><big>(</big><em>x</em>, <em>alpha</em>, <em>beta</em><big>)</big><a class="reference internal" href="_modules/pymc/distributions.html#inverse_gamma_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.inverse_gamma_like" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pymc.distributions.</code><code class="descname">inverse_gamma_like</code><span class="sig-paren">(</span><em>x</em>, <em>alpha</em>, <em>beta</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#inverse_gamma_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.inverse_gamma_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Inverse gamma log-likelihood, the reciprocal of the gamma distribution.</p>
 <div class="math">
 \[f(x \mid \alpha, \beta) = \frac{\beta^{\alpha}}{\Gamma(\alpha)} x^{-\alpha - 1} \exp\left(\frac{-\beta}{x}\right)\]</div>
@@ -614,7 +614,7 @@ to the domain <span class="math">\(x \in [0, \infty)\)</span>.</p>
 
 <dl class="function">
 <dt id="pymc.distributions.laplace_like">
-<tt class="descclassname">pymc.distributions.</tt><tt class="descname">laplace_like</tt><big>(</big><em>x</em>, <em>mu</em>, <em>tau</em><big>)</big><a class="reference internal" href="_modules/pymc/distributions.html#laplace_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.laplace_like" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pymc.distributions.</code><code class="descname">laplace_like</code><span class="sig-paren">(</span><em>x</em>, <em>mu</em>, <em>tau</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#laplace_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.laplace_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Laplace (double exponential) log-likelihood.</p>
 <p>The Laplace (or double exponential) distribution describes the
 difference between two independent, identically distributed exponential
@@ -645,7 +645,7 @@ events. It is often used as a heavier-tailed alternative to the normal.</p>
 
 <dl class="function">
 <dt id="pymc.distributions.logistic_like">
-<tt class="descclassname">pymc.distributions.</tt><tt class="descname">logistic_like</tt><big>(</big><em>x</em>, <em>mu</em>, <em>tau</em><big>)</big><a class="reference internal" href="_modules/pymc/distributions.html#logistic_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.logistic_like" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pymc.distributions.</code><code class="descname">logistic_like</code><span class="sig-paren">(</span><em>x</em>, <em>mu</em>, <em>tau</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#logistic_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.logistic_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Logistic log-likelihood.</p>
 <p>The logistic distribution is often used as a growth model; for example,
 populations, markets. Resembles a heavy-tailed normal distribution.</p>
@@ -675,7 +675,7 @@ populations, markets. Resembles a heavy-tailed normal distribution.</p>
 
 <dl class="function">
 <dt id="pymc.distributions.lognormal_like">
-<tt class="descclassname">pymc.distributions.</tt><tt class="descname">lognormal_like</tt><big>(</big><em>x</em>, <em>mu</em>, <em>tau</em><big>)</big><a class="reference internal" href="_modules/pymc/distributions.html#lognormal_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.lognormal_like" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pymc.distributions.</code><code class="descname">lognormal_like</code><span class="sig-paren">(</span><em>x</em>, <em>mu</em>, <em>tau</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#lognormal_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.lognormal_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Log-normal log-likelihood.</p>
 <p>Distribution of any random variable whose logarithm is normally
 distributed. A variable might be modeled as log-normal if it can be thought
@@ -705,7 +705,7 @@ of as the multiplicative product of many small independent factors.</p>
 
 <dl class="function">
 <dt id="pymc.distributions.noncentral_t_like">
-<tt class="descclassname">pymc.distributions.</tt><tt class="descname">noncentral_t_like</tt><big>(</big><em>x</em>, <em>mu</em>, <em>lam</em>, <em>nu</em><big>)</big><a class="reference internal" href="_modules/pymc/distributions.html#noncentral_t_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.noncentral_t_like" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pymc.distributions.</code><code class="descname">noncentral_t_like</code><span class="sig-paren">(</span><em>x</em>, <em>mu</em>, <em>lam</em>, <em>nu</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#noncentral_t_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.noncentral_t_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Non-central Student&#8217;s T log-likelihood.</p>
 <p>Describes a normal variable whose precision is gamma distributed.</p>
 <div class="math">
@@ -731,7 +731,7 @@ of as the multiplicative product of many small independent factors.</p>
 
 <dl class="function">
 <dt id="pymc.distributions.normal_like">
-<tt class="descclassname">pymc.distributions.</tt><tt class="descname">normal_like</tt><big>(</big><em>x</em>, <em>mu</em>, <em>tau</em><big>)</big><a class="reference internal" href="_modules/pymc/distributions.html#normal_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.normal_like" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pymc.distributions.</code><code class="descname">normal_like</code><span class="sig-paren">(</span><em>x</em>, <em>mu</em>, <em>tau</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#normal_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.normal_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Normal log-likelihood.</p>
 <div class="math">
 \[f(x \mid \mu, \tau) = \sqrt{\frac{\tau}{2\pi}} \exp\left\{ -\frac{\tau}{2} (x-\mu)^2 \right\}\]</div>
@@ -760,7 +760,7 @@ of as the multiplicative product of many small independent factors.</p>
 
 <dl class="function">
 <dt id="pymc.distributions.pareto_like">
-<tt class="descclassname">pymc.distributions.</tt><tt class="descname">pareto_like</tt><big>(</big><em>x</em>, <em>alpha</em>, <em>m</em><big>)</big><a class="reference internal" href="_modules/pymc/distributions.html#pareto_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.pareto_like" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pymc.distributions.</code><code class="descname">pareto_like</code><span class="sig-paren">(</span><em>x</em>, <em>alpha</em>, <em>m</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#pareto_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.pareto_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Pareto log-likelihood. The Pareto is a continuous, positive
 probability distribution with two parameters. It is often used
 to characterize wealth distribution, or other examples of the
@@ -791,7 +791,7 @@ to characterize wealth distribution, or other examples of the
 
 <dl class="function">
 <dt id="pymc.distributions.skew_normal_like">
-<tt class="descclassname">pymc.distributions.</tt><tt class="descname">skew_normal_like</tt><big>(</big><em>x</em>, <em>mu</em>, <em>tau</em>, <em>alpha</em><big>)</big><a class="reference internal" href="_modules/pymc/distributions.html#skew_normal_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.skew_normal_like" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pymc.distributions.</code><code class="descname">skew_normal_like</code><span class="sig-paren">(</span><em>x</em>, <em>mu</em>, <em>tau</em>, <em>alpha</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#skew_normal_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.skew_normal_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Azzalini&#8217;s skew-normal log-likelihood</p>
 <div class="math">
 \[f(x \mid \mu, \tau, \alpha) = 2 \Phi((x-\mu)\sqrt{\tau}\alpha) \phi(x,\mu,\tau)\]</div>
@@ -818,7 +818,7 @@ to characterize wealth distribution, or other examples of the
 
 <dl class="function">
 <dt id="pymc.distributions.t_like">
-<tt class="descclassname">pymc.distributions.</tt><tt class="descname">t_like</tt><big>(</big><em>x</em>, <em>nu</em><big>)</big><a class="reference internal" href="_modules/pymc/distributions.html#t_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.t_like" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pymc.distributions.</code><code class="descname">t_like</code><span class="sig-paren">(</span><em>x</em>, <em>nu</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#t_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.t_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Student&#8217;s T log-likelihood.</p>
 <p>Describes a zero-mean normal variable
 whose precision is gamma distributed. Alternatively, describes the
@@ -842,7 +842,7 @@ sample standard deviation.</p>
 
 <dl class="function">
 <dt id="pymc.distributions.truncated_normal_like">
-<tt class="descclassname">pymc.distributions.</tt><tt class="descname">truncated_normal_like</tt><big>(</big><em>x</em>, <em>mu</em>, <em>tau</em>, <em>a=None</em>, <em>b=None</em><big>)</big><a class="reference internal" href="_modules/pymc/distributions.html#truncated_normal_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.truncated_normal_like" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pymc.distributions.</code><code class="descname">truncated_normal_like</code><span class="sig-paren">(</span><em>x</em>, <em>mu</em>, <em>tau</em>, <em>a=None</em>, <em>b=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#truncated_normal_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.truncated_normal_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Truncated normal log-likelihood.</p>
 <div class="math">
 \[f(x \mid \mu, \tau, a, b) = \frac{\phi(\frac{x-\mu}{\sigma})} {\Phi(\frac{b-\mu}{\sigma}) - \Phi(\frac{a-\mu}{\sigma})},\]</div>
@@ -866,7 +866,7 @@ sample standard deviation.</p>
 
 <dl class="function">
 <dt id="pymc.distributions.truncated_pareto_like">
-<tt class="descclassname">pymc.distributions.</tt><tt class="descname">truncated_pareto_like</tt><big>(</big><em>x</em>, <em>alpha</em>, <em>m</em>, <em>b</em><big>)</big><a class="reference internal" href="_modules/pymc/distributions.html#truncated_pareto_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.truncated_pareto_like" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pymc.distributions.</code><code class="descname">truncated_pareto_like</code><span class="sig-paren">(</span><em>x</em>, <em>alpha</em>, <em>m</em>, <em>b</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#truncated_pareto_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.truncated_pareto_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Truncated Pareto log-likelihood. The Pareto is a continuous, positive
 probability distribution with two parameters. It is often used
 to characterize wealth distribution, or other examples of the
@@ -891,7 +891,7 @@ to characterize wealth distribution, or other examples of the
 
 <dl class="function">
 <dt id="pymc.distributions.uniform_like">
-<tt class="descclassname">pymc.distributions.</tt><tt class="descname">uniform_like</tt><big>(</big><em>x</em>, <em>lower</em>, <em>upper</em><big>)</big><a class="reference internal" href="_modules/pymc/distributions.html#uniform_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.uniform_like" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pymc.distributions.</code><code class="descname">uniform_like</code><span class="sig-paren">(</span><em>x</em>, <em>lower</em>, <em>upper</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#uniform_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.uniform_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Uniform log-likelihood.</p>
 <div class="math">
 \[f(x \mid lower, upper) = \frac{1}{upper-lower}\]</div>
@@ -912,7 +912,7 @@ to characterize wealth distribution, or other examples of the
 
 <dl class="function">
 <dt id="pymc.distributions.von_mises_like">
-<tt class="descclassname">pymc.distributions.</tt><tt class="descname">von_mises_like</tt><big>(</big><em>x</em>, <em>mu</em>, <em>kappa</em><big>)</big><a class="reference internal" href="_modules/pymc/distributions.html#von_mises_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.von_mises_like" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pymc.distributions.</code><code class="descname">von_mises_like</code><span class="sig-paren">(</span><em>x</em>, <em>mu</em>, <em>kappa</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#von_mises_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.von_mises_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>von Mises log-likelihood.</p>
 <div class="math">
 \[f(x \mid \mu, k) = \frac{e^{k \cos(x - \mu)}}{2 \pi I_0(k)}\]</div>
@@ -940,7 +940,7 @@ to characterize wealth distribution, or other examples of the
 
 <dl class="function">
 <dt id="pymc.distributions.weibull_like">
-<tt class="descclassname">pymc.distributions.</tt><tt class="descname">weibull_like</tt><big>(</big><em>x</em>, <em>alpha</em>, <em>beta</em><big>)</big><a class="reference internal" href="_modules/pymc/distributions.html#weibull_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.weibull_like" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pymc.distributions.</code><code class="descname">weibull_like</code><span class="sig-paren">(</span><em>x</em>, <em>alpha</em>, <em>beta</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#weibull_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.weibull_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Weibull log-likelihood</p>
 <div class="math">
 \[f(x \mid \alpha, \beta) = \frac{\alpha x^{\alpha - 1}
@@ -972,7 +972,7 @@ to characterize wealth distribution, or other examples of the
 <h2>9.3. Multivariate discrete distributions<a class="headerlink" href="#multivariate-discrete-distributions" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="pymc.distributions.multivariate_hypergeometric_like">
-<tt class="descclassname">pymc.distributions.</tt><tt class="descname">multivariate_hypergeometric_like</tt><big>(</big><em>x</em>, <em>m</em><big>)</big><a class="reference internal" href="_modules/pymc/distributions.html#multivariate_hypergeometric_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.multivariate_hypergeometric_like" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pymc.distributions.</code><code class="descname">multivariate_hypergeometric_like</code><span class="sig-paren">(</span><em>x</em>, <em>m</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#multivariate_hypergeometric_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.multivariate_hypergeometric_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Multivariate hypergeometric log-likelihood</p>
 <p>Describes the probability of drawing x[i] elements of the ith category,
 when the number of items in each category is given by m.</p>
@@ -997,7 +997,7 @@ when the number of items in each category is given by m.</p>
 
 <dl class="function">
 <dt id="pymc.distributions.multinomial_like">
-<tt class="descclassname">pymc.distributions.</tt><tt class="descname">multinomial_like</tt><big>(</big><em>x</em>, <em>n</em>, <em>p</em><big>)</big><a class="reference internal" href="_modules/pymc/distributions.html#multinomial_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.multinomial_like" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pymc.distributions.</code><code class="descname">multinomial_like</code><span class="sig-paren">(</span><em>x</em>, <em>n</em>, <em>p</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#multinomial_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.multinomial_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Multinomial log-likelihood.</p>
 <p>Generalization of the binomial
 distribution, but instead of each trial resulting in &#8220;success&#8221; or
@@ -1044,7 +1044,7 @@ observed. <span class="math">\(\sum_{i=1}^k x_i=n\)</span>, <span class="math">\
 <h2>9.4. Multivariate continuous distributions<a class="headerlink" href="#multivariate-continuous-distributions" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="pymc.distributions.dirichlet_like">
-<tt class="descclassname">pymc.distributions.</tt><tt class="descname">dirichlet_like</tt><big>(</big><em>x</em>, <em>theta</em><big>)</big><a class="reference internal" href="_modules/pymc/distributions.html#dirichlet_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.dirichlet_like" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pymc.distributions.</code><code class="descname">dirichlet_like</code><span class="sig-paren">(</span><em>x</em>, <em>theta</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#dirichlet_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.dirichlet_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Dirichlet log-likelihood.</p>
 <p>This is a multivariate continuous distribution.</p>
 <div class="math">
@@ -1077,7 +1077,7 @@ as a parent of Multinomial and Categorical nevertheless.</p>
 
 <dl class="function">
 <dt id="pymc.distributions.mv_normal_like">
-<tt class="descclassname">pymc.distributions.</tt><tt class="descname">mv_normal_like</tt><big>(</big><em>x</em>, <em>mu</em>, <em>tau</em><big>)</big><a class="reference internal" href="_modules/pymc/distributions.html#mv_normal_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.mv_normal_like" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pymc.distributions.</code><code class="descname">mv_normal_like</code><span class="sig-paren">(</span><em>x</em>, <em>mu</em>, <em>tau</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#mv_normal_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.mv_normal_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Multivariate normal log-likelihood</p>
 <div class="math">
 \[f(x \mid \pi, T) = \frac{|T|^{1/2}}{(2\pi)^{1/2}} \exp\left\{ -\frac{1}{2} (x-\mu)^{\prime}T(x-\mu) \right\}\]</div>
@@ -1096,13 +1096,13 @@ as a parent of Multinomial and Categorical nevertheless.</p>
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><a class="reference internal" href="#pymc.distributions.mv_normal_chol_like" title="pymc.distributions.mv_normal_chol_like"><tt class="xref py py-func docutils literal"><span class="pre">mv_normal_chol_like()</span></tt></a>, <a class="reference internal" href="#pymc.distributions.mv_normal_cov_like" title="pymc.distributions.mv_normal_cov_like"><tt class="xref py py-func docutils literal"><span class="pre">mv_normal_cov_like()</span></tt></a></p>
+<p class="last"><a class="reference internal" href="#pymc.distributions.mv_normal_chol_like" title="pymc.distributions.mv_normal_chol_like"><code class="xref py py-func docutils literal"><span class="pre">mv_normal_chol_like()</span></code></a>, <a class="reference internal" href="#pymc.distributions.mv_normal_cov_like" title="pymc.distributions.mv_normal_cov_like"><code class="xref py py-func docutils literal"><span class="pre">mv_normal_cov_like()</span></code></a></p>
 </div>
 </dd></dl>
 
 <dl class="function">
 <dt id="pymc.distributions.mv_normal_chol_like">
-<tt class="descclassname">pymc.distributions.</tt><tt class="descname">mv_normal_chol_like</tt><big>(</big><em>x</em>, <em>mu</em>, <em>sig</em><big>)</big><a class="reference internal" href="_modules/pymc/distributions.html#mv_normal_chol_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.mv_normal_chol_like" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pymc.distributions.</code><code class="descname">mv_normal_chol_like</code><span class="sig-paren">(</span><em>x</em>, <em>mu</em>, <em>sig</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#mv_normal_chol_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.mv_normal_chol_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Multivariate normal log-likelihood.</p>
 <div class="math">
 \[f(x \mid \pi, \sigma) = \frac{1}{(2\pi)^{1/2}|\sigma|)} \exp\left\{ -\frac{1}{2} (x-\mu)^{\prime}(\sigma \sigma^{\prime})^{-1}(x-\mu) \right\}\]</div>
@@ -1121,13 +1121,13 @@ as a parent of Multinomial and Categorical nevertheless.</p>
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><a class="reference internal" href="#pymc.distributions.mv_normal_like" title="pymc.distributions.mv_normal_like"><tt class="xref py py-func docutils literal"><span class="pre">mv_normal_like()</span></tt></a>, <a class="reference internal" href="#pymc.distributions.mv_normal_cov_like" title="pymc.distributions.mv_normal_cov_like"><tt class="xref py py-func docutils literal"><span class="pre">mv_normal_cov_like()</span></tt></a></p>
+<p class="last"><a class="reference internal" href="#pymc.distributions.mv_normal_like" title="pymc.distributions.mv_normal_like"><code class="xref py py-func docutils literal"><span class="pre">mv_normal_like()</span></code></a>, <a class="reference internal" href="#pymc.distributions.mv_normal_cov_like" title="pymc.distributions.mv_normal_cov_like"><code class="xref py py-func docutils literal"><span class="pre">mv_normal_cov_like()</span></code></a></p>
 </div>
 </dd></dl>
 
 <dl class="function">
 <dt id="pymc.distributions.mv_normal_cov_like">
-<tt class="descclassname">pymc.distributions.</tt><tt class="descname">mv_normal_cov_like</tt><big>(</big><em>x</em>, <em>mu</em>, <em>C</em><big>)</big><a class="reference internal" href="_modules/pymc/distributions.html#mv_normal_cov_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.mv_normal_cov_like" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pymc.distributions.</code><code class="descname">mv_normal_cov_like</code><span class="sig-paren">(</span><em>x</em>, <em>mu</em>, <em>C</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#mv_normal_cov_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.mv_normal_cov_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Multivariate normal log-likelihood parameterized by a covariance
 matrix.</p>
 <div class="math">
@@ -1147,13 +1147,13 @@ matrix.</p>
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><a class="reference internal" href="#pymc.distributions.mv_normal_like" title="pymc.distributions.mv_normal_like"><tt class="xref py py-func docutils literal"><span class="pre">mv_normal_like()</span></tt></a>, <a class="reference internal" href="#pymc.distributions.mv_normal_chol_like" title="pymc.distributions.mv_normal_chol_like"><tt class="xref py py-func docutils literal"><span class="pre">mv_normal_chol_like()</span></tt></a></p>
+<p class="last"><a class="reference internal" href="#pymc.distributions.mv_normal_like" title="pymc.distributions.mv_normal_like"><code class="xref py py-func docutils literal"><span class="pre">mv_normal_like()</span></code></a>, <a class="reference internal" href="#pymc.distributions.mv_normal_chol_like" title="pymc.distributions.mv_normal_chol_like"><code class="xref py py-func docutils literal"><span class="pre">mv_normal_chol_like()</span></code></a></p>
 </div>
 </dd></dl>
 
 <dl class="function">
 <dt id="pymc.distributions.wishart_like">
-<tt class="descclassname">pymc.distributions.</tt><tt class="descname">wishart_like</tt><big>(</big><em>X</em>, <em>n</em>, <em>Tau</em><big>)</big><a class="reference internal" href="_modules/pymc/distributions.html#wishart_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.wishart_like" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pymc.distributions.</code><code class="descname">wishart_like</code><span class="sig-paren">(</span><em>X</em>, <em>n</em>, <em>Tau</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#wishart_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.wishart_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Wishart log-likelihood.</p>
 <p>The Wishart distribution is the probability
 distribution of the maximum-likelihood estimator (MLE) of the precision
@@ -1192,7 +1192,7 @@ is identical to the chi-square distribution with n degrees of freedom.</p>
 
 <dl class="function">
 <dt id="pymc.distributions.wishart_cov_like">
-<tt class="descclassname">pymc.distributions.</tt><tt class="descname">wishart_cov_like</tt><big>(</big><em>X</em>, <em>n</em>, <em>C</em><big>)</big><a class="reference internal" href="_modules/pymc/distributions.html#wishart_cov_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.wishart_cov_like" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pymc.distributions.</code><code class="descname">wishart_cov_like</code><span class="sig-paren">(</span><em>X</em>, <em>n</em>, <em>C</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#wishart_cov_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.wishart_cov_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>wishart_like(X, n, C)</p>
 <p>Wishart log-likelihood. The Wishart distribution is the probability
 distribution of the maximum-likelihood estimator (MLE) of the covariance
@@ -1231,7 +1231,7 @@ is identical to the chi-square distribution with n degrees of freedom.</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
             <p class="logo"><a href="index.html">
               <img class="logo" src="_static/icon.png" alt="Logo"/>
@@ -1253,12 +1253,14 @@ is identical to the chi-square distribution with n degrees of freedom.</p>
   <h4>Next topic</h4>
   <p class="topless"><a href="conclusion.html"
                         title="next chapter">10. Conclusion</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/distributions.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/distributions.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -1275,7 +1277,7 @@ is identical to the chi-square distribution with n degrees of freedom.</p>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -1290,12 +1292,12 @@ is identical to the chi-square distribution with n degrees of freedom.</p>
         <li class="right" >
           <a href="extending.html" title="8. Extending PyMC"
              >previous</a> |</li>
-        <li><a href="index.html">PyMC 2.3.4 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">PyMC 2.3.6 documentation</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2014, Christopher J. Fonnesbeck.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
     </div>
   </body>
 </html>
