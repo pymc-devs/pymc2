@@ -16,6 +16,7 @@ import numpy as np
 from . import Stochastic
 from copy import copy
 from .distributions import *
+from .utils import get_signature
 
 """
 Wraps a SciPy rv object in a PyMC random variable object.
@@ -71,7 +72,7 @@ def stochastic_from_scipy_dist(scipy_dist):
 
     name = scipy_dist.__class__.__name__.replace('_gen', '').capitalize()
 
-    (args, varargs, varkw, defaults) = inspect.getargspec(scipy_dist._cdf)
+    (args, defaults) = get_signature(scipy_dist._cdf)
     shape_args = args[2:]
     if isinstance(scipy_dist, rv_continuous):
         dtype = float

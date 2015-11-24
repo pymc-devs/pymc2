@@ -18,6 +18,7 @@ from numpy.linalg import cholesky, eigh
 from .Node import logp_of_set, logp_gradient_of_set
 import types
 from .datatypes import *
+import inspect
 
 from . import six
 from .six import print_
@@ -36,10 +37,28 @@ __all__ = ['append', 'check_list', 'autocorr', 'calc_min_interval',
            'make_indices', 'normcdf', 'quantiles', 'rec_getattr',
            'rec_setattr', 'round_array', 'trace_generator', 'msqrt', 'safe_len',
            'log_difference', 'find_generations', 'crawl_dataless', 'logit',
-           'invlogit', 'stukel_logit', 'stukel_invlogit', 'symmetrize', 'value']
+           'invlogit', 'stukel_logit', 'stukel_invlogit', 'symmetrize', 'value',
+           'get_signature']
 
 symmetrize = flib.symmetrize
 
+PY3 = sys.version_info >= (3, 3)
+
+def get_signature_py3(func):
+    sig = inspect.signature(func)
+    defaults = tuple(p.default for p in sig.parameters.values() if p.default is not inspect._empty)
+    args = [k for k in sig.parameters.keys() if k not in ('args', 'kwds')]
+    return args, defaults
+    
+def get_signature_py2(func):
+    (args, varargs, varkw, defaults) = inspect.getargspec(func)
+    return args, defaults
+    
+    
+if PY3:
+    get_signature = get_signature_py3
+else:
+    get_signature = get_signature_py2
 
 def value(a):
     """

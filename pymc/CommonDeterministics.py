@@ -18,7 +18,7 @@ import numpy as np
 from numpy import sum, shape, size, ravel, sign, zeros, ones, broadcast, newaxis
 import inspect
 import types
-from .utils import safe_len, stukel_logit, stukel_invlogit, logit, invlogit, value, find_element
+from .utils import safe_len, stukel_logit, stukel_invlogit, logit, invlogit, value, find_element, get_signature
 from copy import copy
 import sys
 import operator
@@ -73,12 +73,9 @@ class Lambda(pm.Deterministic):
 
     def __init__(self, name, lam_fun,
                  doc='A Deterministic made from an anonymous function', *args, **kwds):
-        (parent_names, junk0, junk1,
-         parent_values) = inspect.getargspec(lam_fun)
+        (parent_names, parent_values) = get_signature(lam_fun)
 
-        if junk0 is not None \
-            or junk1 is not None \
-                or parent_values is None:
+        if parent_values is None:
             raise ValueError(
                 '%s: All arguments to lam_fun must have default values.' %
                 name)
@@ -535,7 +532,7 @@ def pfunc(func):
                 'Failed to create pfunc wrapper from object %s. Original error message:\n\n%s' %
                 (func, inst.message))
             six.reraise(cls, inst, tb)
-    fargs, fvarargs, fvarkw, fdefaults = inspect.getargspec(func)
+    fargs, fdefaults = get_signature(func)
     n_fargs = len(fargs)
 
     def dtrm_generator(*args, **kwds):
