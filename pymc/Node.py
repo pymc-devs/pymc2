@@ -113,7 +113,7 @@ class Node(object):
 
         # Name and docstrings
         self.__doc__ = doc
-        if not isinstance(name, str):
+        if not isinstance(name, six.string_types):
             raise ValueError(
                 'The name argument must be a string, but received %s.' %
                 name)
