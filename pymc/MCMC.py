@@ -34,7 +34,6 @@ class MCMC(Sampler):
       :Parameters:
         - input : module, list, tuple, dictionary, set, object or nothing.
             Model definition, in terms of Stochastics, Deterministics, Potentials and Containers.
-            If nothing, all nodes are collected from the base namespace.
         - db : string
             The name of the database backend that will store the values
             of the stochastics and deterministics sampled during the MCMC loop.
@@ -57,14 +56,13 @@ class MCMC(Sampler):
     :SeeAlso: Model, Sampler, StepMethod.
     """
 
-    def __init__(self, input=None, db='ram',
+    def __init__(self, input=[], db='ram',
                  name='MCMC', calc_deviance=True, **kwds):
         """Initialize an MCMC instance.
 
         :Parameters:
           - input : module, list, tuple, dictionary, set, object or nothing.
               Model definition, in terms of Stochastics, Deterministics, Potentials and Containers.
-              If nothing, all nodes are collected from the base namespace.
           - db : string
               The name of the database backend that will store the values
               of the stochastics and deterministics sampled during the MCMC loop.
