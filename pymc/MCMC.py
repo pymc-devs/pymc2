@@ -4,7 +4,7 @@ Class MCMC, which fits probability models using Markov Chain Monte Carlo, is def
 
 __all__ = ['MCMC']
 
-from .Model import Sampler
+from .Model import Sampler, Model
 from .StepMethods import StepMethodRegistry, assign_method, DrawFromPrior
 from .distributions import absolute_loss, squared_loss, chi_square_loss
 import sys
@@ -12,6 +12,7 @@ import time
 import pdb
 import numpy as np
 from .utils import crawl_dataless
+import warnings
 
 from .six import print_
 
@@ -71,6 +72,13 @@ class MCMC(Sampler):
           - **kwds :
               Keywords arguments to be passed to the database instantiation method.
         """
+        
+        if isinstance(input, Model):
+            message = 'Instantiating a Model object directly is deprecated. '
+            message += 'We recommend passing variables directly to the Model subclass.'
+            warnings.warn(message)
+            input = input.variables
+        
         Sampler.__init__(
             self,
             input,
