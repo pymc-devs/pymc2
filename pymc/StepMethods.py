@@ -823,8 +823,6 @@ class DiscreteMetropolis(Metropolis):
         # Flag for positive-only values
         self._non_negative = non_negative
         
-        print('NONNEG', non_negative)
-
     valid_proposals = property(lambda self: ('normal', 'prior', 'poisson'))
 
     @staticmethod
