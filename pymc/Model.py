@@ -78,24 +78,15 @@ class Model(ObjectContainer):
     :SeeAlso: Sampler, MAP, NormalApproximation, weight, Container, graph.
     """
 
-    def __init__(self, input=None, name=None, verbose=-1):
+    def __init__(self, input=[], name=None, verbose=-1):
         """Initialize a Model instance.
 
         :Parameters:
-          - input : module, list, tuple, dictionary, set, object or nothing.
+          - input : module, list, tuple, dictionary, set, or object.
               Model definition, in terms of Stochastics, Deterministics, Potentials and Containers.
-              If nothing, all nodes are collected from the base namespace.
         """
 
         # Get stochastics, deterministics, etc.
-        if input is None:
-            import warnings
-            warnings.warn(
-                'The MCMC() syntax is deprecated. Please pass in nodes explicitly via M = MCMC(input).')
-            import __main__
-            __main__.__dict__.update(self.__class__.__dict__)
-            input = __main__
-
         ObjectContainer.__init__(self, input)
 
         if name is not None:
@@ -173,14 +164,13 @@ class Sampler(Model):
     :SeeAlso: Model, MCMC.
     """
 
-    def __init__(self, input=None, db='ram', name='Sampler',
+    def __init__(self, input=[], db='ram', name='Sampler',
                  reinit_model=True, calc_deviance=False, verbose=0, **kwds):
         """Initialize a Sampler instance.
 
         :Parameters:
           - input : module, list, tuple, dictionary, set, object or nothing.
               Model definition, in terms of Stochastics, Deterministics, Potentials and Containers.
-              If nothing, all nodes are collected from the base namespace.
           - db : string
               The name of the database backend that will store the values
               of the stochastics and deterministics sampled during the MCMC loop.
