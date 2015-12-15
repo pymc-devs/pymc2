@@ -41,7 +41,10 @@ class test_tiny_MCMC(TestCase):
 
 class test_MCMC(TestCase):
     
-    dbname='test_MCMC'
+    dbname=DIR+'test_MCMC'
+    
+    if not os.path.exists(DIR):
+        os.mkdir(DIR)
 
     # Instantiate samplers
     M = MCMC(disaster_model, db='txt', dbname=dbname)

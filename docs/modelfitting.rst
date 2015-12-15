@@ -480,10 +480,7 @@ for an example.
 
 ``proposal_distribution``:
    A string indicating which distribution should be used for proposals. Current 
-   options are ``'Normal'`` and ``'Prior'``. If ``proposal_distribution=None``, 
-   the proposal distribution is chosen automatically. It is set to ``'Prior'`` 
-   if the variable has no children and has a random method, and to ``'Normal'`` 
-   otherwise.
+   options are ``'Normal'`` and ``'Prior'``. 
 
 ``verbose``:
    An integer. By convention 0 indicates no output, 1 shows a progress bar 
