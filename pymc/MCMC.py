@@ -138,8 +138,7 @@ class MCMC(Sampler):
             for sm in step_method:
                 self.remove_step_method(sm)
 
-    def assign_step_methods(
-            self, verbose=-1, draw_from_prior_when_possible=True):
+    def assign_step_methods(self, verbose=-1, draw_from_prior_when_possible=True):
         """
         Make sure every stochastic variable has a step method. If not,
         assign a step method from the registry.

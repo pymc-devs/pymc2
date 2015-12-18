@@ -373,9 +373,8 @@ class Metropolis(StepMethod):
             The proposal jump width is set to proposal_sd.
 
     - proposal_distribution (optional) : string
-            The proposal distribution. May be 'Normal',
-            'Prior' or None. If None is provided, a proposal distribution is chosen
-            by examining P.value's type.
+            The proposal distribution. May be 'normal' (default) or
+            'prior'.
 
     - verbose (optional) : integer
             Level of output verbosity: 0=none, 1=low, 2=medium, 3=high. Setting to -1 (default) allows verbosity to be turned on by sampler.
@@ -384,7 +383,7 @@ class Metropolis(StepMethod):
     """
 
     def __init__(self, stochastic, scale=1., proposal_sd=None,
-                 proposal_distribution=None, verbose=-1, tally=True, check_before_accepting=True):
+                 proposal_distribution='normal', verbose=-1, tally=True, check_before_accepting=True):
         # Metropolis class initialization
 
         # Initialize superclass
@@ -413,8 +412,16 @@ class Metropolis(StepMethod):
             self.verbose = verbose
         else:
             self.verbose = stochastic.verbose
+           
+        prop_dist = proposal_distribution.lower() 
+        if prop_dist in self.valid_proposals:
+            self.proposal_distribution = proposal_distribution
+        else:
+            raise ValueError(
+                "Invalid proposal distribution '%s' specified for Metropolis sampler." %
+                proposal_distribution)
 
-        if proposal_distribution != "Prior":
+        if prop_dist != "prior":
             # Avoid zeros when setting proposal variance
             if proposal_sd is None:
                 if all(self.stochastic.value != 0.):
@@ -437,24 +444,7 @@ class Metropolis(StepMethod):
             else:
                 self._len = 1
 
-        # else: self.proposal_sd = None # Probably unnecessary
-        # If no dist argument is provided, assign a proposal distribution
-        # automatically.
-        if not proposal_distribution:
-
-            # Pick Gaussian by default
-            self.proposal_distribution = "Normal"
-
-        else:
-
-            if proposal_distribution.capitalize() in self._valid_proposals:
-                self.proposal_distribution = proposal_distribution
-            else:
-                raise ValueError(
-                    "Invalid proposal distribution '%s' specified for Metropolis sampler." %
-                    proposal_distribution)
-
-    _valid_proposals = ['Normal', 'Prior']
+    valid_proposals = property(lambda self: ('normal', 'prior'))
 
     @staticmethod
     def competence(s):
@@ -489,7 +479,7 @@ class Metropolis(StepMethod):
             print_()
             print_(self._id + ' getting initial logp.')
 
-        if self.proposal_distribution == "Prior":
+        if self.proposal_distribution == "prior":
             logp = self.loglike
         else:
             logp = self.logp_plus_loglike
@@ -502,7 +492,7 @@ class Metropolis(StepMethod):
 
         # Probability and likelihood for s's proposed value:
         try:
-            if self.proposal_distribution == "Prior":
+            if self.proposal_distribution == "prior":
                 logp_p = self.loglike
                 # Check for weirdness before accepting jump
                 if self.check_before_accepting:
@@ -559,13 +549,14 @@ class Metropolis(StepMethod):
         if self.proposal_distribution is "Normal" (i.e. no proposal specified).
         """
     
-        if self.proposal_distribution == "Normal":
+        prop_dist = self.proposal_distribution.lower()
+        if  prop_dist == "normal":
             self.stochastic.value = rnormal(
                 self.stochastic.value,
                 self.adaptive_scale_factor *
                 self.proposal_sd,
                 size=self.stochastic.value.shape)
-        elif self.proposal_distribution == "Prior":
+        elif prop_dist == "prior":
             self.stochastic.random()
 
     def tune(self, divergence_threshold=1e10, verbose=0):
@@ -658,7 +649,7 @@ class PDMatrixMetropolis(Metropolis):
             stochastic,
             scale=scale,
             proposal_sd=proposal_sd,
-            proposal_distribution="Normal",
+            proposal_distribution="normal",
             verbose=verbose,
             tally=tally)
 
@@ -797,7 +788,7 @@ class DiscreteMetropolis(Metropolis):
     """
 
     def __init__(self, stochastic, scale=1., proposal_sd=None,
-                 proposal_distribution="Poisson", positive=True, verbose=-1, tally=True):
+                 proposal_distribution="poisson", non_negative=None, verbose=-1, tally=True):
         # DiscreteMetropolis class initialization
 
         # Initialize superclass
@@ -809,11 +800,30 @@ class DiscreteMetropolis(Metropolis):
             proposal_distribution=proposal_distribution,
             verbose=verbose,
             tally=tally)
-
+            
+        if non_negative is None:
+            
+            init_val = stochastic.value
+            if np.any(init_val <= 0):
+                non_negative = False
+                
+            else:
+                # If -1 has finite logp, allow positive 
+                stochastic.value = -np.ones_like(init_val)
+                try:
+                    non_negative = ~np.isfinite(stochastic.logp)
+                except ZeroProbability:
+                    non_negative = True
+                    
+                stochastic.value = init_val
+        
+        else:
+            non_negative = True
+        
         # Flag for positive-only values
-        self._positive = positive
-
-    _valid_proposals = ['Poisson', 'Normal', 'Prior']
+        self._non_negative = non_negative
+        
+    valid_proposals = property(lambda self: ('normal', 'prior', 'poisson'))
 
     @staticmethod
     def competence(stochastic):
@@ -828,7 +838,8 @@ class DiscreteMetropolis(Metropolis):
     def propose(self):
         # Propose new values using normal distribution
 
-        if self.proposal_distribution == "Normal":
+        prop_dist = self.proposal_distribution.lower()
+        if prop_dist == "normal":
 
             # New normal deviate, centred on current value
             new_val = rnormal(
@@ -839,24 +850,21 @@ class DiscreteMetropolis(Metropolis):
             # Round before setting proposed value
             self.stochastic.value = round_array(new_val)
 
-        elif self.proposal_distribution == "Poisson":
+        elif prop_dist == "poisson":
 
             k = shape(self.stochastic.value)
             # Add or subtract (equal probability) Poisson sample
             new_val = self.stochastic.value + rpoisson(
                 self.adaptive_scale_factor * self.proposal_sd) * (
-                    -ones(
-                        k)) ** (
-                            random(
-                                k) > 0.5)
+                    -ones(k)) ** (random(k) > 0.5)
 
-            if self._positive:
+            if self._non_negative:
                 # Enforce positive values
                 self.stochastic.value = abs(new_val)
             else:
                 self.stochastic.value = new_val
 
-        elif self.proposal_distribution == "Prior":
+        elif prop_dist == "prior":
             self.stochastic.random()
 
 # TODO Implement independence sampler for BinaryMetropolis
@@ -871,7 +879,7 @@ class BinaryMetropolis(Metropolis):
     """
 
     def __init__(self, stochastic, p_jump=.1,
-                 proposal_distribution=None, verbose=-1, tally=True):
+                 proposal_distribution='binary', verbose=-1, tally=True):
         # BinaryMetropolis class initialization
 
         # Initialize superclass
@@ -886,6 +894,8 @@ class BinaryMetropolis(Metropolis):
 
         # adaptive_scale_factor controls the jump probability
         self.adaptive_scale_factor = log(1. - p_jump) / log(.5)
+        
+    valid_proposals = property(lambda self: ('binary', 'prior'))
 
     @staticmethod
     def competence(stochastic):
@@ -934,10 +944,10 @@ class BinaryMetropolis(Metropolis):
 
             if self.verbose > 2:
                 print_("""%s step information:
-    - logp_true: %f
-    - logp_false: %f
-    - p_true: %f
-    - p_false: %f
+                - logp_true: %f
+                - logp_false: %f
+                - p_true: %f
+                - p_false: %f
                 """ % (self._id, logp_true, logp_false, p_true, p_false))
 
             # Stochastically set value according to relative
@@ -955,7 +965,7 @@ class BinaryMetropolis(Metropolis):
 
     def propose(self):
 
-        if self.proposal_distribution == 'Prior':
+        if self.proposal_distribution.lower() == 'prior':
             self.stochastic.random()
         else:
             # Convert adaptive_scale_factor to a jump probability

@@ -262,9 +262,11 @@ class GPEvaluationGibbs(pm.Metropolis):
         self.rejected = 0.
         self._state = ['rejected', 'accepted', 'proposal_distribution']
         self._tuning_info = []
-        self.proposal_distribution = None
+        self.proposal_distribution = 'gibbs'
 
         self.verbose = verbose
+        
+    valid_proposals = property(lambda self: ('gibbs',))
 
     def get_logp(self):
         return 0.
