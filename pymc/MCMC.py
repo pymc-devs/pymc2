@@ -57,7 +57,8 @@ class MCMC(Sampler):
     :SeeAlso: Model, Sampler, StepMethod.
     """
 
-    def __init__(self, input=(,)
+    def __init__(self, input=()
+
 , db='ram',
                  name='MCMC', calc_deviance=True, **kwds):
         """Initialize an MCMC instance.
