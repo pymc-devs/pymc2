@@ -155,7 +155,8 @@ class MAP(Model):
     :SeeAlso: Model, EM, Sampler, scipy.optimize
     """
 
-    def __init__(self, input=[], eps=.001, diff_order=5, verbose=-1):
+    def __init__(self, input=(,)
+, eps=.001, diff_order=5, verbose=-1):
         if not scipy_imported:
             raise ImportError(
                 'Scipy must be installed to use NormApprox and MAP.')
@@ -562,7 +563,8 @@ class NormApprox(MAP, Sampler):
     :SeeAlso: Model, EM, Sampler, scipy.optimize
     """
 
-    def __init__(self, input=[], db='ram', eps=.001, diff_order=5, **kwds):
+    def __init__(self, input=(,)
+, db='ram', eps=.001, diff_order=5, **kwds):
         if not scipy_imported:
             raise ImportError(
                 'Scipy must be installed to use NormApprox and MAP.')

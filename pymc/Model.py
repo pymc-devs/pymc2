@@ -78,7 +78,8 @@ class Model(ObjectContainer):
     :SeeAlso: Sampler, MAP, NormalApproximation, weight, Container, graph.
     """
 
-    def __init__(self, input=[], name=None, verbose=-1):
+    def __init__(self, input=(,)
+, name=None, verbose=-1):
         """Initialize a Model instance.
 
         :Parameters:
@@ -164,7 +165,8 @@ class Sampler(Model):
     :SeeAlso: Model, MCMC.
     """
 
-    def __init__(self, input=[], db='ram', name='Sampler',
+    def __init__(self, input=(,)
+, db='ram', name='Sampler',
                  reinit_model=True, calc_deviance=False, verbose=0, **kwds):
         """Initialize a Sampler instance.
 
