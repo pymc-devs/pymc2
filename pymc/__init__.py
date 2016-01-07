@@ -11,9 +11,9 @@ __version__ = '2.3.6'
 
 try:
     import numpy
-except ImportError:
-    raise ImportError(
-        'NumPy does not seem to be installed. Please see the user guide.')
+except ImportError as ie:
+    print(ie,
+        '\nNumPy does not seem to be installed. Please see the user guide.')
 
 # Core modules
 from .threadpool import *
