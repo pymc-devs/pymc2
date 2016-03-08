@@ -16,6 +16,8 @@ addons:
     - liblapack-dev
     - gfortran
 before_install:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
   - travis_retry pip install --install-option="--no-cython-compile" Cython==0.22
   - travis_retry pip install $NUMPYSPEC
   - travis_retry pip install ipython pyzmq scipy nose matplotlib pandas
