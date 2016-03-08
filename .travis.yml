@@ -3,11 +3,7 @@ language: python
 matrix:
   include:
     - python: 2.7
-      env:
-        - NUMPYSPEC="--upgrade git+git://github.com/numpy/numpy.git@v1.10.2"
     - python: 3.4
-      env:
-        - NUMPYSPEC="numpy" 
 addons:
   apt:
     packages:
@@ -19,8 +15,7 @@ before_install:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
   - travis_retry pip install --install-option="--no-cython-compile" Cython==0.22
-  - travis_retry pip install $NUMPYSPEC
-  - travis_retry pip install ipython pyzmq scipy nose matplotlib pandas
+  - travis_retry pip install numpy ipython pyzmq scipy nose matplotlib pandas
 install:
   - python setup.py build_ext --inplace
 script:
