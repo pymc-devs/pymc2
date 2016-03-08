@@ -1,24 +1,22 @@
 language: python
 
-python:
-  - "2.7"
-  - "3.4"
-  
+matrix:
+  include:
+    - python: 2.7
+    - python: 3.4
+addons:
+  apt:
+    packages:
+    - libatlas-dev
+    - libatlas-base-dev
+    - liblapack-dev
+    - gfortran
 before_install:
-  - sudo apt-get update
-  - sudo apt-get install liblapack-dev gfortran libblas-dev
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
-  - sudo ln -Tsf /{run,dev}/shm
-  - if [ ${TRAVIS_PYTHON_VERSION:0:1} == "2" ]; then wget http://repo.continuum.io/miniconda/Miniconda-3.6.0-Linux-x86_64.sh -O miniconda.sh; else wget http://repo.continuum.io/miniconda/Miniconda3-3.6.0-Linux-x86_64.sh -O miniconda.sh; fi
-  - chmod +x miniconda.sh
-  - ./miniconda.sh -b
-  - if [ ${TRAVIS_PYTHON_VERSION:0:1} == "2" ]; then export PATH=/home/travis/miniconda/bin:$PATH; else export PATH=/home/travis/miniconda3/bin:$PATH; fi
-  
+  - travis_retry pip install --install-option="--no-cython-compile" Cython==0.22
+  - travis_retry pip install numpy ipython pyzmq scipy nose matplotlib pandas
 install:
-  - conda create -n testenv --yes pip python=$TRAVIS_PYTHON_VERSION
-  - source activate testenv
-  - conda install --yes ipython pyzmq numpy scipy nose matplotlib pandas Cython 
   - python setup.py build_ext --inplace
 script:
   - nosetests -s pymc/tests/
