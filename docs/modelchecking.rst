@@ -315,8 +315,8 @@ by definition they should appear very similar to one another; if not, one or
 more of the chains has failed to converge.
 
 The Gelman-Rubin diagnostic uses an analysis of variance approach to assessing 
-convergence. That is, it calculates both the between-chain varaince (B) and 
-within-chain varaince (W), and assesses whether they are different enough to 
+convergence. That is, it calculates both the between-chain variance (B) and 
+within-chain variance (W), and assesses whether they are different enough to 
 worry about convergence. Assuming :math:`m` chains, each of length :math:`n`, 
 quantities are calculated by:
 
