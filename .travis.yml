@@ -16,7 +16,7 @@ before_install:
   - "sh -e /etc/init.d/xvfb start"
   - travis_retry pip install --install-option="--no-cython-compile" Cython==0.22
   - travis_retry pip install numpy 
-  - travis_retry pip install scipy
+  - travis_wait 30 pip install scipy
   - travis_retry pip install ipython pyzmq nose matplotlib pandas
 install:
   - python setup.py build_ext --inplace
