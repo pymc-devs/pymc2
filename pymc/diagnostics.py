@@ -581,7 +581,7 @@ def gelman_rubin(x, return_var=False):
 
     The diagnostic is computed by:
 
-      .. math:: \hat{R} = \frac{\hat{V}}{W}
+      .. math:: \hat{R} = \sqrt{\frac{\hat{V}}{W}}
 
     where :math:`W` is the within-chain variance and :math:`\hat{V}` is
     the posterior variance estimate for the pooled traces. This is the
@@ -624,7 +624,7 @@ def gelman_rubin(x, return_var=False):
     # Calculate PSRF
     R = V / W
 
-    return R
+    return np.sqrt(R)
 
 
 def _find_max_lag(x, rho_limit=0.05, maxmaxlag=20000, verbose=0):
