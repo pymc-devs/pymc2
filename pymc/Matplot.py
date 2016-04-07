@@ -383,7 +383,7 @@ def plotwrapper(f):
 
 @plotwrapper
 def plot(
-    data, name, format='png', suffix='', path='./', common_scale=True, datarange=(None, None), fontmap=None, verbose=1
+    data, name, format='png', suffix='', path='./', common_scale=True, datarange=(None, None), fontmap=None, verbose=1,
         new=True, last=True, rows=1, num=1):
     """
     Generates summary plots for nodes of a given PyMC object.
