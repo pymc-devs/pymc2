@@ -383,8 +383,8 @@ def plotwrapper(f):
 
 @plotwrapper
 def plot(
-    data, name, format='png', suffix='', path='./', common_scale=True, datarange=(None, None),
-        new=True, last=True, rows=1, num=1, fontmap=None, verbose=1):
+    data, name, format='png', suffix='', path='./', common_scale=True, datarange=(None, None), fontmap=None, verbose=1,
+        new=True, last=True, rows=1, num=1):
     """
     Generates summary plots for nodes of a given PyMC object.
 
@@ -407,6 +407,15 @@ def plot(
         common_scale (optional): bool
             Specifies whether plots of multivariate nodes should be on the same scale
             (defaults to True).
+            
+        datarange (optional): tuple or list
+            Range of data to plot (defaults to empirical range of data)
+            
+        fontmap (optional): dict
+            Dictionary containing the font map for the labels of the graphic.
+
+        verbose (optional): int
+            Verbosity level for output (defaults to 1).
 
     """
     if fontmap is None:
@@ -420,39 +429,17 @@ def plot(
 
         # If new plot, generate new frame
         if new:
-
             figure(figsize=(10, 6))
 
         # Call trace
-        trace(
-            data,
-            name,
-            datarange=datarange,
-            rows=rows * 2,
-            columns=2,
-            num=num + 3 * (num - 1),
-            last=last,
-            fontmap=fontmap)
+        trace(data, name, datarange=datarange, rows=rows * 2, columns=2,  
+                 num=num + 3 * (num - 1), last=last, fontmap=fontmap)
         # Call autocorrelation
-        autocorrelation(
-            data,
-            name,
-            rows=rows * 2,
-            columns=2,
-            num=num + 3 * (
-                num - 1) + 2,
-            last=last,
-            fontmap=fontmap)
+        autocorrelation(data, name, rows=rows * 2, columns=2, 
+                    num=num+3*(num-1)+2, last=last, fontmap=fontmap)
         # Call histogram
-        histogram(
-            data,
-            name,
-            datarange=datarange,
-            rows=rows,
-            columns=2,
-            num=num * 2,
-            last=last,
-            fontmap=fontmap)
+        histogram(data, name, datarange=datarange, rows=rows, columns=2,
+                 num=num*2, last=last, fontmap=fontmap)
 
         if last:
             if not os.path.exists(path):
@@ -482,18 +469,10 @@ def plot(
             # Final subplot of current figure?
             _last = (_num == _rows) or (i == len(tdata) - 1)
 
-            plot(
-                tdata[i],
-                name + '_' + str(i),
-                format=format,
-                path=path,
-                common_scale=common_scale,
-                datarange=datarange,
-                suffix=suffix,
-                new=_new,
-                last=_last,
-                rows=_rows,
-                num=_num)
+            plot(tdata[i], name + '_' + str(i), format=format, path=path,
+                common_scale=common_scale, datarange=datarange,
+                suffix=suffix, new=_new, last=_last, rows=_rows, 
+                num=_num, fontmap=fontmap, verbose=verbose)
 
 _sturges = lambda n: int(log2(n) + 1)
 
@@ -580,14 +559,8 @@ def histogram(
         xlim(datarange)
 
         # Plot options
-        title(
-            '\n\n   %s hist' %
-            name,
-            x=0.,
-            y=1.,
-            ha='left',
-            va='top',
-            fontsize='medium')
+        title('\n\n   %s hist' % name, x=0., y=1., ha='left', va='top',
+             fontsize='medium')
 
         ylabel("Frequency", fontsize='x-small')
 
@@ -663,14 +636,8 @@ def trace(
     ylim(datarange)
 
     # Plot options
-    title(
-        '\n\n   %s trace' %
-        name,
-        x=0.,
-        y=1.,
-        ha='left',
-        va='top',
-        fontsize='small')
+    title('\n\n %s trace' % name, x=0., y=1., ha='left', va='top',
+         fontsize='small')
 
     # Smaller tick labels
     tlabels = gca().get_xticklabels()
