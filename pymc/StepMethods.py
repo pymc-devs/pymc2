@@ -1,7 +1,7 @@
 from __future__ import division
 
 import numpy as np
-from .utils import msqrt, check_type, round_array, float_dtypes, integer_dtypes, bool_dtypes, safe_len, find_generations, logp_of_set, symmetrize, logp_gradient_of_set, get_signature
+from .utils import msqrt, check_type, round_array, float_dtypes, integer_dtypes, bool_dtypes, safe_len, find_generations, logp_of_set, symmetrize, logp_gradient_of_set, get_signature, with_metaclass
 from numpy import ndim, ones, zeros, log, shape, cov, ndarray, inner, reshape, sqrt, any, array, all, abs, exp, where, isscalar, iterable, multiply, transpose, tri, pi
 from numpy.linalg.linalg import LinAlgError
 from numpy.linalg import pinv, cholesky
@@ -21,9 +21,6 @@ import pdb
 import warnings
 import sys
 import inspect
-
-from . import six
-from .six import print_
 
 __docformat__ = 'reStructuredText'
 
@@ -126,7 +123,7 @@ Error message: """ % (method.__name__, stochastic.__name__, method.__name__)
             args = []
         args.append(failure_header)
         b.args = args
-        six.reraise(a, b, c)
+        raise a, b, c
     return out
 
 
@@ -218,7 +215,7 @@ class StepMethod(object):
         # those.
         for variable in variables:
             self.children |= variable.children
-            for parent in six.itervalues(variable.parents):
+            for parent in variable.parents.itervalues():
                 if isinstance(parent, Variable):
                     self.parents.add(parent)
 
@@ -331,7 +328,8 @@ class StepMethod(object):
             return self.accepted / (self.accepted + self.rejected)
         return locals()
 
-StepMethod = six.with_metaclass(StepMethodMeta, StepMethod)
+
+StepMethod = with_metaclass(StepMethodMeta, StepMethod)
 
 
 class NoStepper(StepMethod):

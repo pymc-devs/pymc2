@@ -54,10 +54,7 @@ import warnings
 import copy
 __all__ = ['Trace', 'Database']
 
-from pymc import six
 from pymc import utils
-from pymc.six import print_
-
 
 class Trace(object):
 
@@ -243,7 +240,7 @@ class Database(object):
           to preallocate memory.
         """
 
-        for name, fun in six.iteritems(funs_to_tally):
+        for name, fun in funs_to_tally.iteritems():
             if name not in self._traces:
                 self._traces[
                     name] = self.__Trace__(
@@ -310,7 +307,7 @@ Error:
             names = set()
             for morenames in self.trace_names:
                 names.update(morenames)
-            for name, fun in six.iteritems(model._funs_to_tally):
+            for name, fun in model._funs_to_tally.iteritems():
                 if name in self._traces:
                     self._traces[name]._getfunc = fun
                     names.discard(name)
@@ -321,7 +318,7 @@ Error:
         # Create a fresh new state.
         # We will be able to remove this when we deprecate traces on objects.
         else:
-            for name, fun in six.iteritems(model._funs_to_tally):
+            for name, fun in model._funs_to_tally.iteritems():
                 if name not in self._traces:
                     self._traces[
                         name] = self.__Trace__(

@@ -9,9 +9,6 @@ from numpy import sum, ones, zeros, ravel, shape, size, newaxis
 from .utils import find_element, get_signature
 import inspect
 
-from . import six
-xrange = six.moves.xrange
-
 # accumulations
 _boolean_accumulation_deterministics = ['any', 'all']
 _accumulation_deterministics = ['sum']  # ['sum', 'prod']
@@ -108,7 +105,7 @@ def new_deterministic_class(*new_class_args):
             args_needed = parent_names + arg_keys[2:]
 
             # Sort positional arguments
-            for i in xrange(len(args)):
+            for i in range(len(args)):
                 try:
                     k = args_needed.pop(0)
                     if k in parent_names:

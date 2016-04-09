@@ -11,9 +11,6 @@ import sys,os
 from pymc import get_threadpool_size, map_noreturn
 import pymc
 
-from pymc import six
-xrange = six.moves.xrange
-
 mod_search_path = [pymc.__path__[0]+'/gp/cov_funs', os.getcwd()] + sys.path
 
 
@@ -171,7 +168,7 @@ class covariance_wrapper(object):
         if n_threads <= 1:
             targ(C,x,y,0,-1,symm)
         else:
-            thread_args = [(C,x,y,bounds[i],bounds[i+1],symm) for i in xrange(n_threads)]
+            thread_args = [(C,x,y,bounds[i],bounds[i+1],symm) for i in range(n_threads)]
             map_noreturn(targ, thread_args)
 
         if symm:

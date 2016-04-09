@@ -26,8 +26,6 @@ from . import calc_utils
 
 from . import datatypes
 
-from . import six
-from .six import print_
 
 d_neg_inf = float(-1.7976931348623157e+308)
 
@@ -116,7 +114,7 @@ class ParentDict(DictContainer):
             self.has_logp = False
 
     def detach_parents(self):
-        for parent in six.itervalues(self):
+        for parent in self.values():
             if isinstance(parent, Variable):
                 parent.children.discard(self.owner)
             elif isinstance(parent, ContainerBase):
@@ -132,7 +130,7 @@ class ParentDict(DictContainer):
                 e_parent.extended_children.discard(self.owner)
 
     def attach_parents(self):
-        for parent in six.itervalues(self):
+        for parent in self.values():
             if isinstance(parent, Variable):
                 parent.children.add(self.owner)
             elif isinstance(parent, ContainerBase):
@@ -164,13 +162,13 @@ class ParentDict(DictContainer):
             if isinstance(old_parent, Variable):
                 # See if owner only claims the old parent via this key.
                 if sum(
-                        [parent is old_parent for parent in six.itervalues(self)]) == 1:
+                        [parent is old_parent for parent in self.values()]) == 1:
                     old_parent.children.remove(self.owner)
 
             if isinstance(old_parent, ContainerBase):
                 for variable in old_parent.variables:
                     if sum(
-                            [parent is variable for parent in six.itervalues(self)]) == 1:
+                            [parent is variable for parent in self.values()]) == 1:
                         variable.children.remove(self.owner)
 
         # If the new parent is a variable, add owner to its children set.
@@ -295,7 +293,7 @@ class Potential(PotentialBase):
         self._logp.force_compute()
 
         self._logp_partial_gradients = {}
-        for parameter, function in six.iteritems(self._logp_partial_gradients_functions):
+        for parameter, function in self._logp_partial_gradients_functions.iteritems():
             lazy_logp_partial_gradients = LazyFunction(fun=function,
                                                        arguments=self.parents,
                                                        ultimate_args=self.extended_parents,
@@ -353,7 +351,7 @@ class Potential(PotentialBase):
             if not datatypes.is_continuous(variable):
                 return zeros(shape(variable.value))
 
-            for parameter, value in six.iteritems(self.parents):
+            for parameter, value in self.parents.iteritems():
 
                 if value is variable:
                     try:
@@ -454,7 +452,7 @@ class Deterministic(DeterministicBase):
         self._value.force_compute()
 
         self._jacobians = {}
-        for parameter, function in six.iteritems(self._jacobian_functions):
+        for parameter, function in self._jacobian_functions.iteritems():
             lazy_jacobian = LazyFunction(fun=function,
                                          arguments=self.parents,
                                          ultimate_args=self.extended_parents,
@@ -518,7 +516,7 @@ class Deterministic(DeterministicBase):
                                          calculation_set) for child in self.children])
 
         totalGradient = 0
-        for parameter, value in six.iteritems(self.parents):
+        for parameter, value in self.parents.iteritems():
             if value is variable:
 
                 totalGradient += self.apply_jacobian(
@@ -748,7 +746,7 @@ class Stochastic(StochasticBase):
             new_inst = cls(
                 'Stochastic %s: Failed to cast initial value to required dtype.\n\nOriginal error message:\n' %
                 name + inst.message)
-            six.reraise(cls, new_inst, tb)
+            raise cls, new_inst, tb
 
         # Store the shape of the stochastic value
         self._shape = np.shape(self._value)
@@ -814,7 +812,7 @@ class Stochastic(StochasticBase):
 
         self._logp_partial_gradients = {}
 
-        for parameter, function in six.iteritems(self._logp_partial_gradient_functions):
+        for parameter, function in self._logp_partial_gradient_functions.iteritems():
             lazy_logp_partial_gradient = LazyFunction(fun=function,
                                                       arguments=arguments,
                                                       ultimate_args=self.extended_parents | set(
@@ -985,7 +983,7 @@ class Stochastic(StochasticBase):
                     [self._pgradient(variable,
                                      parameter,
                                      value) for parameter,
-                     value in six.iteritems(self.parents)])
+                     value in self.parents.iteritems()])
 
             return gradient
         else:

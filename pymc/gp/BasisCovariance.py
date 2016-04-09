@@ -19,10 +19,6 @@ from .linalg_utils import basis_diag_call
 from .incomplete_chol import ichol_basis, ichol_full
 from .Covariance import Covariance
 
-from pymc import six
-xrange = six.moves.xrange
-
-
 class BasisCovariance(Covariance):
 
     """
@@ -107,7 +103,7 @@ class BasisCovariance(Covariance):
 
         out = zeros((self.n, x.shape[0]), dtype=float, order='F')
 
-        for i in xrange(self.n):
+        for i in range(self.n):
             out[i] = self.basis[i](x, **self.params)
 
         return out
@@ -396,7 +392,7 @@ class SeparableBasisCovariance(BasisCovariance):
             **params)
         self.basis = basis
         self.n_per_dim = []
-        for i in xrange(self.ndim):
+        for i in range(self.ndim):
             self.n_per_dim.append(len(self.basis[i]))
 
     def get_shape_from_basis(self, basis):
@@ -420,16 +416,16 @@ class SeparableBasisCovariance(BasisCovariance):
 
         # Evaluate the basis factors
         basis_factors = []
-        for i in xrange(self.ndim):
+        for i in range(self.ndim):
             basis_factors.append([])
-            for j in xrange(self.n_per_dim[i]):
+            for j in range(self.n_per_dim[i]):
                 basis_factors[i].append(self.basis[i][j](x, **self.params))
 
         out = ones((self.n, x.shape[0]), dtype=float)
         out_reshaped = out.reshape(self.shape + (x.shape[0],))
 
         for ind in ndindex(self.shape):
-            for dim in xrange(self.ndim):
+            for dim in range(self.ndim):
                 out_reshaped[ind] *= basis_factors[dim][ind[dim]]
 
         return out

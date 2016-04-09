@@ -48,7 +48,7 @@ Msurf = zeros(dplot.shape[:2])
 E2surf = zeros(dplot.shape[:2])
 
 # Get E[v] and E[v**2] over the entire posterior
-for i in xrange(n):
+for i in range(n):
     # Reset all variables to their values at frame i of the trace
     WalkerSampler.remember(0,i)
     # Evaluate the observed mean

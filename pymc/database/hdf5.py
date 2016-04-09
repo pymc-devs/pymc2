@@ -29,9 +29,6 @@ import sys
 import traceback
 import warnings
 
-from pymc import six
-
-
 __all__ = ['Trace', 'Database', 'load']
 
 
@@ -314,7 +311,7 @@ class Database(pickle.Database):
                             objects[node._v_name] = [node, ]
 
             # Note that the list vlarrays is in reverse order.
-            for k, vlarrays in six.iteritems(objects):
+            for k, vlarrays in objects.iteritems():
                 db._traces[k] = TraceObject(name=k, db=db, vlarrays=vlarrays)
                 setattr(db, k, db._traces[k])
 
@@ -360,7 +357,7 @@ class Database(pickle.Database):
             names = set()
             for morenames in self.trace_names:
                 names.update(morenames)
-            for name, fun in six.iteritems(model._funs_to_tally):
+            for name, fun in model._funs_to_tally.iteritems():
                 if name in self._traces:
                     self._traces[name]._getfunc = fun
                     names.remove(name)
@@ -371,7 +368,7 @@ class Database(pickle.Database):
 
         # Create a fresh new state. This is now taken care of in initialize.
         else:
-            for name, fun in six.iteritems(model._funs_to_tally):
+            for name, fun in model._funs_to_tally.iteritems():
                 if np.array(fun()).dtype is np.dtype('object'):
                     self._traces[
                         name] = TraceObject(
@@ -412,7 +409,7 @@ class Database(pickle.Database):
         # Create the Table in the chain# group, and ObjectAtoms in
         # chain#/group#.
         table_descr = {}
-        for name, fun in six.iteritems(funs_to_tally):
+        for name, fun in funs_to_tally.iteritems():
 
             arr = asarray(fun())
 
@@ -452,7 +449,7 @@ class Database(pickle.Database):
                 setattr(table.attrs, object.__name__, object.value)
 
        # Make sure the variables have a corresponding Trace instance.
-        for name, fun in six.iteritems(funs_to_tally):
+        for name, fun in funs_to_tally.iteritems():
             if name not in self._traces:
                 if np.array(fun()).dtype is np.dtype('object'):
                     self._traces[
@@ -533,7 +530,7 @@ Error:
       in terms of PyTables
         columns, and a"""
         D = {}
-        for name, fun in six.iteritems(self.model._funs_to_tally):
+        for name, fun in self.model._funs_to_tally.iteritems():
             arr = asarray(fun())
             D[name] = tables.Col.from_dtype(dtype((arr.dtype, arr.shape)))
         return D, {}

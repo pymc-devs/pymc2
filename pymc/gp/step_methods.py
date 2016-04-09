@@ -10,10 +10,6 @@ import numpy as np
 from .gp_submodel import *
 import warnings
 
-from pymc import six
-from pymc.six import print_
-xrange = six.moves.xrange
-
 from .Realization import Realization
 from .Mean import Mean
 from .Covariance import Covariance
@@ -300,7 +296,7 @@ class GPEvaluationGibbs(pm.Metropolis):
 
         eps_p_f = pm.utils.value(self.eps_p_f)
         f = pm.utils.value(self.f_eval)
-        for i in xrange(len(self.scratch3)):
+        for i in range(len(self.scratch3)):
             self.scratch3[i] = np.sum(eps_p_f[self.ti[i]] - f[i])
 
         # Compute Cholesky factor of covariance of eps_p_f, C(x,x) + V
@@ -312,7 +308,7 @@ class GPEvaluationGibbs(pm.Metropolis):
         in_chol = fc(C_eval_value, self.scratch1)
 
         v_val = pm.utils.value(self.V)
-        for i in xrange(pm.utils.value(C_eval_shape)[0]):
+        for i in range(pm.utils.value(C_eval_shape)[0]):
             in_chol[i, i] += v_val[i] / np.alen(self.ti[i])
 
         info = pm.gp.linalg_utils.dpotrf_wrap(in_chol)
@@ -333,7 +329,7 @@ class GPEvaluationGibbs(pm.Metropolis):
         C_step += C_eval_value
 
         # Compute mean of f conditional on eps_p_f.
-        for i in xrange(len(self.scratch3)):
+        for i in range(len(self.scratch3)):
             self.scratch3[i] = np.mean(eps_p_f[self.ti[i]])
         m_step = pm.utils.value(
             self.M_eval) + np.dot(offdiag.T,

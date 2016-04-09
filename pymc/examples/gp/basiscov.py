@@ -15,7 +15,7 @@ M = Mean(eval_fun=quadfun, a=1., b=.5, c=2.)
 
 # Generate basis covariance
 coef_cov = ones(2 * N + 1, dtype=float)
-for i in xrange(1, len(coef_cov)):
+for i in range(1, len(coef_cov)):
     coef_cov[i] = 1. / int(((i + 1) / 2)) ** 2.5
 
 basis = fourier_basis([N])

@@ -14,8 +14,6 @@ import numpy as np
 from .utils import crawl_dataless
 import warnings
 
-from .six import print_
-
 # from .progressbar import ProgressBar, Percentage, Bar, ETA, Iterations
 from .progressbar import progress_bar as pbar
 

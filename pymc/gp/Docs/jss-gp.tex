@@ -769,7 +769,7 @@ are computed for each pixel $x_i$ in the output map. Using these moments, sample
 \bigskip
 The algorithm just described is implemented simply and conveniently in \code{mcmc.py} using the \code{remember} method of \pkg{PyMC}'s \code{MCMC} objects, and the \code{point_eval} function provided by this package. The \code{remember} method of \code{DuffySampler} is used to reset its constituent variables to each of the $n$ stored samples from the joint posterior distribution:
 \begin{CodeInput}
-for i in xrange(n):
+for i in range(n):
     DuffySampler.remember(0,i)
 \end{CodeInput}
 Inside the loop, the pointwise means and variances of equation~\ref{eq:map-moments} are computed efficiently and in a multithreaded fashion (on multi-core systems, assuming the environment variable \code{OMP_NUM_THREADS} is set to a value greater than 1) using \code{point_eval}:

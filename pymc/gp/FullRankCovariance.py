@@ -11,10 +11,6 @@ from .linalg_utils import dpotrf_wrap
 from .Covariance import Covariance
 from .incomplete_chol import ichol, ichol_continue
 
-from pymc import six
-xrange = six.moves.xrange
-
-
 class FullRankCovariance(Covariance):
 
     """
@@ -90,7 +86,7 @@ class FullRankCovariance(Covariance):
             C_eval = U.copy('F')
 
         if nugget is not None:
-            for i in xrange(N_new):
+            for i in range(N_new):
                 U[i, i] += nugget[i]
 
         # print self.params, x.shape, observed, nugget
@@ -145,7 +141,7 @@ class FullRankCovariance(Covariance):
 
         # not really implemented yet.
         if nugget is not None:
-            for i in xrange(N_new):
+            for i in range(N_new):
                 U_new[i, i] += nugget[i]
 
         U = asmatrix(
@@ -195,7 +191,7 @@ class FullRankCovariance(Covariance):
         if return_Uo_Cxo:
             out, Uo_Cxo = out
         if x is y:
-            for i in xrange(out.shape[0]):
+            for i in range(out.shape[0]):
                 out[i, i] += self.nugget
         elif y is None:
             out += self.nugget

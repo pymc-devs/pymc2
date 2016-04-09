@@ -59,7 +59,7 @@ Msurf = zeros(data.shape)
 E2surf = zeros(data.shape)
 
 # Get E[v] and E[v**2] over the entire posterior
-for i in xrange(n):
+for i in range(n):
     # Reset all variables to their values at frame i of the trace
     DuffySampler.remember(0,i)
     # Evaluate the observed mean

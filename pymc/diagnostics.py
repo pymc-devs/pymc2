@@ -11,9 +11,6 @@ try:
 except ImportError:
     has_sm = False
 
-from . import six
-from .six import print_
-xrange = six.moves.xrange
 
 __all__ = [
     'geweke',
@@ -444,7 +441,7 @@ def batch_means(x, f=lambda y: y, theta=.5, q=.95, burn=0):
 
     t_quant = stats.t.isf(1 - q, a - 1)
 
-    Y = np.array([np.mean(f(x[i * b:(i + 1) * b])) for i in xrange(a)])
+    Y = np.array([np.mean(f(x[i * b:(i + 1) * b])) for i in range(a)])
     sig = b / (a - 1.) * sum((Y - np.mean(f(x))) ** 2)
 
     return t_quant * sig / np.sqrt(n)

@@ -33,9 +33,6 @@ except ImportError:
     def UnboundMethodType(func, inst, cls):
         return func
 
-from . import six
-xrange = six.moves.xrange
-
 __all__ = [
     'CompletedDirichlet', 'LinearCombination', 'Index', 'Lambda', 'lambda_deterministic', 'lam_dtrm',
     'logit', 'invlogit', 'stukel_logit', 'stukel_invlogit', 'Logit', 'InvLogit', 'StukelLogit', 'StukelInvLogit',
@@ -353,7 +350,7 @@ class LinearCombination(pm.Deterministic):
 
         def eval_fun(x, y):
             out = np.dot(x[0], y[0])
-            for i in xrange(1, len(x)):
+            for i in range(1, len(x)):
                 out = out + np.dot(x[i], y[i])
             return np.asarray(out).squeeze()
 
@@ -372,7 +369,7 @@ class LinearCombination(pm.Deterministic):
             self.coefs[s] = []
             self.sides[s] = []
 
-        for i in xrange(self.N):
+        for i in range(self.N):
 
             stochastic_elem = None
 
@@ -482,11 +479,11 @@ def pufunc(func):
             func.__name__,
             ', '.join([str(arg) for arg in args]))
         parents = {}
-        for i in xrange(func.nin):
+        for i in range(func.nin):
             parents['in%i' % i] = args[i]
 
         def wrapper(**kwargs):
-            return func(*[kwargs['in%i' % i] for i in xrange(func.nin)])
+            return func(*[kwargs['in%i' % i] for i in range(func.nin)])
         return pm.Deterministic(
             wrapper, doc_str, name, parents, trace=False, plot=False)
     dtrm_generator.__name__ = func.__name__ + '_deterministic_generator'
@@ -531,7 +528,7 @@ def pfunc(func):
             inst = cls(
                 'Failed to create pfunc wrapper from object %s. Original error message:\n\n%s' %
                 (func, inst.message))
-            six.reraise(cls, inst, tb)
+            raise cls, inst, tb
     fargs, fdefaults = get_signature(func)
     n_fargs = len(fargs)
 
@@ -544,13 +541,13 @@ def pfunc(func):
             ', '.join([str(arg) for arg in args]),
             ', '.join(['%s=%s' % (key,
                                   str(val)) for key,
-                       val in six.iteritems(kwds)]))
+                       val in kwds.iteritems()]))
 
         parents = {}
         varargs = []
-        for kwd, val in six.iteritems(kwds):
+        for kwd, val in kwds.iteritems():
             parents[kwd] = val
-        for i in xrange(len(args)):
+        for i in range(len(args)):
             if i < n_fargs:
                 parents[fargs[i]] = args[i]
             else:

@@ -20,10 +20,7 @@ import types
 from .datatypes import *
 import inspect
 
-from . import six
-from .six import print_
 from functools import reduce
-reduce = six.moves.reduce
 
 from numpy import (sqrt, ndarray, asmatrix, array, prod,
                    asarray, atleast_1d, iterable, linspace, diff,
@@ -38,7 +35,7 @@ __all__ = ['append', 'check_list', 'autocorr', 'calc_min_interval',
            'rec_setattr', 'round_array', 'trace_generator', 'msqrt', 'safe_len',
            'log_difference', 'find_generations', 'crawl_dataless', 'logit',
            'invlogit', 'stukel_logit', 'stukel_invlogit', 'symmetrize', 'value',
-           'get_signature']
+           'get_signature', 'with_metaclass']
 
 symmetrize = flib.symmetrize
 
@@ -576,8 +573,8 @@ def draw_random(obj, **kwds):
     R.next()
     """
     while True:
-        for k, v in six.iteritems(kwds):
-            obj.parents[k] = v.next()
+        for k in kwds:
+            obj.parents[k] = kwds[k].next()
         yield obj.random()
 
 
@@ -986,3 +983,11 @@ def find_element(names, modules, error_on_fail):
                 modules))
 
     return function
+
+def with_metaclass(metaclass, *bases):
+    """
+    Resembles functions six.with_metaclass()
+    """
+    constructor = lambda c, name, b, dct: metaclass(name, bases, dct)
+    intermediate = type('__metaclass__', (type,), {'__new__': constructor})
+    return type.__new__(intermediate, '__class__', (object,), {})

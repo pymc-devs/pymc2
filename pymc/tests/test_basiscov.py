@@ -4,9 +4,6 @@ from pymc.gp.cov_funs import *
 from numpy import *
 from copy import copy
 
-from pymc import six
-xrange = six.moves.xrange
-
 random.seed(42)
 
 def zero_fun(x):
@@ -30,9 +27,9 @@ data = ones((2, 2), dtype=float)
 N = 10
 
 coef_cov = ones((2 * N + 1, 2 * N + 1), dtype=float)
-for i in xrange(1, 2 * N + 1):
+for i in range(1, 2 * N + 1):
     int_i = int(((i + 1) / 2))
-    for j in xrange(1, 2 * N + 1):
+    for j in range(1, 2 * N + 1):
         int_j = int(((j + 1) / 2))
         coef_cov[i, j] = 1. / (sqrt((int_i + int_j) ** 2)) ** 2.5
 

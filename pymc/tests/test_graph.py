@@ -4,15 +4,12 @@ import numpy as np
 import nose
 import sys
 
-from pymc import six
-xrange = six.moves.xrange
-
 DIR = 'testresults'
 
 
 def mymodel():
     mu = pm.Normal('mu', 0, 1)
-    N = [pm.Normal('N_%i' % i, mu, 1) for i in xrange(3)]
+    N = [pm.Normal('N_%i' % i, mu, 1) for i in range(3)]
     z1 = pm.Lambda('z1', lambda n=N: np.sum(n))
     z2 = pm.Lambda('z2', lambda n=N: np.sum(n))
 

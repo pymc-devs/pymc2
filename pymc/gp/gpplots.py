@@ -1,6 +1,5 @@
 import numpy as np
 from copy import copy
-from pymc import six
 
 __all__ = ['plot_GP_envelopes']
 
@@ -63,4 +62,4 @@ def plot_GP_envelopes(f, x, HPD=[
                         alpha=1.,
                         new=False)
     except ImportError:
-        six.print_('Plotter could not be imported; plotting disabled')
+        print('Plotter could not be imported; plotting disabled')

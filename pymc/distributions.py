@@ -41,10 +41,6 @@ import pdb
 from . import utils
 import warnings
 
-from . import six
-from .six import print_
-xrange = six.moves.xrange
-
 
 def poiscdf(a, x):
     x = np.atleast_1d(x)
@@ -202,7 +198,7 @@ def new_dist_class(*new_class_args):
             args_needed = ['name'] + parent_names + arg_keys[2:]
 
             # Sort positional arguments
-            for i in xrange(len(args)):
+            for i in range(len(args)):
                 try:
                     k = args_needed.pop(0)
                     if k in parent_names:
@@ -395,7 +391,7 @@ def stochastic_from_dist(
 
     wrapped_logp_partial_gradients = {}
 
-    for parameter, func in six.iteritems(logp_partial_gradients):
+    for parameter, func in logp_partial_gradients.iteritems():
         wrapped_logp_partial_gradients[parameter] = valuewrapper(
             logp_partial_gradients[parameter],
             arguments=distribution_arguments)
@@ -1134,7 +1130,7 @@ def rdirichlet(theta, size=1):
     """
     Dirichlet random variates.
     """
-    gammas = np.vstack([rgamma(theta, 1) for i in xrange(size)])
+    gammas = np.vstack([rgamma(theta, 1) for i in range(size)])
     if size > 1 and np.size(theta) > 1:
         return (gammas.T / gammas.sum(1))[:-1].T
     elif np.size(theta) > 1:
@@ -1790,7 +1786,7 @@ def rmultinomial(n, p, size=None):
     if np.isscalar(n):
         n = n * np.ones(np.shape(p)[0], dtype=np.int)
     out = np.empty(np.shape(p))
-    for i in xrange(np.shape(p)[0]):
+    for i in range(np.shape(p)[0]):
         out[i, :] = np.random.multinomial(n[i], p[i,:], size)
     return out
 
@@ -1925,7 +1921,7 @@ def rmv_normal(mu, tau, size=1):
             size = (size,)
         tot_size = np.prod(size)
         out = np.random.normal(size=(tot_size,) + mu_size)
-        for i in xrange(tot_size):
+        for i in range(tot_size):
             try:
                 flib.dtrsm_wrap(sig, out[i, :], 'L', 'T', 'L', 1.)
             except:
@@ -2027,7 +2023,7 @@ def rmv_normal_chol(mu, sig, size=1):
             size = (size,)
         tot_size = np.prod(size)
         out = np.random.normal(size=(tot_size,) + mu_size)
-        for i in xrange(tot_size):
+        for i in range(tot_size):
             try:
                 flib.dtrmm_wrap(sig, out[i, :], 'L', 'N', 'L', 1.)
             except:
@@ -2991,7 +2987,7 @@ Decorate the likelihoods
 
 snapshot = locals().copy()
 likelihoods = {}
-for name, obj in six.iteritems(snapshot):
+for name, obj in snapshot.iteritems():
     if name[-5:] == '_like' and name[:-5] in availabledistributions:
         likelihoods[name[:-5]] = snapshot[name]
 
@@ -3001,7 +2997,7 @@ def local_decorated_likelihoods(obj):
     New interface likelihoods
     """
 
-    for name, like in six.iteritems(likelihoods):
+    for name, like in likelihoods.iteritems():
         obj[name + '_like'] = gofwrapper(like, snapshot)
 
 
@@ -3305,15 +3301,17 @@ def Impute(name, dist_class, imputable, **parents):
 
     # Initialise list
     vars = []
-    for i in xrange(len(masked_values)):
+    for i in range(len(masked_values)):
 
         # Name of element
         this_name = name + '[%i]' % i
         # Dictionary to hold parents
         these_parents = {}
         # Parse parents
-        for key, parent in six.iteritems(parents):
+        for key in parents:
 
+            parent = parents[key]
+            
             try:
                 # If parent is a PyMCObject
                 shape = np.shape(parent.value)

@@ -11,9 +11,6 @@ from numpy.random import normal
 from .utils import msqrt, check_type, round_array, logp_of_set
 from copy import copy
 
-from . import six
-from .six import print_
-xrange = six.moves.xrange
 
 try:
     from scipy.optimize import fmin_ncg, fmin, fmin_powell, fmin_cg, fmin_bfgs, fmin_ncg, fmin_l_bfgs_b
@@ -176,7 +173,7 @@ class MAP(Model):
         self.stochastic_types = []
         self.stochastic_type_dict = {}
 
-        for i in xrange(len(self.stochastic_list)):
+        for i in range(len(self.stochastic_list)):
 
             stochastic = self.stochastic_list[i]
 
@@ -400,7 +397,7 @@ class MAP(Model):
         if needed.
         """
         self._set_stochastics(p)
-        for i in xrange(self.len):
+        for i in range(self.len):
             self.grad[i] = self.diff(i)
 
         return -1 * self.grad
@@ -490,7 +487,7 @@ class MAP(Model):
         optimization method for a NormApprox doesn't
         use gradients and hessians, for instance fmin.
         """
-        for i in xrange(self.len):
+        for i in range(self.len):
 
             di = self.diff(i)
             self.grad[i] = di
@@ -498,7 +495,7 @@ class MAP(Model):
 
             if i < self.len - 1:
 
-                for j in xrange(i + 1, self.len):
+                for j in range(i + 1, self.len):
                     dij = self.diff2(i, j)
 
                     self.hess[i, j] = dij
@@ -510,14 +507,14 @@ class MAP(Model):
         if needed.
         """
         self._set_stochastics(p)
-        for i in xrange(self.len):
+        for i in range(self.len):
 
             di = self.diff(i)
             self.hess[i, i] = self.diff(i, 2)
 
             if i < self.len - 1:
 
-                for j in xrange(i + 1, self.len):
+                for j in range(i + 1, self.len):
                     dij = self.diff2(i, j)
 
                     self.hess[i, j] = dij

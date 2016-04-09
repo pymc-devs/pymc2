@@ -28,7 +28,6 @@ import pymc
 import tables
 
 from pymc.database import base, pickle
-from pymc import six
 
 __all__ = ['Trace', 'Database', 'load']
 
@@ -203,37 +202,6 @@ class Database(pickle.Database):
     def nchains(self):
         return len(self._chains)
 
-    # def connect_model(self, model):
-    #     """Link the Database to the Model instance.
-    #     In case a new database is created from scratch, ``connect_model``
-    #     creates Trace objects for all tallyable pymc objects defined in
-    #     `model`.
-    #     If the database is being loaded from an existing file, ``connect_model``
-    #     restore the objects trace to their stored value.
-    #     :Parameters:
-    #     model : pymc.Model instance
-    #       An instance holding the pymc objects defining a statistical
-    #       model (stochastics, deterministics, data, ...)
-    #     """
-    # Changed this to allow non-Model models. -AP
-    #     if isinstance(model, pymc.Model):
-    #         self.model = model
-    #     else:
-    #         raise AttributeError('Not a Model instance.')
-    # Restore the state of the Model from an existing Database.
-    # The `load` method will have already created the Trace objects.
-    #     if hasattr(self, '_state_'):
-    #         names = set()
-    #         for morenames in self.trace_names:
-    #             names.update(morenames)
-    #         for name, fun in six.iteritems(model._funs_to_tally):
-    #             if name in self._traces:
-    #                 self._traces[name]._getfunc = fun
-    #                 names.remove(name)
-    #         if len(names) > 0:
-    #             raise RuntimeError("Some objects from the database"
-    #                                + "have not been assigned a getfunc: %s"
-    #                                   % ', '.join(names))
     def _initialize(self, funs_to_tally, length):
         """Create a group named ``chain#`` to store all data for this chain."""
 
@@ -241,7 +209,7 @@ class Database(pickle.Database):
         self._chains[chain] = self._h5file.create_group(
             '/', 'chain%d' % chain, 'chain #%d' % chain)
 
-        for name, fun in six.iteritems(funs_to_tally):
+        for name, fun in funs_to_tally.iteritems():
 
             arr = np.asarray(fun())
 

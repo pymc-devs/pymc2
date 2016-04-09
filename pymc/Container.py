@@ -42,9 +42,6 @@ from .Container_values import LCValue, DCValue, ACValue, OCValue
 from types import ModuleType
 import pdb
 
-from . import six
-xrange = six.moves.xrange
-
 __all__ = [
     'Container',
     'DictContainer',
@@ -57,9 +54,10 @@ __all__ = [
 
 def filter_dict(obj):
     filtered_dict = {}
-    for item in six.iteritems(obj.__dict__):
-        if isinstance(item[1], Node) or isinstance(item[1], ContainerBase):
-            filtered_dict[item[0]] = item[1]
+    for item in obj.__dict__:
+        value = obj.__dict__[item]
+        if isinstance(value, Node) or isinstance(value, ContainerBase):
+            filtered_dict[item] = value
     return filtered_dict
 
 
@@ -255,7 +253,7 @@ def sort_list(container, _value):
     val_obj = []
     nonval_ind = []
     nonval_obj = []
-    for i in xrange(len(_value)):
+    for i in range(len(_value)):
         obj = _value[i]
         if isinstance(obj, Variable) or isinstance(obj, ContainerBase):
             val_ind.append(i)
@@ -513,7 +511,7 @@ class DictContainer(ContainerBase, dict):
         self.nonval_keys = []
         self.nonval_obj = []
         self._value = {}
-        for key, obj in six.iteritems(self):
+        for key, obj in self.iteritems():
             if isinstance(obj, Variable) or isinstance(obj, ContainerBase):
                 self.val_keys.append(key)
                 self.val_obj.append(obj)
@@ -687,7 +685,7 @@ class ArrayContainer(ContainerBase, ndarray):
         val_obj = []
         nonval_ind = []
         nonval_obj = []
-        for i in xrange(len(C_ravel)):
+        for i in range(len(C_ravel)):
             obj = C_ravel[i]
             if isinstance(obj, Variable) or isinstance(obj, ContainerBase):
                 val_ind.append(i)

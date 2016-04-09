@@ -10,10 +10,6 @@ from .GPutils import regularize_array, trisolve, square_and_sum
 from .linalg_utils import diag_call, dpotrf_wrap
 from .incomplete_chol import ichol, ichol_continue
 
-from pymc import six
-xrange = six.moves.xrange
-
-
 class Covariance(object):
 
     """
@@ -351,7 +347,7 @@ class Covariance(object):
             else:
                 C_eval = self.__call__(obs_mesh, obs_mesh, regularize=False)
                 U = C_eval.copy('F')
-                for i in xrange(U.shape[0]):
+                for i in range(U.shape[0]):
                     U[i, i] += obs_V[i]
                 info = dpotrf_wrap(U)
                 if info > 0:
@@ -520,7 +516,7 @@ class Covariance(object):
             # Otherwise, evaluate the diagonal in a loop.
             else:
                 V = empty(lenx, dtype=float)
-                for i in xrange(lenx):
+                for i in range(lenx):
                     this_x = x[i].reshape((1, -1))
                     V[i] = self.eval_fun(this_x, this_x, **self.params)
             if self.observed and observed:

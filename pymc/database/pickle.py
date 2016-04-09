@@ -21,8 +21,6 @@ try:
 except ImportError:
     import pickle as std_pickle   # In Python 3, cPickle is folded into pickle
 
-from pymc import six
-
 __all__ = ['Trace', 'Database', 'load']
 
 
@@ -85,7 +83,7 @@ def load(filename):
     db = Database(file.name)
     chains = 0
     funs = set()
-    for k, v in six.iteritems(container):
+    for k, v in container.iteritems():
         if k == '_state_':
             db._state_ = v
         else:

@@ -74,14 +74,14 @@ hfv = [h_freqs[key] for key in hfk]
 # = Genotype frequencies =
 # ========================
 g_freqs = {}
-for i in xrange(4):
-    for j in xrange(i,4):
+for i in range(4):
+    for j in range(i,4):
         if i != j:
             g_freqs[hfk[i]+hfk[j]] = lambda pb, p0, p1, i=i, j=j: 2 * np.asscalar(hfv[i](pb,p0,p1) * hfv[j](pb,p0,p1))
         else:
             g_freqs[hfk[i]*2] = lambda pb, p0, p1, i=i: np.asscalar(hfv[i](pb,p0,p1))**2
             
-for i in xrange(1000):
+for i in range(1000):
     pb,p0,p1 = np.random.random(size=3)
     np.testing.assert_almost_equal(np.sum([gfi(pb,p0,p1) for gfi in g_freqs.values()]),1.)
     
@@ -112,7 +112,7 @@ def make_model(lon,lat,africa,n,datatype,
     V_s = spatial_s_vars['V']            
     data_d = []    
 
-    for i in xrange(len(n)):        
+    for i in range(len(n)):        
         this_fb =sp_sub_b.f_eval[i]
         this_fs = sp_sub_s.f_eval[i]
 

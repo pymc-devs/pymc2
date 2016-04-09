@@ -4,7 +4,6 @@ from numpy.testing import *
 import nose
 import sys
 from pymc import utils
-from pymc import six
 import pymc
 
 random.seed(21421)
@@ -42,14 +41,14 @@ def generate_model():
 
 def find_variable_set(stochastic):
     set = [stochastic]
-    for parameter, variable in six.iteritems(stochastic.parents):
+    for parameter, variable in stochastic.parents.iteritems():
         if isinstance(variable, Variable):
             set.append(variable)
     return set
 
 
 def check_jacobians(deterministic):
-    for parameter, pvalue in six.iteritems(deterministic.parents):
+    for parameter, pvalue in deterministic.parents.iteritems():
 
         if isinstance(pvalue, Variable):
 
@@ -139,7 +138,7 @@ def check_gradients(stochastic):
     stochastics = find_variable_set(stochastic)
     gradients = utils.logp_gradient_of_set(stochastics, stochastics)
 
-    for s, analytic_gradient in six.iteritems(gradients):
+    for s, analytic_gradient in gradients.iteritems():
 
         numeric_gradient = get_numeric_gradient(stochastics, s)
 

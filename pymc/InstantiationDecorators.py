@@ -41,9 +41,6 @@ def enable_special_methods(sma=special_methods_available):
 def check_special_methods(sma=special_methods_available):
     return sma[0]
 
-from . import six
-
-
 def _extract(__func__, kwds, keys, classname, probe=True):
     """
     Used by decorators stochastic and deterministic to inspect declarations
@@ -346,6 +343,6 @@ def robust_init(stochclass, tries, *args, **kwds):
                 try:
                     parent.random()
                 except:
-                    six.reraise(*exc)
+                    raise *exc 
 
-    six.reraise(*exc)
+    raise *exc

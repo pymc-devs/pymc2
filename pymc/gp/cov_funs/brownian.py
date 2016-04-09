@@ -4,9 +4,6 @@ from .isotropic_cov_funs import symmetrize, imul
 from copy import copy
 from pymc import get_threadpool_size, map_noreturn
 
-from pymc import six
-xrange = six.moves.xrange
-
 __all__ = ['brownian']
 
 def brownian_targ(C,x,y,h,amp,cmin, cmax,symm):
@@ -93,7 +90,7 @@ def brownian(x,y,amp=1.,scale=1.,origin=None,h=.5,symm=None):
     if n_threads <= 1:
         brownian_targ(C,x,y,h,amp,0,-1,symm)
     else:
-        thread_args=[(C,x,y,h,amp,bounds[i],bounds[i+1],symm) for i in xrange(n_threads)]
+        thread_args=[(C,x,y,h,amp,bounds[i],bounds[i+1],symm) for i in range(n_threads)]
         map_noreturn(brownian_targ, thread_args)
 
     return C

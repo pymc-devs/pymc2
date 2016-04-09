@@ -18,10 +18,6 @@ from pymc import thread_partition_array, map_noreturn
 from pymc.gp import chunksize
 import pymc
 
-from pymc import six
-from pymc.six import print_
-xrange = six.moves.xrange
-
 try:
     from PyMC2 import ZeroProbability
 except ImportError:
@@ -106,7 +102,7 @@ def square_and_sum(a, s):
     Writes np.sum(a**2,axis=0) into s
     """
     cmin, cmax = thread_partition_array(a)
-    map_noreturn(asqs, [(a, s, cmin[i], cmax[i]) for i in xrange(len(cmax))])
+    map_noreturn(asqs, [(a, s, cmin[i], cmax[i]) for i in range(len(cmax))])
     return a
 
 

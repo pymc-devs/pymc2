@@ -29,8 +29,6 @@ import warnings
 import traceback
 import itertools
 
-from .six import print_, reraise
-
 GuiInterrupt = 'Computation halt'
 Paused = 'Computation paused'
 
@@ -703,8 +701,7 @@ class Sampler(Model):
                     out.flush()
 
                 if self._exc_info is not None:
-                    a, b, c = self._exc_info
-                    reraise(a, b, c)
+                    raise self._exc_info
 
                 cmd = utils.getInput().strip()
                 if cmd == 'i':

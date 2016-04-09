@@ -5,9 +5,6 @@ import nose
 import sys
 from pymc import utils
 
-from pymc import six
-xrange = six.moves.xrange
-
 class test_logp_of_set(TestCase):
     A = Normal('A', 0, 1)
     B = Gamma('B', 1, 1)
@@ -29,7 +26,7 @@ class test_logp_of_set(TestCase):
 
     def test_ZeroProb(self):
         self.B.value = -1
-        for i in xrange(1000):
+        for i in range(1000):
             try:
                 utils.logp_of_set(set([self.A, self.B, self.D, self.E]))
             except:
@@ -38,7 +35,7 @@ class test_logp_of_set(TestCase):
 
     def test_other_err(self):
         self.B.rand()
-        for i in xrange(1000):
+        for i in range(1000):
             try:
                 utils.logp_of_set(set([self.A, self.B, self.D, self.E]))
             except:

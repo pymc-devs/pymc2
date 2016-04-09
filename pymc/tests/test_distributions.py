@@ -32,8 +32,7 @@ import numpy as np
 import numpy.random as _npr
 
 from ..distributions import *
-from .. import flib, utils, six, deterministic
-xrange = six.moves.xrange
+from .. import flib, utils, deterministic
 
 PLOT = True
 DIR = 'testresults'
@@ -55,7 +54,7 @@ except:
 try:
     import pylab as P
 except:
-    six.print_('Plotting disabled')
+    print('Plotting disabled')
     PLOT = False
 
 # Set RNG seed
@@ -1182,7 +1181,7 @@ def slo_wishart(W, n, V):
     logp += n * 0.5 * np.log(det(V))
     logp -= n * p * 0.5 * np.log(2)
 
-    for i in xrange(1, p + 1):
+    for i in range(1, p + 1):
         logp -= gammaln((n + 1 - i) * 0.5)
 
     logp -= np.trace(np.dot(V, W) * 0.5)
@@ -1222,14 +1221,14 @@ class test_wishart(TestCase):
         N = 1000
 
         A = 0. * self.Tau_test
-        for i in xrange(N):
+        for i in range(N):
             A += rwishart(n, self.Tau_test)
         A /= N
         delta = A - wishart_expval(n, self.Tau_test)
         assert(np.abs(np.asarray(delta) / np.asarray(A)).max() < .1)
 
         A = 0. * self.Tau_test
-        for i in xrange(N):
+        for i in range(N):
             A += rwishart_cov(n, self.Tau_test.I)
         A /= N
         delta = A - wishart_cov_expval(n, self.Tau_test.I)
@@ -1270,7 +1269,7 @@ class test_wishart(TestCase):
     #     N = 1000
     #
     #     A = 0.*self.C_test
-    #     for i in xrange(N):
+    #     for i in range(N):
     #         A += rinverse_wishart(n, self.C_test)
     #     A /= N
     #     delta = A - inverse_wishart_expval(n, self.C_test)

@@ -11,8 +11,7 @@ import sys
 import pdb
 import numpy as np
 import types
-from . import six
-print_ = six.print_
+from .utils import with_metaclass
 
 try:
     from types import UnboundMethodType
@@ -36,7 +35,7 @@ def logp_of_set(s):
     if exc is None:
         return logp
     else:
-        six.reraise(*exc)
+        raise *exc
 
 
 def logp_gradient_of_set(variable_set, calculation_set=None):
@@ -113,7 +112,7 @@ class Node(object):
 
         # Name and docstrings
         self.__doc__ = doc
-        if not isinstance(name, six.string_types):
+        if not isinstance(name, str):
             raise ValueError(
                 'The name argument must be a string, but received %s.' %
                 name)
@@ -422,7 +421,7 @@ class ContainerBase(object):
         _get_logp,
         doc='The summed log-probability of all stochastic variables (data\nor otherwise) and factor potentials in self.')
 
-ContainerBase = six.with_metaclass(ContainerMeta, ContainerBase)
+ContainerBase = with_metaclass(ContainerMeta, ContainerBase)
 
 StochasticRegistry = []
 
@@ -434,7 +433,7 @@ class StochasticMeta(type):
         StochasticRegistry.append(cls)
 
 
-class StochasticBase(six.with_metaclass(StochasticMeta, Variable)):
+class StochasticBase(with_metaclass(StochasticMeta, Variable)):
 
     """
     Abstract base class.
@@ -453,7 +452,7 @@ class DeterministicMeta(type):
         DeterministicRegistry.append(cls)
 
 
-class DeterministicBase(six.with_metaclass(DeterministicMeta, Variable)):
+class DeterministicBase(with_metaclass(DeterministicMeta, Variable)):
 
     """
     Abstract base class.
@@ -472,7 +471,7 @@ class PotentialMeta(type):
         PotentialRegistry.append(cls)
 
 
-class PotentialBase(six.with_metaclass(PotentialMeta, Node)):
+class PotentialBase(with_metaclass(PotentialMeta, Node)):
 
     """
     Abstract base class.

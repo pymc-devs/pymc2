@@ -1,5 +1,4 @@
 import pymc as pm
-from pymc import six
 import numpy as np
 
 
@@ -39,7 +38,7 @@ class TruncatedMetropolis(pm.Metropolis):
             self.up_bound)
 
         if self.verbose > 1:
-            six.print_(self._id + ': Hastings factor %f' % (lp_bak - lp_for))
+            print(self._id + ': Hastings factor %f' % (lp_bak - lp_for))
         return lp_bak - lp_for
 
 

@@ -29,9 +29,6 @@ import numpy as np
 from numpy import array
 import string
 
-from pymc import six
-from pymc.six import print_
-
 
 __all__ = ['Trace', 'Database', 'load']
 
@@ -70,14 +67,11 @@ class Trace(ram.Trace):
         arr = self.gettrace(chain=chain)
 
         # Following numpy's example.
-        if six.PY3:
-            mode = 'wb'
-        else:
-            mode = 'w'
-        with open(path, mode) as f:
-            f.write(six.b('# Variable: %s\n' % self.name))
-            f.write(six.b('# Sample shape: %s\n' % str(arr.shape)))
-            f.write(six.b('# Date: %s\n' % datetime.datetime.now()))
+
+        with open(path, 'w') as f:
+            f.write('# Variable: %s\n' % self.name)
+            f.write('# Sample shape: %s\n' % str(arr.shape))
+            f.write('# Date: %s\n' % datetime.datetime.now())
             np.savetxt(f, arr.reshape((-1, arr[0].size)), delimiter=',')
 
 
@@ -180,7 +174,7 @@ def load(dirname):
                 f.close()
 
     # Create the Traces.
-    for name, values in six.iteritems(data):
+    for name, values in data.iteritems():
         db._traces[name] = Trace(name=name, value=values, db=db)
         setattr(db, name, db._traces[name])
 

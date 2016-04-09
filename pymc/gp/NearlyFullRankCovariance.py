@@ -11,9 +11,6 @@ from .linalg_utils import diag_call
 from .incomplete_chol import ichol_full
 from .Covariance import Covariance
 
-from pymc import six
-xrange = six.moves.xrange
-
 
 class NearlyFullRankCovariance(Covariance):
 
@@ -105,7 +102,7 @@ class NearlyFullRankCovariance(Covariance):
 
         C = self.__call__(x, x, regularize=False, observed=observed)
         if nugget is not None:
-            for i in xrange(N_new):
+            for i in range(N_new):
                 C[i, i] += nugget[i]
 
         # =======================================
@@ -212,7 +209,7 @@ class NearlyFullRankCovariance(Covariance):
         # Compute new diagonal part of Cholesky factor
         C_new = self.__call__(x=x, y=x, observed=observed, regularize=False)
         if nugget is not None:
-            for i in xrange(N_new):
+            for i in range(N_new):
                 C_new[i, i] += nugget[i]
         C_new -= offdiag.T * offdiag
         if not assume_full_rank:
@@ -275,8 +272,8 @@ class NearlyFullRankCovariance(Covariance):
 
 
 # def clean_array(A):
-#     for i in xrange(A.shape[0]):
-#         for j in xrange(A.shape[1]):
+#     for i in range(A.shape[0]):
+#         for j in range(A.shape[1]):
 #             if abs(A[i,j])<1e-10:
 #                 A[i,j]=0
 #

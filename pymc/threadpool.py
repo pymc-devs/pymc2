@@ -63,8 +63,6 @@ import traceback
 import os
 import numpy as np
 
-from . import six
-
 # exceptions
 
 
@@ -387,7 +385,7 @@ def map_noreturn(targ, argslist):
     done_lock.await()
 
     if exceptions:
-        six.reraise(*exceptions[0])
+        raise(*exceptions[0])
 
 
 def set_threadpool_size(n):
