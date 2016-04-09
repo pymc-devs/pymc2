@@ -385,7 +385,7 @@ def map_noreturn(targ, argslist):
     done_lock.await()
 
     if exceptions:
-        raise(*exceptions[0])
+        raise *exceptions[0]
 
 
 def set_threadpool_size(n):
