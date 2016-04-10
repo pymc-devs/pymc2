@@ -297,8 +297,8 @@ class Variable(Node):
         
         size = np.size(statdict['mean'])
 
-        print_('\n%s:' % self.__name__)
-        print_(' ')
+        print('\n%s:' % self.__name__)
+        print(' ')
 
         # Initialize buffer
         buffer = []
@@ -354,7 +354,7 @@ class Variable(Node):
 
         buffer += ['']
 
-        print_('\t' + '\n\t'.join(buffer))
+        print('\t' + '\n\t'.join(buffer))
 
 
 ContainerRegistry = []

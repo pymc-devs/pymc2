@@ -697,7 +697,7 @@ def calc_min_interval(x, alpha):
     interval_width = x[interval_idx_inc:] - x[:n_intervals]
 
     if len(interval_width) == 0:
-        print_('Too few elements for interval calculation')
+        print('Too few elements for interval calculation')
         return [None, None]
 
     min_idx = np.argmin(interval_width)
@@ -735,7 +735,7 @@ def quantiles(x, qlist=(2.5, 25, 50, 75, 97.5)):
         return dict(zip(qlist, quants))
 
     except IndexError:
-        print_("Too few elements for quantile calculation")
+        print("Too few elements for quantile calculation")
 
 
 def coda_output(pymc_object, name=None, chain=-1):
@@ -747,9 +747,9 @@ def coda_output(pymc_object, name=None, chain=-1):
 
     """
 
-    print_()
-    print_("Generating CODA output")
-    print_('=' * 50)
+    print()
+    print("Generating CODA output")
+    print('=' * 50)
 
     if name is None:
         name = pymc_object.__name__
@@ -771,7 +771,7 @@ def coda_output(pymc_object, name=None, chain=-1):
     for v in variables:
 
         vname = v.__name__
-        print_("Processing", vname)
+        print("Processing", vname)
         try:
             index = _process_trace(
                 trace_file,
@@ -830,7 +830,7 @@ def getInput():
         import msvcrt
         if msvcrt.kbhit():  # Check for a keyboard hit.
             input += msvcrt.getch()
-            print_(input)
+            print(input)
         else:
             time.sleep(.1)
 

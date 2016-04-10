@@ -581,9 +581,9 @@ def debug_wrapper(func, name):
 
     def wrapper(*args, **kwargs):
 
-        print_('Debugging inside %s:' % name)
-        print_('\tPress \'s\' to step into function for debugging')
-        print_('\tCall \'args\' to list function arguments')
+        print('Debugging inside %s:' % name)
+        print('\tPress \'s\' to step into function for debugging')
+        print('\tCall \'args\' to list function arguments')
 
         # Set debugging trace
         pdb.set_trace()
@@ -982,7 +982,7 @@ def categorical_like(x, p):
 
     p = np.atleast_2d(p)
     if np.any(abs(np.sum(p, 1) - 1) > 0.0001):
-        print_("Probabilities in categorical_like sum to", np.sum(p, 1))
+        print("Probabilities in categorical_like sum to", np.sum(p, 1))
     return flib.categorical(np.array(x).astype(int), p)
 
 

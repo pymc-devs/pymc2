@@ -305,10 +305,10 @@ class Potential(PotentialBase):
     def get_logp(self):
 
         if self.verbose > 1:
-            print_('\t' + self.__name__ + ': log-probability accessed.')
+            print('\t' + self.__name__ + ': log-probability accessed.')
         logp = self._logp.get()
         if self.verbose > 1:
-            print_('\t' + self.__name__ + ': Returning log-probability ', logp)
+            print('\t' + self.__name__ + ': Returning log-probability ', logp)
 
         try:
             logp = float(logp)
@@ -462,12 +462,12 @@ class Deterministic(DeterministicBase):
 
     def get_value(self):
         if self.verbose > 1:
-            print_('\t' + self.__name__ + ': value accessed.')
+            print('\t' + self.__name__ + ': value accessed.')
         _value = self._value.get()
         if isinstance(_value, ndarray):
             _value.flags['W'] = False
         if self.verbose > 1:
-            print_('\t' + self.__name__ + ': Returning value ', _value)
+            print('\t' + self.__name__ + ': Returning value ', _value)
         return _value
 
     def set_value(self, value):
@@ -503,7 +503,7 @@ class Deterministic(DeterministicBase):
         gets the logp gradient of this deterministic with respect to variable
         """
         if self.verbose > 0:
-            print_('\t' + self.__name__ + ': logp_partial_gradient accessed.')
+            print('\t' + self.__name__ + ': logp_partial_gradient accessed.')
 
         if not (datatypes.is_continuous(variable)
                 and datatypes.is_continuous(self)):
@@ -677,7 +677,7 @@ class Stochastic(StochasticBase):
 
         # Support legacy 'isdata' for a while
         if isdata is not None:
-            print_(
+            print(
                 "Deprecation Warning: the 'isdata' flag has been replaced by 'observed'. Please update your model accordingly.")
             self.observed = isdata
 
@@ -824,12 +824,12 @@ class Stochastic(StochasticBase):
     def get_value(self):
         # Define value attribute
         if self.verbose > 1:
-            print_('\t' + self.__name__ + ': value accessed.')
+            print('\t' + self.__name__ + ': value accessed.')
         return self._value
 
     def get_stoch_value(self):
         if self.verbose > 1:
-            print_('\t' + self.__name__ + ': stoch_value accessed.')
+            print('\t' + self.__name__ + ': stoch_value accessed.')
         return self._value[self.mask]
 
     def set_value(self, value, force=False):
@@ -843,7 +843,7 @@ class Stochastic(StochasticBase):
                 '\'s value cannot be updated if observed flag is set')
 
         if self.verbose > 0:
-            print_('\t' + self.__name__ + ': value set to ', value)
+            print('\t' + self.__name__ + ': value set to ', value)
 
         # Save current value as last_value
         # Don't copy because caching depends on the object's reference.
@@ -888,7 +888,7 @@ class Stochastic(StochasticBase):
 
         def fget(self):
             if self.verbose > 1:
-                print_('\t' + self.__name__ + ': shape accessed.')
+                print('\t' + self.__name__ + ': shape accessed.')
             return self._shape
         return locals()
     shape = property(**shape())
@@ -904,7 +904,7 @@ class Stochastic(StochasticBase):
     def get_logp(self):
 
         if self.verbose > 0:
-            print_('\t' + self.__name__ + ': logp accessed.')
+            print('\t' + self.__name__ + ': logp accessed.')
         logp = self._logp.get()
 
         try:
@@ -918,7 +918,7 @@ class Stochastic(StochasticBase):
             return -np.inf
 
         if self.verbose > 0:
-            print_('\t' + self.__name__ + ': Returning log-probability ', logp)
+            print('\t' + self.__name__ + ': Returning log-probability ', logp)
 
         # Check if the value is smaller than a double precision infinity:
         if logp <= d_neg_inf:

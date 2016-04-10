@@ -61,7 +61,7 @@ class diagnostic(object):
                         data = variable.trace()
                     name = variable.__name__
                     if kwargs.get('verbose'):
-                        print_("\nDiagnostic for %s ..." % name)
+                        print("\nDiagnostic for %s ..." % name)
                     values[name] = f(data, *args, **kwargs)
                 return values
             except AttributeError:
@@ -151,7 +151,7 @@ def validate(sampler, replicates=20, iterations=10000, burn=5000,
     quantiles = {}
 
     if verbose:
-        print_("\nExecuting Cook et al. (2006) validation procedure ...\n")
+        print("\nExecuting Cook et al. (2006) validation procedure ...\n")
 
     # Loop over replicates
     for i in range(replicates):
@@ -166,7 +166,7 @@ def validate(sampler, replicates=20, iterations=10000, burn=5000,
             # Generate simuated data for data stochastic
             o.set_value(o.random(), force=True)
             if verbose:
-                print_("Data for %s is %s" % (o.__name__, o.value))
+                print("Data for %s is %s" % (o.__name__, o.value))
 
         param_values = {}
         # Record data-generating parameter values
@@ -199,7 +199,7 @@ def validate(sampler, replicates=20, iterations=10000, burn=5000,
             sampler._assign_database_backend(original_backend)
 
         if not i % 10 and i and verbose:
-            print_("\tCompleted validation replicate", i)
+            print("\tCompleted validation replicate", i)
 
     # Replace backend
     sampler._assign_database_backend(original_backend)
@@ -372,25 +372,25 @@ def raftery_lewis(x, q, r, s=.95, epsilon=.001, verbose=1):
 
     if verbose:
 
-        print_("\n========================")
-        print_("Raftery-Lewis Diagnostic")
-        print_("========================")
-        print_()
-        print_(
+        print("\n========================")
+        print("Raftery-Lewis Diagnostic")
+        print("========================")
+        print()
+        print(
             "%s iterations required (assuming independence) to achieve %s accuracy with %i percent probability." %
             (nmin, r, 100 * s))
-        print_()
-        print_(
+        print()
+        print(
             "Thinning factor of %i required to produce a first-order Markov chain." %
             kthin)
-        print_()
-        print_(
+        print()
+        print(
             "%i iterations to be discarded at the beginning of the simulation (burn-in)." %
             nburn)
-        print_()
-        print_("%s subsequent iterations required." % nprec)
-        print_()
-        print_(
+        print()
+        print("%s subsequent iterations required." % nprec)
+        print()
+        print(
             "Thinning factor of %i required to produce an independence chain." %
             kmind)
 
@@ -485,7 +485,7 @@ def discrepancy(observed, simulated, expected):
 
     # Print p-value
     count = sum(s > o for o, s in zip(D_obs, D_sim))
-    print_('Bayesian p-value: p=%.3f' % (1. * count / len(D_obs)))
+    print('Bayesian p-value: p=%.3f' % (1. * count / len(D_obs)))
 
     return D_obs, D_sim
     
@@ -657,11 +657,11 @@ def _find_max_lag(x, rho_limit=0.05, maxmaxlag=20000, verbose=0):
         return maxlag
 
     if maxlag <= 1:
-        print_("maxlag = %d, fixing value to 10" % maxlag)
+        print("maxlag = %d, fixing value to 10" % maxlag)
         return 10
 
     if verbose:
-        print_("maxlag = %d" % maxlag)
+        print("maxlag = %d" % maxlag)
     return maxlag
 
 
@@ -693,7 +693,7 @@ def iat(x, maxlag=None):
     cut = _cut_time(gammas)
 
     if cut + 1 == len(gammas):
-        print_("Not enough lag to calculate IAT")
+        print("Not enough lag to calculate IAT")
 
     return np.sum(2 * gammas[:cut + 1]) - 1.0
 

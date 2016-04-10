@@ -279,7 +279,7 @@ class GPEvaluationGibbs(pm.Metropolis):
     def reject(self):
         self.rejected += 1
         if self.verbose:
-            print_(self._id + ' rejecting')
+            print(self._id + ' rejecting')
         # Revert the field evaluation and the rest of the field.
         self.f_eval.revert()
         self.f.revert()
@@ -290,7 +290,7 @@ class GPEvaluationGibbs(pm.Metropolis):
     def propose(self):
 
         if self.verbose:
-            print_(self._id + ' proposing')
+            print(self._id + ' proposing')
 
         fc = pm.gp.fast_matrix_copy
 

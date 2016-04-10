@@ -87,7 +87,7 @@ def pick_best_methods(stochastic):
             'Maximum competence reported for stochastic %s is <= 0... you may need to write a custom step method class.' %
             stochastic.__name__)
 
-    # print_(s.__name__ + ': ', best_candidates, ' ', max_competence)
+    # print(s.__name__ + ': ', best_candidates, ' ', max_competence)
     return best_candidates
 
 
@@ -293,7 +293,7 @@ class StepMethod(object):
         '''
         sum = logp_of_set(self.children)
         if self.verbose > 2:
-            print_('\t' + self._id + ' Current log-likelihood ', sum)
+            print('\t' + self._id + ' Current log-likelihood ', sum)
         return sum
 
     @property
@@ -304,7 +304,7 @@ class StepMethod(object):
         '''
         sum = logp_of_set(self.markov_blanket)
         if self.verbose > 2:
-            print_('\t' + self._id +
+            print('\t' + self._id +
                    ' Current log-likelihood plus current log-probability', sum)
         return sum
 
@@ -474,8 +474,8 @@ class Metropolis(StepMethod):
         # Probability and likelihood for s's current value:
 
         if self.verbose > 2:
-            print_()
-            print_(self._id + ' getting initial logp.')
+            print()
+            print(self._id + ' getting initial logp.')
 
         if self.proposal_distribution == "prior":
             logp = self.loglike
@@ -483,7 +483,7 @@ class Metropolis(StepMethod):
             logp = self.logp_plus_loglike
 
         if self.verbose > 2:
-            print_(self._id + ' proposing.')
+            print(self._id + ' proposing.')
 
         # Sample a candidate value
         self.propose()
@@ -502,18 +502,18 @@ class Metropolis(StepMethod):
 
             # Reject proposal
             if self.verbose > 2:
-                print_(self._id + ' rejecting due to ZeroProbability.')
+                print(self._id + ' rejecting due to ZeroProbability.')
             self.reject()
 
             # Increment rejected count
             self.rejected += 1
 
             if self.verbose > 2:
-                print_(self._id + ' returning.')
+                print(self._id + ' returning.')
             return
 
         if self.verbose > 2:
-            print_('logp_p - logp: ', logp_p - logp)
+            print('logp_p - logp: ', logp_p - logp)
 
         HF = self.hastings_factor()
 
@@ -526,15 +526,15 @@ class Metropolis(StepMethod):
             # Increment rejected count
             self.rejected += 1
             if self.verbose > 2:
-                print_(self._id + ' rejecting')
+                print(self._id + ' rejecting')
         else:
             # Increment accepted count
             self.accepted += 1
             if self.verbose > 2:
-                print_(self._id + ' accepting')
+                print(self._id + ' accepting')
 
         if self.verbose > 2:
-            print_(self._id + ' returning.')
+            print(self._id + ' returning.')
 
     def reject(self):
         # Sets current s value to the last accepted value
@@ -582,7 +582,7 @@ class Metropolis(StepMethod):
 
         # Verbose feedback
         if verbose > 0:
-            print_('\t%s tuning:' % self._id)
+            print('\t%s tuning:' % self._id)
 
         # Flag for tuning state
         tuning = True
@@ -628,10 +628,10 @@ class Metropolis(StepMethod):
         # More verbose feedback, if requested
         if verbose > 0:
             if hasattr(self, 'stochastic'):
-                print_('\t\tvalue:', self.stochastic.value)
-            print_('\t\tacceptance rate:', acc_rate)
-            print_('\t\tadaptive scale factor:', self.adaptive_scale_factor)
-            print_()
+                print('\t\tvalue:', self.stochastic.value)
+            print('\t\tacceptance rate:', acc_rate)
+            print('\t\tadaptive scale factor:', self.adaptive_scale_factor)
+            print()
 
         return tuning
 
@@ -762,7 +762,7 @@ class DrawFromPrior(StepMethod):
                             s.logp
                         except ZeroProbability:
                             forbidden.append(s.__name__)
-                print_(
+                print(
                     'DrawFromPrior jumped stochastics %s to value forbidden by objects %s, rejecting.' % (
                         ', '.join(
                             s.__name__ for s in jumped),
@@ -941,7 +941,7 @@ class BinaryMetropolis(Metropolis):
             p_false = exp(logp_false)
 
             if self.verbose > 2:
-                print_("""%s step information:
+                print("""%s step information:
                 - logp_true: %f
                 - logp_false: %f
                 - p_true: %f
@@ -952,12 +952,12 @@ class BinaryMetropolis(Metropolis):
             # probabilities of True and False
             if random() > p_false / (p_true + p_false):
                 if self.verbose > 2:
-                    print_(
+                    print(
                         "%s setting %s's value to True." %
                         (self._id, self.stochastic))
                 self.stochastic.value = True
             elif self.verbose > 2:
-                print_(
+                print(
                     "%s setting %s's value to False." %
                     (self._id, self.stochastic))
 
@@ -1114,10 +1114,10 @@ class AdaptiveMetropolis(StepMethod):
         self._trace = []
 
         if self.verbose >= 2:
-            print_("Initialization...")
-            print_('Dimension: ', self.dim)
-            print_("C_0: ", self.C)
-            print_("Sigma: ", self.proposal_sd)
+            print("Initialization...")
+            print('Dimension: ', self.dim)
+            print("C_0: ", self.C)
+            print("Sigma: ", self.proposal_sd)
 
     @staticmethod
     def competence(stochastic):
@@ -1252,7 +1252,7 @@ class AdaptiveMetropolis(StepMethod):
                 self.C *= .25
             if self.verbose > 1:
                 if acc_rate < .01:
-                    print_(
+                    print(
                         '\tAcceptance rate was',
                         acc_rate,
                         'shrinking covariance')
@@ -1260,8 +1260,8 @@ class AdaptiveMetropolis(StepMethod):
         self.rejected = 0.
 
         if self.verbose > 1:
-            print_("\tUpdating covariance ...\n", self.C)
-            print_("\tUpdating mean ... ", self.chain_mean)
+            print("\tUpdating covariance ...\n", self.C)
+            print("\tUpdating mean ... ", self.chain_mean)
 
         # Update state
         adjustmentwarning = '\n' +\
@@ -1369,7 +1369,7 @@ class AdaptiveMetropolis(StepMethod):
                 size=self.proposal_sd.shape[
                     0]))
         if self.verbose > 2:
-            print_('Jump :', arrayjump)
+            print('Jump :', arrayjump)
 
         # Update each stochastic individually.
         for stochastic in self.stochastics:
@@ -1405,8 +1405,8 @@ class AdaptiveMetropolis(StepMethod):
         # Probability and likelihood for stochastic's current value:
         logp = self.logp_plus_loglike
         if self.verbose > 1:
-            print_('Current value: ', self.stoch2array())
-            print_('Current likelihood: ', logp)
+            print('Current value: ', self.stoch2array())
+            print('Current likelihood: ', logp)
 
         # Sample a candidate value
         self.propose()
@@ -1417,38 +1417,38 @@ class AdaptiveMetropolis(StepMethod):
             # Probability and likelihood for stochastic's proposed value:
             logp_p = self.logp_plus_loglike
             if self.verbose > 2:
-                print_('Current value: ', self.stoch2array())
-                print_('Current likelihood: ', logp_p)
+                print('Current value: ', self.stoch2array())
+                print('Current likelihood: ', logp_p)
 
             if np.log(random()) < logp_p - logp:
                 accept = True
                 self.accepted += 1
                 if self.verbose > 2:
-                    print_('Accepted')
+                    print('Accepted')
             else:
                 self.rejected += 1
                 if self.verbose > 2:
-                    print_('Rejected')
+                    print('Rejected')
         except ZeroProbability:
             self.rejected += 1
             logp_p = None
             if self.verbose > 2:
-                print_('Rejected with ZeroProbability Error.')
+                print('Rejected with ZeroProbability Error.')
 
         if (not self._current_iter % self.interval) and self.verbose > 1:
-            print_("Step ", self._current_iter)
-            print_("\tLogprobability (current, proposed): ", logp, logp_p)
+            print("Step ", self._current_iter)
+            print("\tLogprobability (current, proposed): ", logp, logp_p)
             for stochastic in self.stochastics:
-                print_(
+                print(
                     "\t",
                     stochastic.__name__,
                     stochastic.last_value,
                     stochastic.value)
             if accept:
-                print_("\tAccepted\t*******\n")
+                print("\tAccepted\t*******\n")
             else:
-                print_("\tRejected\n")
-            print_(
+                print("\tRejected\n")
+            print(
                 "\tAcceptance ratio: ",
                 self.accepted / (
                     self.accepted + self.rejected))
@@ -1630,7 +1630,7 @@ class TWalk(StepMethod):
         """Walk proposal kernel"""
 
         if self.verbose > 1:
-            print_('\t' + self._id + ' Running Walk proposal kernel')
+            print('\t' + self._id + ' Running Walk proposal kernel')
 
         # Mask for values to move
         phi = self.phi
@@ -1646,12 +1646,12 @@ class TWalk(StepMethod):
             x, xp = self.values
 
         if self.verbose > 1:
-            print_('\t' + 'Current value = ' + str(x))
+            print('\t' + 'Current value = ' + str(x))
 
         x = x + phi * (x - xp) * z
 
         if self.verbose > 1:
-            print_('\t' + 'Proposed value = ' + str(x))
+            print('\t' + 'Proposed value = ' + str(x))
 
         self.stochastic.value = x
 
@@ -1662,7 +1662,7 @@ class TWalk(StepMethod):
         """Traverse proposal kernel"""
 
         if self.verbose > 1:
-            print_('\t' + self._id + ' Running Traverse proposal kernel')
+            print('\t' + self._id + ' Running Traverse proposal kernel')
 
         # Mask for values to move
         phi = self.phi
@@ -1681,12 +1681,12 @@ class TWalk(StepMethod):
             x, xp = self.values
 
         if self.verbose > 1:
-            print_('\t' + 'Current value = ' + str(x))
+            print('\t' + 'Current value = ' + str(x))
 
         x = (xp + beta * (xp - x)) * phi + x * (phi == False)
 
         if self.verbose > 1:
-            print_('\t' + 'Proposed value = ' + str(x))
+            print('\t' + 'Proposed value = ' + str(x))
 
         self.stochastic.value = x
 
@@ -1697,7 +1697,7 @@ class TWalk(StepMethod):
         """Blow proposal kernel"""
 
         if self.verbose > 1:
-            print_('\t' + self._id + ' Running Blow proposal kernel')
+            print('\t' + self._id + ' Running Blow proposal kernel')
 
         # Mask for values to move
         phi = self.phi
@@ -1708,14 +1708,14 @@ class TWalk(StepMethod):
             x, xp = self.values
 
         if self.verbose > 1:
-            print_('\t' + 'Current value ' + str(x))
+            print('\t' + 'Current value ' + str(x))
 
         sigma = max(phi * abs(xp - x))
 
         x = x + phi * sigma * rnormal()
 
         if self.verbose > 1:
-            print_('\t' + 'Proposed value = ' + str(x))
+            print('\t' + 'Proposed value = ' + str(x))
 
         self.hastings_factor = self._g(
             x,
@@ -1739,7 +1739,7 @@ class TWalk(StepMethod):
         """Hop proposal kernel"""
 
         if self.verbose > 1:
-            print_('\t' + self._id + ' Running Hop proposal kernel')
+            print('\t' + self._id + ' Running Hop proposal kernel')
 
         # Mask for values to move
         phi = self.phi
@@ -1750,14 +1750,14 @@ class TWalk(StepMethod):
             x, xp = self.values
 
         if self.verbose > 1:
-            print_('\t' + 'Current value of x = ' + str(x))
+            print('\t' + 'Current value of x = ' + str(x))
 
         sigma = max(phi * abs(xp - x)) / 3.0
 
         x = (xp + sigma * rnormal()) * phi + x * (phi == False)
 
         if self.verbose > 1:
-            print_('\t' + 'Proposed value = ' + str(x))
+            print('\t' + 'Proposed value = ' + str(x))
 
         self.hastings_factor = self._g(
             x,
@@ -1777,7 +1777,7 @@ class TWalk(StepMethod):
         self.rejected[self.current_kernel] += 1
 
         if self.verbose > 1:
-            print_(
+            print(
                 self._id,
                 "rejected, reverting to value =",
                 self.stochastic.value)
@@ -1804,14 +1804,14 @@ class TWalk(StepMethod):
         self._prime = (random() < 0.5)
 
         if self.verbose > 1:
-            print_("\n\nUsing x%s as pivot" % (" prime" * self._prime or ""))
+            print("\n\nUsing x%s as pivot" % (" prime" * self._prime or ""))
 
         if self._prime:
             # Set the value of the stochastic to the auxiliary
             self.stochastic.value = self.values[1]
 
             if self.verbose > 1:
-                print_(
+                print(
                     self._id,
                     "setting value to auxiliary",
                     self.stochastic.value)
@@ -1819,7 +1819,7 @@ class TWalk(StepMethod):
         # Current log-probability
         logp = self.logp_plus_loglike
         if self.verbose > 1:
-            print_("Current logp", logp)
+            print("Current logp", logp)
 
         try:
             # Propose new value
@@ -1834,13 +1834,13 @@ class TWalk(StepMethod):
             # Proposed log-probability
             logp_p = self.logp_plus_loglike
             if self.verbose > 1:
-                print_("Proposed logp", logp_p)
+                print("Proposed logp", logp_p)
 
         except ZeroProbability:
 
             # Reject proposal
             if self.verbose > 1:
-                print_(self._id + ' rejecting due to ZeroProbability.')
+                print(self._id + ' rejecting due to ZeroProbability.')
             self.reject()
 
             if self._prime:
@@ -1850,7 +1850,7 @@ class TWalk(StepMethod):
                 self.stochastic.value = self.values[0]
 
                 if self.verbose > 1:
-                    print_(
+                    print(
                         self._id,
                         "reverting stochastic to primary value",
                         self.stochastic.value)
@@ -1859,11 +1859,11 @@ class TWalk(StepMethod):
                 self.values[0] = self.stochastic.value
 
             if self.verbose > 1:
-                print_(self._id + ' returning.')
+                print(self._id + ' returning.')
             return
 
         if self.verbose > 1:
-            print_('logp_p - logp: ', logp_p - logp)
+            print('logp_p - logp: ', logp_p - logp)
 
         # Evaluate acceptance ratio
         if log(random()) > (logp_p - logp + self.hastings_factor):
@@ -1875,7 +1875,7 @@ class TWalk(StepMethod):
             # Increment accepted count
             self.accepted[self.current_kernel] += 1
             if self.verbose > 1:
-                print_(self._id + ' accepting')
+                print(self._id + ' accepting')
 
         if self._prime:
             # Update value list
@@ -1884,7 +1884,7 @@ class TWalk(StepMethod):
             self.stochastic.value = self.values[0]
 
             if self.verbose > 1:
-                print_(
+                print(
                     self._id,
                     "reverting stochastic to primary value",
                     self.stochastic.value)

@@ -254,7 +254,7 @@ def plot_envelope(M, C, mesh):
         fill(x, y, facecolor='.8', edgecolor='1.')
         plot(mesh, mean, 'k-.')
     except ImportError:
-        print_("Matplotlib is not installed; plotting is disabled.")
+        print("Matplotlib is not installed; plotting is disabled.")
 
 
 def observe(M, C, obs_mesh, obs_vals, obs_V=0, lintrans=None,
@@ -290,7 +290,7 @@ def observe(M, C, obs_mesh, obs_vals, obs_V=0, lintrans=None,
 
     """
     obs_mesh = regularize_array(obs_mesh)
-    # print_(obs_mesh)
+    # print(obs_mesh)
     obs_V = resize(obs_V, obs_mesh.shape[0])
     obs_vals = resize(obs_vals, obs_mesh.shape[0])
 

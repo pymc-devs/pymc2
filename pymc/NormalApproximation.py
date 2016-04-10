@@ -182,7 +182,7 @@ class MAP(Model):
             self.stochastic_type_dict[stochastic] = type_now
 
             if not type_now is float:
-                print_("Warning: Stochastic " + stochastic.__name__ + "'s value is neither numerical nor array with " +
+                print("Warning: Stochastic " + stochastic.__name__ + "'s value is neither numerical nor array with " +
                        "floating-point dtype. Recommend fitting method fmin (default).")
 
             # Inspect shapes of all stochastics and create stochastic slices.
@@ -279,9 +279,9 @@ class MAP(Model):
         if default_callback:
             def callback(p):
                 try:
-                    print_('Current log-probability : %f' % self.logp)
+                    print('Current log-probability : %f' % self.logp)
                 except ZeroProbability:
-                    print_('Current log-probability : %f' % -Inf)
+                    print('Current log-probability : %f' % -Inf)
         elif 'callback' in kwargs:
             callback = kwargs.pop('callback')
         else:

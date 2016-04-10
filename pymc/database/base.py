@@ -178,7 +178,7 @@ class Trace(object):
 
             n = len(trace)
             if not n:
-                print_(
+                print(
                     'Cannot generate statistics for zero-length trace in',
                     self.__name__)
                 return
@@ -192,7 +192,7 @@ class Trace(object):
                 'quantiles': utils.quantiles(trace, qlist=quantiles)
             }
         except:
-            print_('Could not generate output statistics for', self.name)
+            print('Could not generate output statistics for', self.name)
             return
 
 
@@ -312,7 +312,7 @@ Error:
                     self._traces[name]._getfunc = fun
                     names.discard(name)
             # if len(names) > 0:
-            # print_("Some objects from the database have not been assigned a
+            # print("Some objects from the database have not been assigned a
             # getfunc", names)
 
         # Create a fresh new state.

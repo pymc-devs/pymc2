@@ -423,7 +423,7 @@ def plot(
     if ndim(data) == 1:
 
         if verbose > 0:
-            print_('Plotting', name)
+            print('Plotting', name)
 
         # If new plot, generate new frame
         if new:
@@ -524,7 +524,7 @@ def histogram(
         standalone = rows == 1 and columns == 1 and num == 1
         if standalone:
             if verbose > 0:
-                print_('Generating histogram of', name)
+                print('Generating histogram of', name)
             figure()
 
         subplot(rows, columns, num)
@@ -547,7 +547,7 @@ def histogram(
         if isnan(bins):
             bins = uniquevals * (uniquevals <= 25) or int(
                 4 + 1.5 * log(len(data)))
-            print_(
+            print(
                 'Bins could not be calculated using selected method. Setting bins to %i.' %
                 bins)
 
@@ -584,7 +584,7 @@ def histogram(
             # close()
 
     except OverflowError:
-        print_('... cannot generate histogram')
+        print('... cannot generate histogram')
 
 
 @plotwrapper
@@ -626,7 +626,7 @@ def trace(
 
     if standalone:
         if verbose > 0:
-            print_('Plotting', name)
+            print('Plotting', name)
         figure()
 
     subplot(rows, columns, num)
@@ -744,7 +744,7 @@ def discrepancy_plot(
     '''
 
     if verbose > 0:
-        print_('Plotting', name + suffix)
+        print('Plotting', name + suffix)
 
     if fontmap is None:
         fontmap = {1: 10, 2: 8, 3: 6, 4: 5, 5: 4}
@@ -846,7 +846,7 @@ def gof_plot(
         return
 
     if verbose > 0:
-        print_('Plotting', (name or 'MCMC') + suffix)
+        print('Plotting', (name or 'MCMC') + suffix)
 
     figure()
 
@@ -936,7 +936,7 @@ def autocorrelation(
 
     if standalone:
         if verbose > 0:
-            print_('Plotting', name)
+            print('Plotting', name)
         figure()
 
     subplot(rows, columns, num)
@@ -945,7 +945,7 @@ def autocorrelation(
         try:
             acorr(data, detrend=mlab.detrend_mean, maxlags=maxlags)
         except:
-            print_('Cannot plot autocorrelation for %s' % name)
+            print('Cannot plot autocorrelation for %s' % name)
             return
 
         # Set axis bounds
@@ -1002,7 +1002,7 @@ def zplot(pvalue_dict, name='',
     diagnostics.validate()."""
 
     if verbose:
-        print_('\nGenerating model validation plot')
+        print('\nGenerating model validation plot')
 
     if fontmap is None:
         fontmap = {1: 10, 2: 8, 3: 6, 4: 5, 5: 4}
@@ -1132,7 +1132,7 @@ def summary_plot(
     """
 
     if not gridspec:
-        print_(
+        print(
             '\nYour installation of matplotlib is not recent enough to support summary_plot; this function is disabled until matplotlib is updated.')
         return
 
@@ -1190,7 +1190,7 @@ def summary_plot(
 
     # Make sure there is something to print
     if all([v._plot == False for v in vars]):
-        print_('No variables to plot')
+        print('No variables to plot')
         return
 
     for variable in vars:

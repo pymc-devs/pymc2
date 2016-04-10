@@ -134,7 +134,7 @@ class Database(base.Database):
         np.set_printoptions(threshold=1e6)
         try:
             with open(os.path.join(self._directory, 'state.txt'), 'w') as f:
-                print_(state, file=f)
+                print(state, file=f)
         finally:
             np.set_printoptions(**oldstate)
 

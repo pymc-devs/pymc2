@@ -247,7 +247,7 @@ class Sampler(Model):
         """Reset the status and tell the database to finalize the traces."""
         if self.status in ['running', 'halt']:
             if self.verbose > 0:
-                print_('\nSampling finished normally.')
+                print('\nSampling finished normally.')
             self.status = 'ready'
 
         self.save_state()
@@ -282,7 +282,7 @@ class Sampler(Model):
                 self.tally()
 
                 if not i % 10000 and self.verbose > 0:
-                    print_('Iteration ', i, ' of ', self._iter)
+                    print('Iteration ', i, ' of ', self._iter)
                     sys.stdout.flush()
 
                 self._current_iter += 1
@@ -583,7 +583,7 @@ class Sampler(Model):
         # The _loop method will react to 'paused' status and stop looping.
         if hasattr(
                 self, '_sampling_thread') and self._sampling_thread.isAlive():
-            print_('Waiting for current iteration to finish...')
+            print('Waiting for current iteration to finish...')
             while self._sampling_thread.isAlive():
                 sleep(.1)
 
@@ -593,12 +593,12 @@ class Sampler(Model):
         # The _halt method is called by _loop.
         if hasattr(
                 self, '_sampling_thread') and self._sampling_thread.isAlive():
-            print_('Waiting for current iteration to finish...')
+            print('Waiting for current iteration to finish...')
             while self._sampling_thread.isAlive():
                 sleep(.1)
 
     def _halt(self):
-        print_('Halting at iteration ', self._current_iter, ' of ', self._iter)
+        print('Halting at iteration ', self._current_iter, ' of ', self._iter)
         self.db.truncate(self._cur_trace_index)
         self._finalize()
 
@@ -612,13 +612,13 @@ class Sampler(Model):
         Records the value of all tracing variables.
         """
         if self.verbose > 2:
-            print_(self.__name__ + ' tallying.')
+            print(self.__name__ + ' tallying.')
         if self._cur_trace_index < self.max_trace_length:
             self.db.tally()
 
         self._cur_trace_index += 1
         if self.verbose > 2:
-            print_(self.__name__ + ' done tallying.')
+            print(self.__name__ + ' done tallying.')
 
     def commit(self):
         """
@@ -654,7 +654,7 @@ class Sampler(Model):
         Restarts thread in interactive mode
         """
         if self.status != 'paused':
-            print_(
+            print(
                 "No sampling to continue. Please initiate sampling with isample.")
             return
 
@@ -684,13 +684,13 @@ class Sampler(Model):
                       own risk.
         """
 
-        print_("""==============
+        print("""==============
  PyMC console
 ==============
 
         PyMC is now sampling. Use the following commands to query or pause the sampler.
         """, file=out)
-        print_(cmds, file=out)
+        print(cmds, file=out)
 
         prompt = True
         try:
@@ -705,7 +705,7 @@ class Sampler(Model):
 
                 cmd = utils.getInput().strip()
                 if cmd == 'i':
-                    print_(
+                    print(
                         'Current iteration: %i of %i' %
                         (self._current_iter, self._iter), file=out)
                     prompt = True
@@ -724,8 +724,8 @@ class Sampler(Model):
                 elif cmd == '':
                     prompt = False
                 else:
-                    print_('Unknown command: ', cmd, file=out)
-                    print_(cmds, file=out)
+                    print('Unknown command: ', cmd, file=out)
+                    print(cmds, file=out)
                     prompt = True
 
         except KeyboardInterrupt:
@@ -734,14 +734,14 @@ class Sampler(Model):
                 self._halt()
 
         if self.status == 'ready':
-            print_("Sampling terminated successfully.", file=out)
+            print("Sampling terminated successfully.", file=out)
         else:
-            print_('Waiting for current iteration to finish...', file=out)
+            print('Waiting for current iteration to finish...', file=out)
             while self._sampling_thread.isAlive():
                 sleep(.1)
-            print_('Exiting interactive prompt...', file=out)
+            print('Exiting interactive prompt...', file=out)
             if self.status == 'paused':
-                print_(
+                print(
                     'Call icontinue method to continue, or call halt method to truncate traces and stop.',
                     file=out)
 
@@ -767,8 +767,8 @@ class Sampler(Model):
         try:
             self.db.savestate(self.get_state())
         except:
-            print_('Warning, unable to save state.')
-            print_('Error message:')
+            print('Warning, unable to save state.')
+            print('Error message:')
             traceback.print_exc()
 
     def restore_sampler_state(self):
@@ -792,7 +792,7 @@ class Sampler(Model):
                 warnings.warn(
                     'Failed to restore state of stochastic %s from %s backend' %
                     (sm.__name__, self.db.__name__))
-                # print_('Error message:')
+                # print('Error message:')
                 # traceback.print_exc()
 
     def remember(self, chain=-1, trace_index=None):
