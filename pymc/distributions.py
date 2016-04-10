@@ -29,9 +29,8 @@ __docformat__ = 'reStructuredText'
 
 from . import flib, utils
 import numpy as np
-# from scipy.stats.kde import gaussian_kde
 import scipy.stats as stats
-gaussian_kde = stats.kde
+gaussian_kde = stats.gaussian_kde
 from .Node import ZeroProbability
 from .PyMCObjects import Stochastic, Deterministic
 from .CommonDeterministics import Lambda
