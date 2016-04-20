@@ -365,8 +365,10 @@ class MCMC(Sampler):
             tuning_count += step_method.tune(verbose=self.verbose)
             if verbose > 1:
                 print_(
-                    '\t\tTuning step method %s, returned %i\n' %i
-                    (step_method._id, tuning_count))
+                    '\t\tTuning step method %s, returned %i\n' % (
+                        step_method._id, tuning_count
+                    )
+                )
                 sys.stdout.flush()
 
         if self._burn_till_tuned:
