@@ -4227,6 +4227,9 @@ cf2py threadsafe
         else if (x(i) .LT. 0) then
           like = -infinity
           RETURN
+        else if (x(i) .GT. ntmp) then
+          like = -infinity
+          RETURN
         else if ((atmp.LE.0.0).AND.(x(i).LE.0)) then
             like = like + 0.0
         else if ((btmp.LE.0.0).AND.(x(i).GE.n(i))) then
