@@ -439,6 +439,10 @@ class test_betabin(TestCase):
         assert_equal(np.exp(flib.betabin_like(-1, a, b, n)), 0.0)
         assert_equal(np.exp(flib.betabin_like(n + 1, a, b, n)), 0.0)
 
+        a, b = 5, 5
+        assert_equal(np.exp(flib.betabin_like(-1, a, b, n)), 0.0)
+        assert_equal(np.exp(flib.betabin_like(n + 1, a, b, n)), 0.0)
+
 
 class test_categorical(TestCase):
 
