@@ -425,14 +425,16 @@ class test_betabin(TestCase):
         assert_equal(a, c)
 
     def test_edge_cases(self):
-        n = 5
-        a, b = 3, 0
-        assert_equal(np.exp(flib.betabin_like(n, a, b, n)), 1.0)
+        n = 2
+        a, b = 5, 0
         assert_equal(np.exp(flib.betabin_like(0, a, b, n)), 0.0)
+        assert_equal(np.exp(flib.betabin_like(1, a, b, n)), 0.0)
+        assert_equal(np.exp(flib.betabin_like(2, a, b, n)), 1.0)
 
-        a, b = 0, 3
-        assert_equal(np.exp(flib.betabin_like(n, a, b, n)), 0.0)
+        a, b = 0, 5
         assert_equal(np.exp(flib.betabin_like(0, a, b, n)), 1.0)
+        assert_equal(np.exp(flib.betabin_like(1, a, b, n)), 0.0)
+        assert_equal(np.exp(flib.betabin_like(2, a, b, n)), 0.0)
 
 
 class test_categorical(TestCase):
