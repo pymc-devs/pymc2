@@ -4221,22 +4221,29 @@ cf2py threadsafe
         if (na .NE. 1) atmp = alpha(i)
         if (nb .NE. 1) btmp = beta(i)
         if (nn .NE. 1) ntmp = n(i)
-        if ((atmp.LE.0.0).OR.(btmp.LE.0.0).OR.(ntmp.LE.0)) then
+        if (((atmp.LE.0.0).AND.(btmp.LE.0.0)).OR.(ntmp.LE.0)) then
           like = -infinity
           RETURN
-        endif
-        if (x(i) .LT. 0) then
+        else if (x(i) .LT. 0) then
           like = -infinity
           RETURN
+        else if (x(i) .GT. ntmp) then
+          like = -infinity
+          RETURN
+        else if ((atmp.LE.0.0).AND.(x(i).LE.0)) then
+            like = like + 0.0
+        else if ((btmp.LE.0.0).AND.(x(i).GE.n(i))) then
+            like = like + 0.0
+        else
+          like =like + gammln(atmp+btmp)
+          like =like - gammln(atmp) - gammln(btmp)
+
+          like =like + gammln(ntmp+one)
+          like =like - gammln(x(i)+one) - gammln(ntmp-x(i)+one)
+
+          like =like + gammln(atmp+x(i)) + gammln(ntmp+btmp-x(i))
+          like =like - gammln(atmp+btmp+ntmp)
         endif
-        like =like + gammln(atmp+btmp)
-        like =like - gammln(atmp) - gammln(btmp)
-
-        like =like + gammln(ntmp+one)
-        like =like - gammln(x(i)+one) - gammln(ntmp-x(i)+one)
-
-        like =like + gammln(atmp+x(i)) + gammln(ntmp+btmp-x(i))
-        like =like - gammln(atmp+btmp+ntmp)
 
       enddo
 
