@@ -4221,7 +4221,10 @@ cf2py threadsafe
         if (na .NE. 1) atmp = alpha(i)
         if (nb .NE. 1) btmp = beta(i)
         if (nn .NE. 1) ntmp = n(i)
-        if (((atmp.LE.0.0).AND.(btmp.LE.0.0)).OR.(ntmp.LE.0)) then
+        if (((atmp.LT.0.0).OR.(btmp.LT.0.0))) then
+          like = -infinity
+          RETURN
+        else if (((atmp.LE.0.0).AND.(btmp.LE.0.0)).OR.(ntmp.LE.0)) then
           like = -infinity
           RETURN
         else if (x(i) .LT. 0) then
