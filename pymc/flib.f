@@ -3140,7 +3140,7 @@ cf2py threadsafe
 
       IMPLICIT NONE
       INTEGER n,np,i
-      INTEGER x(n)
+      INTEGER*8 x(n)
       DOUBLE PRECISION p(np), p_tmp
       DOUBLE PRECISION like
       DOUBLE PRECISION infinity
