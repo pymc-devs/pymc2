@@ -286,4 +286,4 @@ contains a generic test class that can easily be subclassed to check that the
 basic features required of all backends are implemented and working properly.
 
 .. _`pyTables`:
-   http://www.pytables.org/moin
+   http://www.pytables.org/
