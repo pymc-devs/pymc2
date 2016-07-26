@@ -412,7 +412,7 @@ def batchsd(trace, batches=5):
             return np.std(trace) / np.sqrt(len(trace))
 
         try:
-            batched_traces = np.resize(trace, (batches, len(trace) / batches))
+            batched_traces = np.resize(trace, (batches, int(len(trace) / batches)))
         except ValueError:
             # If batches do not divide evenly, trim excess samples
             resid = len(trace) % batches
