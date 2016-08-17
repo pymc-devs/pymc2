@@ -22,8 +22,8 @@ import warnings
 import sys
 import inspect
 
-from . import six
-from .six import print_
+import six
+from six import print_
 
 __docformat__ = 'reStructuredText'
 
