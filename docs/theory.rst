@@ -12,7 +12,7 @@ intractable both via analytic methods or standard methods of numerical
 integration. However, it is often possible to compute these integrals by 
 simulating (drawing samples) from posterior distributions. For example, 
 consider the expected value of a random variable :math:`\mathbf{x}`:
-   
+
 .. math::
    E[{\bf x}] = \int {\bf x} f({\bf x}) d{\bf x}, \qquad
    {\bf x} = \{x_1,...,x_k\}
@@ -22,12 +22,12 @@ we can produce a reasonable number of random vectors :math:`\{{\bf x_i}\}`, we
 can use these values to approximate the unknown integral. This process is known 
 as *Monte Carlo integration*. In general, MC integration allows integrals 
 against probability density functions:
-   
+
 .. math::
    I = \int h(\mathbf{x}) f(\mathbf{x}) \mathbf{dx}
 
 to be estimated by finite sums:
-   
+
 .. math::
    \hat{I} = \frac{1}{n}\sum_{i=1}^n h(\mathbf{x}_i),
 
@@ -38,10 +38,9 @@ and useful because:
 
 .. math::
      \hat{I} \rightarrow I   \mbox{   with probability 1}
-     
+
 * Simulation error can be measured and controlled:
 
-     
 .. math::
   :nowrap:
 
@@ -52,7 +51,7 @@ Why is this relevant to Bayesian analysis? If we replace :math:`f(\mathbf{x})`
 with a posterior, :math:`f(\theta|d)` and make :math:`h(\theta)` an interesting 
 function of the unknown parameter, the resulting expectation is that of the 
 posterior of :math:`h(\theta)`:
-   
+
 .. math::
   :nowrap:
 
@@ -86,11 +85,11 @@ that fall under the curve (Figure :ref:`bound`).
    :alt: Rejection figure.
    :align: center
    :scale: 100
-   
+
    Rejection sampling of a bounded form. Area is estimated by the ratio of
    accepted (open squares) to total points, multiplied by the rectangle
    area.
-   
+
 .. math::
    \frac{\mbox{Points under curve}}{\mbox{Points generated}} \times \mbox{box area} = \lim_{n \to \infty} \int_A^B f(x) dx
 
@@ -103,13 +102,13 @@ for posterior distributions.
    :alt: envelope figure
    :align: center
    :scale: 100
-   
+
    Rejection sampling of an unbounded form using an enveloping distribution.
 
 If :math:`f(x)` has unbounded support (i.e. infinite tails), such as a Gaussian 
 distribution, a bounding box is no longer appropriate. We must specify a 
 majorizing (or, enveloping) function, :math:`g(x)`, which implies:
-   
+
 .. math::
    g(x) \ge  f(x) \qquad\forall x \in (-\infty,\infty)
 
@@ -133,14 +132,14 @@ Markov Chains
 
 A Markov chain is a special type of *stochastic process*. The standard 
 definition of a stochastic process is an ordered collection of random variables:
-   
+
 .. math::
    \{X_t:t \in T\}
 
 where :math:`t` is frequently (but not necessarily) a time index. If we think 
 of :math:`X_t` as a state :math:`X` at time :math:`t`, and invoke the following 
 dependence condition on each state:
-   
+
 .. math::
    Pr(X_{t+1}=x_{t+1} | X_t=x_t, X_{t-1}=x_{t-1},\ldots,X_0=x_0) = Pr(X_{t+1}=x_{t+1} | X_t=x_t)
 
@@ -162,55 +161,53 @@ Before we move on, it is important to define some general properties of Markov
 chains. They are frequently encountered in the MCMC literature, and some will 
 help us decide whether MCMC is producing a useful sample from the posterior.
 
-* *Homogeneity*: A Markov chain is homogeneous at step :math:`t` if the
-  	transition probabilities are independent of time :math:`t`.
+* *Homogeneity*:
+A Markov chain is homogeneous at step :math:`t` if the transition probabilities
+are independent of time :math:`t`.
 
-* *Irreducibility*: A Markov chain is irreducible if every state is accessible
-  	in one or more steps from any other state. That is, the chain contains no
-	absorbing states. This implies that there is a non-zero probability of
-	eventually reaching state :math:`k` from any other state in the chain.
+* *Irreducibility*:
+A Markov chain is irreducible if every state is accessible in one or more steps
+from any other state. That is, the chain contains no absorbing states. This
+implies that there is a non-zero probability of eventually reaching state
+:math:`k` from any other state in the chain.
 
-* *Recurrence*: States which are visited repeatedly are *recurrent*. If the
-  	expected time to return to a particular state is bounded, this is known as
-	*positive recurrence*, otherwise the recurrent state is *null recurrent*.
-	Further, a chain is *Harris recurrent* when it visits all states :math:`X 
-	\in S` infinitely often in the limit as :math:`t \to \infty`; this is an 
-	important characteristic when dealing with unbounded, continuous state 
-	spaces. Whenever a chain ends up in a closed, irreducible set of Harris 
-	recurrent states, it stays there forever and visits every state with 
-	probability one.
+* *Recurrence*:
+States which are visited repeatedly are *recurrent*. If the expected time to
+return to a particular state is bounded, this is known as *positive
+recurrence*, otherwise the recurrent state is *null recurrent*.  Further, a
+chain is *Harris recurrent* when it visits all states :math:`X \in S`
+infinitely often in the limit as :math:`t \to \infty`; this is an important
+characteristic when dealing with unbounded, continuous state spaces. Whenever a
+chain ends up in a closed, irreducible set of Harris recurrent states, it stays
+there forever and visits every state with probability one.
 
-* *Stationarity*: A stationary Markov chain produces the same marginal
-  	distribution when multiplied by the transition kernel.  Thus, if :math:`P` 	
-	is some :math:`n \times n` transition matrix:
+* *Stationarity*:
+A stationary Markov chain produces the same marginal distribution when
+multiplied by the transition kernel.  Thus, if :math:`P` 	is some :math:`n
+\times n` transition matrix:
 
-     
    .. math::
       {\bf \pi P} = {\bf \pi}
-     
-	for Markov chain :math:`\pi`. Thus, :math:`\pi` is no longer subscripted, 
-	and is referred to as the *limiting distribution* of the chain. In MCMC, 
-	the chain explores the state space according to its limiting marginal 
-	distribution.
 
-* *Ergodicity*: Ergodicity is an emergent property of Markov chains which are
-  	irreducible, positive Harris recurrent and aperiodic. Ergodicity is defined 	
-	as:
+for Markov chain :math:`\pi`. Thus, :math:`\pi` is no longer subscripted, and
+is referred to as the *limiting distribution* of the chain. In MCMC, the chain
+explores the state space according to its limiting marginal distribution.
 
-     
+* *Ergodicity*:
+Ergodicity is an emergent property of Markov chains which are irreducible,
+positive Harris recurrent and aperiodic. Ergodicity is defined as:
+
   .. math::
       \lim_{n \to \infty} Pr^{(n)}(\theta_i \rightarrow \theta_j) = \pi(\theta) \quad \forall \theta_i, \theta_j \in \Theta
 
-	or in words, after many steps the marginal distribution of the chain is the 
-	same at one step as at all other steps. This implies that our Markov chain, 
-	which we recall is dependent, can generate samples that are independent if 
-	we wait long enough between samples. If it means anything to you, 
-	ergodicity is the analogue of the strong law of large numbers for Markov 
-	chains. For example, take values :math:`\theta_{i+1},\ldots,\theta_{i+n}` 
-	from a chain that has reached an ergodic state. A statistic of interest can 
-	then be estimated by:
+or in words, after many steps the marginal distribution of the chain is the
+same at one step as at all other steps. This implies that our Markov chain,
+which we recall is dependent, can generate samples that are independent if we
+wait long enough between samples. If it means anything to you, ergodicity is
+the analogue of the strong law of large numbers for Markov chains. For example,
+take values :math:`\theta_{i+1},\ldots,\theta_{i+n}` from a chain that has
+reached an ergodic state. A statistic of interest can then be estimated by:
 
-     
   .. math::
      \frac{1}{n}\sum_{j=i+1}^{i+n} h(\theta_j) \approx \int f(\theta) h(\theta) d\theta
 
