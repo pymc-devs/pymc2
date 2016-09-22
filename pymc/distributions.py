@@ -2711,10 +2711,10 @@ def discrete_uniform_like(x, lower, upper):
     Discrete uniform log-likelihood.
 
     .. math::
-        f(x \mid lower, upper) = \frac{1}{upper-lower}
+        f(x \mid lower, upper) = \frac{1}{upper-lower+1}
 
     :Parameters:
-      - `x` : [int] :math:`lower \leq x \leq upper`
+      - `x` : [int] :math:`x \in \{lower, lower+1, \ldots, upper-1, upper\}`
       - `lower` : Lower limit.
       - `upper` : Upper limit (upper > lower).
 
