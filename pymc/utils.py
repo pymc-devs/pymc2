@@ -59,6 +59,11 @@ if PY3:
     get_signature = get_signature_py3
 else:
     get_signature = get_signature_py2
+    
+def decode(x):
+    if PY3:
+        return x.decode()
+    return x
 
 def value(a):
     """
@@ -847,7 +852,7 @@ def getInput():
 
         # select(rlist, wlist, xlist, timeout)
         while len(select.select([sock], [], [], 0.1)[0]) > 0:
-            input += os.read(sock, 4096)
+            input += decode(os.read(sock, 4096))
 
     return input
 
