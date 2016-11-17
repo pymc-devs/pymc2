@@ -456,7 +456,9 @@ def normcdf(x, log=False):
     y = np.atleast_1d(x).copy()
     flib.normcdf(y)
     if log:
-        return np.where(y > 0, np.log(y), -np.inf)
+        if (y>0).all():
+            return np.log(y)
+        return -np.inf
     return y
 
 
