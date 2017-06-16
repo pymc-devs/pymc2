@@ -127,7 +127,7 @@ Models have the following important attributes:
 * ``logp``
 
 In addition, models expose each node they contain as an attribute. For 
-instance, if model ``M`` were produced from model (:eq:`disastermodel`) ``M.s`` 
+instance, if model ``M`` contained a variable called ``theta``, then ``M.theta`` 
 would return the switchpoint variable.
 
 Though one may instantiate ``Model`` objects directly, most users should pefer
@@ -142,9 +142,8 @@ Maximum a posteriori estimates
 The ``MAP`` class sets all stochastic variables to their maximum *a posteriori* 
 values using functions in SciPy's ``optimize`` package; hence, SciPy must be 
 installed to use it. ``MAP`` can only handle variables whose dtype is 
-``float``, so it will not work, for example, on model (:eq:`disastermodel`). To 
-fit the model in :file:`examples/gelman_bioassay.py` using ``MAP``, do the 
-following::
+``float``, so it will not work, for example, on the coal mining example where the 
+switch point variable is discrete. To fit the model in :file:`examples/gelman_bioassay.py` using ``MAP``, do the following::
 
     >>> from pymc.examples import gelman_bioassay
     >>> M = pymc.MAP(gelman_bioassay)
