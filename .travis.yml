@@ -1,4 +1,6 @@
 language: python
+sudo: false
+
 
 matrix:
   include:
@@ -12,12 +14,10 @@ addons:
     - liblapack-dev
     - gfortran
 before_install:
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
+  - sh -e /etc/init.d/xvfb start
+  - export DISPLAY=":99.0"
   - travis_retry pip install --install-option="--no-cython-compile" Cython==0.22
-  - travis_retry pip install numpy 
-  - travis_wait 30 pip install scipy
-  - travis_retry pip install ipython pyzmq nose matplotlib pandas
+  - travis_retry pip install numpy scipy nose matplotlib pandas
 install:
   - python setup.py build_ext --inplace
 script:

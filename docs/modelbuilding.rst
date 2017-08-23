@@ -51,7 +51,7 @@ parents [#]_. Stochastic objects have the following additional attributes:
    A dictionary containing the variable's parents. The keys of the dictionary
    correspond to the names assigned to the variable's parents by the variable,
    and the values correspond to the actual parents. For example, the keys of
-   :math:`s`'s parents dictionary in model (:eq:`disastermodel`) would be
+   :math:`s`'s parents dictionary in the mining disaster model would be
    ``'t_l'`` and ``'t_h'``. Thanks to Python's dynamic typing, the actual
    parents (*i.e.* the values of the dictionary) may be of any class or type.
 
@@ -466,7 +466,15 @@ container, and within any containers in the container.
 The Potential class
 ===================
 
-The joint density corresponding to model (:eq:`disastermodel`) can be written as follows:
+The joint density corresponding to the coal mining disasters model:
+
+.. math::
+    :label: disastermodel
+    
+         \begin{array}{ccc}  (D_t | s, e, l) \sim\text{Poisson}\left(r_t\right), & r_t=\left\{\begin{array}{lll}             e &\text{if}& t< s\\ l &\text{if}& t\ge s             \end{array}\right.,&t\in[t_l,t_h]\\         s\sim \text{Discrete Uniform}(t_l, t_h)\\         e\sim \text{Exponential}(r_e)\\         l\sim \text{Exponential}(r_l)     \end{array}
+
+
+can be written as follows:
 
 .. math::
   :nowrap:
