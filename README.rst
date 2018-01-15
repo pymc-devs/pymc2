@@ -2,7 +2,7 @@
 Introduction
 ************
 
-:Version: 2.3.6
+:Version: 2.3.7
 :Authors: Chris Fonnesbeck, Anand Patil, David Huard, John Salvatier
 :Web site: https://github.com/pymc-devs/pymc
 :Documentation: http://bit.ly/pymc_docs

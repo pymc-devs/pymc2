@@ -47,7 +47,7 @@ class GaussianProcess(pm.Stochastic):
     """
 
     def __init__(self, name, submodel, trace=True, value=None, rseed=False,
-                 observed=False, cache_depth=2, plot=None, verbose=-1, isdata=None):
+                 observed=False, cache_depth=2, plot=None, verbose=-1):
 
         self.submodel = submodel
 
@@ -58,7 +58,7 @@ class GaussianProcess(pm.Stochastic):
                                 'f_eval': submodel.f_eval,
                                 'M_obs': submodel.M_obs,
                                 'C_obs': submodel.C_obs},
-                               gp_rand, trace, value, np.dtype('object'), rseed, observed, cache_depth, plot, verbose, isdata, False)
+                               gp_rand, trace, value, np.dtype('object'), rseed, observed, cache_depth, plot, verbose, False)
 
         self.rand()
 

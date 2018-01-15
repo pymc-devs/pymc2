@@ -1,0 +1,34 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  15 JAN 2018 15:17
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**/Users/fonnescj/Repos/pymc/pymc/gp/Docs/jss-gp.tex
+(/Users/fonnescj/Repos/pymc/pymc/gp/Docs/jss-gp.tex
+LaTeX2e <2016/03/31>
+Babel <3.9r> and hyphenation patterns for 83 language(s) loaded.
+
+! LaTeX Error: File `jss.cls' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: cls)
+
+Enter file name: 
+/Users/fonnescj/Repos/pymc/pymc/gp/Docs/jss-gp.tex:10: Emergency stop.
+<read *> 
+         
+l.10 ^^M
+        
+*** (cannot \read from terminal in nonstop modes)
+
+ 
+Here is how much of TeX's memory you used:
+ 11 strings out of 493014
+ 282 string characters out of 6133351
+ 53601 words of memory out of 5000000
+ 3651 multiletter control sequences out of 15000+600000
+ 3640 words of font info for 14 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 10i,0n,7p,98b,8s stack positions out of 5000i,500n,10000p,200000b,80000s
+/Users/fonnescj/Repos/pymc/pymc/gp/Docs/jss-gp.tex:10:  ==> Fatal error occurre
+d, no output PDF file produced!

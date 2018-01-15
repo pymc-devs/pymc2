@@ -1,0 +1,12 @@
+# Fdb version 3
+["pdflatex"] 1516051073 "/Users/fonnescj/Repos/pymc/pymc/gp/Docs/jss-gp.tex" "jss-gp.pdf" "jss-gp" 1516051073
+  "/Users/fonnescj/Repos/pymc/pymc/gp/Docs/jss-gp.tex" 1516051073 72086 ec88915e9e974e8b6fed6109c9d32267 ""
+  "/usr/local/texlive/2016/texmf-dist/web2c/texmf.cnf" 1463093894 31953 b9489e6e586f798610c60aec1f5ec548 ""
+  "/usr/local/texlive/2016/texmf-var/web2c/pdftex/pdflatex.fmt" 1463979169 3873397 413fbfbbedb8e719ddc392043a7add02 ""
+  "/usr/local/texlive/2016/texmf.cnf" 1463979140 577 2938757e76f31531e65cc647e3507693 ""
+  "jss-gp.aux" 1516051073 8 a94a2480d3289e625eea47cd1b285758 ""
+  "jss-gp.tex" 1516051073 72086 ec88915e9e974e8b6fed6109c9d32267 ""
+  "jss.cls" 0 -1 0 ""
+  (generated)
+  "jss-gp.pdf"
+  "jss-gp.log"

@@ -259,19 +259,6 @@ class Database(pickle.Database):
         # A list of sequences of names of the objects to tally.
         self._traces = {}  # A dictionary of the Trace objects.
 
-        # Deprecation of complevel and complib
-        # Remove in V2.1
-        if 'complevel' in kwds:
-            warnings.warn(
-                'complevel has been replaced with dbcomplevel.',
-                DeprecationWarning)
-            dbcomplevel = kwds.get('complevel')
-        if 'complib' in kwds:
-            warnings.warn(
-                'complib has been replaced with dbcomplib.',
-                DeprecationWarning)
-            dbcomplib = kwds.get('complib')
-
         db_exists = os.path.exists(self.dbname)
         self._h5file = tables.open_file(self.dbname, self.mode)
 

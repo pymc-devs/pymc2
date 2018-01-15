@@ -8,7 +8,7 @@ Introduction
 :Web site: http://github.com/pymc-devs/pymc
 :Copyright: This document has been placed in the public domain.
 :License: PyMC is released under the Academic Free License.
-:Version: 2.3.6
+:Version: 7
 
 
 Purpose

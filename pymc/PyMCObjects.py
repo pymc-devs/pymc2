@@ -667,7 +667,6 @@ class Stochastic(StochasticBase):
                  cache_depth=2,
                  plot=None,
                  verbose=-1,
-                 isdata=None,
                  check_logp=True,
                  logp_partial_gradients=None):
 
@@ -676,12 +675,6 @@ class Stochastic(StochasticBase):
 
         self.counter = Counter()
         self.ParentDict = ParentDict
-
-        # Support legacy 'isdata' for a while
-        if isdata is not None:
-            print_(
-                "Deprecation Warning: the 'isdata' flag has been replaced by 'observed'. Please update your model accordingly.")
-            self.observed = isdata
 
         # A flag indicating whether self's value has been observed.
         self._observed = observed
@@ -1034,17 +1027,6 @@ class Stochastic(StochasticBase):
 
     # Shortcut alias to random
     rand = random
-
-    def _get_isdata(self):
-        import warnings
-        warnings.warn('"isdata" is deprecated, please use "observed" instead.')
-        return self._observed
-
-    def _set_isdata(self, isdata):
-        raise ValueError(
-            'Stochastic %s: "observed" flag cannot be changed.' %
-            self.__name__)
-    isdata = property(_get_isdata, _set_isdata)
 
     def _get_observed(self):
         return self._observed

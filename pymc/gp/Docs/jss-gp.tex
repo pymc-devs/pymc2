@@ -521,13 +521,6 @@ GPSampler.isample(iter=5000,burn=1000,thin=100)
 \end{CodeChunk}
 The file's output is shown in Figure~\ref{fig:MCMCOutput}. After the MCMC loop has terminated, \\\code{GPSampler.trace('sm_f')[:]} yields a dynamic trace for \code{sm.f}. This is a sequence of \code{Realization} objects, which can be evaluated on new arrays for plotting. Traces for GP realizations can even be stored on disk via \pkg{PyTables} \citep{tables}, see \cite{pymc}.
 
-% \begin{figure}
-%     \centering
-%         \epsfig{file=figs/unobservedModel.pdf, width=15cm}
-%     \caption{The \pkg{PyMC}-generated directed acyclic graph representation of the extended nonparametric regression model created by \code{pymc/examples/gp/PyMCModel.py}. Ellipses represent \code{Stochastic} objects (variables whose values are unknown even if their parents' values are known), triangles represent \code{Deterministic} objects (variables whose values can be determined if their parents' values are known), and rectangles represent \code{Stochastic} objects with the \code{isdata} flag set to \code{True} (data). Rectangles represent potentials. Arrows point from parent to child. The submodel contains the GP \code{sm\_f} and its evaluation \code{sm\_f\_eval} on input array \code{sm\_mesh}. It also contains the mean \code{sm\_M\_eval} of \code{sm\_f\_eval} and the lower-triangular Cholesky factor \code{sm\_S\_eval} of its covariance matrix, and a potential \code{sm_fr_check} that forces that covariance matrix to remain positive definite. The actual covariance evaluation \code{sm\_C\_eval} is not needed by the model, but it is exposed for use by Gibbs step methods.}
-%     \label{fig:unobservedModel}
-% \end{figure}
-
 \begin{figure}
     \centering
         \epsfig{file=figs/gibbsSamples.pdf,width=15cm}
