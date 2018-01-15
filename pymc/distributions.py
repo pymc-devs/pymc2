@@ -864,7 +864,8 @@ def rbinomial(n, p, size=None):
     """
     Random binomial variates.
     """
-    # return np.random.binomial(n,p,size)
+    if not size:
+        size = None
     return np.random.binomial(np.ravel(n), np.ravel(p), size)
 
 
@@ -2711,10 +2712,10 @@ def discrete_uniform_like(x, lower, upper):
     Discrete uniform log-likelihood.
 
     .. math::
-        f(x \mid lower, upper) = \frac{1}{upper-lower}
+        f(x \mid lower, upper) = \frac{1}{upper-lower+1}
 
     :Parameters:
-      - `x` : [int] :math:`lower \leq x \leq upper`
+      - `x` : [int] :math:`x \in \{lower, lower+1, \ldots, upper-1, upper\}`
       - `lower` : Lower limit.
       - `upper` : Upper limit (upper > lower).
 
