@@ -186,11 +186,6 @@ def new_dist_class(*new_class_args):
                 'verbose']
             arg_vals = [
                 None, parents, None, False, None, True, True, None, False, None, -1]
-            if 'isdata' in kwds:
-                warnings.warn(
-                    '"isdata" is deprecated, please use "observed" instead.')
-                kwds['observed'] = kwds['isdata']
-                pass
 
             # No size argument allowed for multivariate distributions.
             if mv:
