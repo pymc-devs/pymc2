@@ -864,7 +864,8 @@ def rbinomial(n, p, size=None):
     """
     Random binomial variates.
     """
-    # return np.random.binomial(n,p,size)
+    if not size:
+        size = None
     return np.random.binomial(np.ravel(n), np.ravel(p), size)
 
 
