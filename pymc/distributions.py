@@ -2106,7 +2106,7 @@ def negative_binomial_like(x, mu, alpha):
       - :math:`E[x]=\mu`
       - In Wikipedia's parameterization,
         :math:`r=\alpha`,
-        :math:`p=\alpha/(\mu+\alpha)`,
+        :math:`p=\mu/(\mu+\alpha)`,
         :math:`\mu=rp/(1-p)`
 
     """
