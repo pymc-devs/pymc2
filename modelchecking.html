@@ -1,34 +1,33 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>7. Model checking and diagnostics &mdash; PyMC 2.3.6 documentation</title>
-    
+    <title>7. Model checking and diagnostics &#8212; PyMC 2.3.7rc1 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '2.3.6',
+        VERSION:     '2.3.7rc1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="PyMC 2.3.6 documentation" href="index.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="8. Extending PyMC" href="extending.html" />
     <link rel="prev" title="6. Saving and managing sampling results" href="database.html" /> 
   </head>
-  <body role="document">
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -44,7 +43,7 @@
         <li class="right" >
           <a href="database.html" title="6. Saving and managing sampling results"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">PyMC 2.3.6 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">PyMC 2.3.7rc1 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -92,7 +91,7 @@ distribution. Poor mixing may stem from inappropriate proposals (if one is
 using the Metropolis-Hastings sampler) or from attempting to estimate models
 with highly correlated variables.</p>
 <div class="figure align-center" id="id13">
-<span id="mix"></span><a class="reference internal image-reference" href="_images/poormixing.png"><img alt="Poor mixing figure" src="_images/poormixing.png" /></a>
+<span id="mix"></span><a class="reference internal image-reference" href="_images/poormixing.png"><img alt="Poor mixing figure" src="_images/poormixing.png" style="width: 312.2px; height: 294.0px;" /></a>
 <p class="caption"><span class="caption-text">An example of a poorly-mixing sample in two dimensions. Notice that the
 chain is trapped in a region of low probability relative to the mean
 (dot) and variance (oval) of the true posterior quantity.</span></p>
@@ -127,7 +126,7 @@ constructed using MCMC, and should be observable using this technique. Again,
 however, this approach is only a heuristic method, and cannot always detect
 lack of convergence, even though chains may appear ergodic.</p>
 <div class="figure align-center" id="id14">
-<span id="metas"></span><a class="reference internal image-reference" href="_images/metastable.png"><img alt="_images/metastable.png" src="_images/metastable.png" /></a>
+<span id="metas"></span><a class="reference internal image-reference" href="_images/metastable.png"><img alt="_images/metastable.png" src="_images/metastable.png" style="width: 312.2px; height: 294.0px;" /></a>
 <p class="caption"><span class="caption-text">An example of metastability in a two-dimensional parameter space. The
 chain appears to be stable in one region of the parameter space for an
 extended period, then unpredictably jumps to another region of the
@@ -163,7 +162,7 @@ majority of points should fall within 2 standard deviations of zero.</p>
 <p>Diagnostic z-scores can be obtained by calling the <code class="docutils literal"><span class="pre">geweke</span></code> function. It
 accepts either (1) a single trace, (2) a Node or Stochastic object, or (4) an
 entire Model object:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">geweke</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">first</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">last</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">intervals</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">geweke</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">first</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">last</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">intervals</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The arguments expected are the following:</p>
@@ -189,8 +188,8 @@ achieve convergence (bottom).</span></p>
 </div>
 <p><code class="docutils literal"><span class="pre">geweke_plot</span></code> takes either a single set of scores, or a dictionary of scores
 (output by <code class="docutils literal"><span class="pre">geweke</span></code> when an entire Sampler is passed) as its argument:</p>
-<div class="highlight-python"><div class="highlight"><pre>def geweke_plot(scores, name=&#39;geweke&#39;, format=&#39;png&#39;, suffix=&#39;-diagnostic&#39;,
-                path=&#39;./&#39;, fontmap = {1:10, 2:8, 3:6, 4:5, 5:4}, verbose=1)
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">geweke_plot</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;geweke&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;png&#39;</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s1">&#39;-diagnostic&#39;</span><span class="p">,</span>
+                <span class="n">path</span><span class="o">=</span><span class="s1">&#39;./&#39;</span><span class="p">,</span> <span class="n">fontmap</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span><span class="mi">4</span><span class="p">},</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The arguments are defined as:</p>
@@ -210,21 +209,21 @@ the graphic.</li>
 <p>To illustrate, consider the sample model <code class="docutils literal"><span class="pre">gelman_bioassay</span></code> that is used to
 instantiate a MCMC sampler. The sampler is then run for a given number of
 iterations:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pymc.examples</span> <span class="kn">import</span> <span class="n">gelman_bioassay</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pymc.examples</span> <span class="k">import</span> <span class="n">gelman_bioassay</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">MCMC</span><span class="p">(</span><span class="n">gelman_bioassay</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="n">burn</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>It is easiest simply to pass the entire sampler <code class="docutils literal"><span class="pre">S</span></code> the <code class="docutils literal"><span class="pre">geweke</span></code> function:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">scores</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">geweke</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">intervals</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">scores</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">geweke</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">intervals</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pymc</span><span class="o">.</span><span class="n">Matplot</span><span class="o">.</span><span class="n">geweke_plot</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Alternatively, individual stochastics within <code class="docutils literal"><span class="pre">S</span></code> can be analyzed for
 convergence:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">trace</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s">&quot;alpha&quot;</span><span class="p">)[:]</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trace</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">&quot;alpha&quot;</span><span class="p">)[:]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">alpha_scores</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">geweke</span><span class="p">(</span><span class="n">trace</span><span class="p">,</span> <span class="n">intervals</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">pymc</span><span class="o">.</span><span class="n">Matplot</span><span class="o">.</span><span class="n">geweke_plot</span><span class="p">(</span><span class="n">alpha_scores</span><span class="p">,</span> <span class="s">&quot;alpha&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pymc</span><span class="o">.</span><span class="n">Matplot</span><span class="o">.</span><span class="n">geweke_plot</span><span class="p">(</span><span class="n">alpha_scores</span><span class="p">,</span> <span class="s2">&quot;alpha&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>An example of convergence and non-convergence of a chain using <cite>geweke_plot</cite> is
@@ -252,14 +251,14 @@ preferable to the second order Markov chain.</p>
 <p>This thinned sample is used to determine number of burn-in samples. This is
 done by comparing the remaining samples from burn-in intervals of increasing
 length to the limiting distribution of the chain. An appropriate value is one
-for which the truncated sample&#8217;s distribution is within <span class="math">\(\epsilon\)</span>
+for which the truncated sample’s distribution is within <span class="math">\(\epsilon\)</span>
 (arbitrarily small) of the limiting distribution. See <a class="reference internal" href="references.html#raftery1995a" id="id4">[Raftery1995a]</a> or
 <a class="reference internal" href="references.html#gamerman1997" id="id5">[Gamerman1997]</a> for computational details. Estimates for sample size tend to
 be conservative.</p>
 <p>This diagnostic is best used on a short pilot run of a particular model, and
 the results used to parameterize a subsequent sample that is to be used for
 inference. Its calling convention is as follows:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">raftery_lewis</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">s</span><span class="o">=.</span><span class="mi">95</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=.</span><span class="mo">001</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">raftery_lewis</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">s</span><span class="o">=.</span><span class="mi">95</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=.</span><span class="mi">001</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The arguments are:</p>
@@ -277,7 +276,7 @@ the q-quantile (defaults to 0.001).</li>
 <p>The code for <code class="docutils literal"><span class="pre">raftery_lewis</span></code> is based on the FORTRAN program <em>gibbsit</em>
 (<a class="reference internal" href="references.html#raftery1995b" id="id6">[Raftery1995b]</a>).</p>
 <p>For example, consider again a sampler S run for some model my_model:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">MCMC</span><span class="p">(</span><span class="n">my_model</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">MCMC</span><span class="p">(</span><span class="n">my_model</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="n">burn</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -285,25 +284,25 @@ the q-quantile (defaults to 0.001).</li>
 <cite>raftery_lewis</cite> function, along with suitable arguments. Here, we have chosen
 <span class="math">\(q = 0.025\)</span> (the lower limit of the equal-tailed 95% interval) and error
 <span class="math">\(r = 0.01\)</span>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">pymc</span><span class="o">.</span><span class="n">raftery_lewis</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pymc</span><span class="o">.</span><span class="n">raftery_lewis</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>This yields diagnostics as follows for each stochastic of S, as well as a
 dictionary containing the diagnostic quantities:</p>
-<div class="highlight-python"><div class="highlight"><pre>========================
-Raftery-Lewis Diagnostic
-========================
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">========================</span>
+<span class="n">Raftery</span><span class="o">-</span><span class="n">Lewis</span> <span class="n">Diagnostic</span>
+<span class="o">========================</span>
 
-937 iterations required (assuming independence) to achieve 0.01 accuracy
-with 95 percent probability.
+<span class="mi">937</span> <span class="n">iterations</span> <span class="n">required</span> <span class="p">(</span><span class="n">assuming</span> <span class="n">independence</span><span class="p">)</span> <span class="n">to</span> <span class="n">achieve</span> <span class="mf">0.01</span> <span class="n">accuracy</span>
+<span class="k">with</span> <span class="mi">95</span> <span class="n">percent</span> <span class="n">probability</span><span class="o">.</span>
 
-Thinning factor of 1 required to produce a first-order Markov chain.
+<span class="n">Thinning</span> <span class="n">factor</span> <span class="n">of</span> <span class="mi">1</span> <span class="n">required</span> <span class="n">to</span> <span class="n">produce</span> <span class="n">a</span> <span class="n">first</span><span class="o">-</span><span class="n">order</span> <span class="n">Markov</span> <span class="n">chain</span><span class="o">.</span>
 
-39 iterations to be discarded at the beginning of the simulation (burn-in).
+<span class="mi">39</span> <span class="n">iterations</span> <span class="n">to</span> <span class="n">be</span> <span class="n">discarded</span> <span class="n">at</span> <span class="n">the</span> <span class="n">beginning</span> <span class="n">of</span> <span class="n">the</span> <span class="n">simulation</span> <span class="p">(</span><span class="n">burn</span><span class="o">-</span><span class="ow">in</span><span class="p">)</span><span class="o">.</span>
 
-11380 subsequent iterations required.
+<span class="mi">11380</span> <span class="n">subsequent</span> <span class="n">iterations</span> <span class="n">required</span><span class="o">.</span>
 
-Thinning factor of 11 required to produce an independence chain.
+<span class="n">Thinning</span> <span class="n">factor</span> <span class="n">of</span> <span class="mi">11</span> <span class="n">required</span> <span class="n">to</span> <span class="n">produce</span> <span class="n">an</span> <span class="n">independence</span> <span class="n">chain</span><span class="o">.</span>
 </pre></div>
 </div>
 <p>The third convergence diagnostic provided by PyMC is the Gelman-Rubin statistic
@@ -312,8 +311,8 @@ convergence, and is based on the notion that if multiple chains have converged,
 by definition they should appear very similar to one another; if not, one or
 more of the chains has failed to converge.</p>
 <p>The Gelman-Rubin diagnostic uses an analysis of variance approach to assessing
-convergence. That is, it calculates both the between-chain varaince (B) and
-within-chain varaince (W), and assesses whether they are different enough to
+convergence. That is, it calculates both the between-chain variance (B) and
+within-chain variance (W), and assesses whether they are different enough to
 worry about convergence. Assuming <span class="math">\(m\)</span> chains, each of length <span class="math">\(n\)</span>,
 quantities are calculated by:</p>
 <div class="math">
@@ -338,7 +337,7 @@ tends to infinity. In practice, we look for values of <span class="math">\(\hat{
 one (say, less than 1.1) to be confident that a particular estimand has
 converged. In PyMC, the function <cite>gelman_rubin</cite> will calculate <span class="math">\(\hat{R}\)</span>
 for each stochastic node in the passed model:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">pymc</span><span class="o">.</span><span class="n">gelman_rubin</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pymc</span><span class="o">.</span><span class="n">gelman_rubin</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
 <span class="go">{&#39;alpha&#39;: 1.0036389589627821,</span>
 <span class="go"> &#39;beta&#39;: 1.001503957313336,</span>
 <span class="go"> &#39;theta&#39;: [1.0013923468783055,</span>
@@ -358,7 +357,7 @@ intervals on the left and the Gelman-Rubin statistic on the right.</span></p>
 package (<a class="reference internal" href="references.html#r2010" id="id8">[R2010]</a>), via the <a class="reference external" href="http://www-fis.iarc.fr/coda/">CODA</a> module (<a class="reference internal" href="references.html#plummer2008" id="id9">[Plummer2008]</a>). PyMC includes a
 method <code class="docutils literal"><span class="pre">coda</span></code> for exporting model traces in a format that may be directly
 read by <code class="docutils literal"><span class="pre">coda</span></code>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">pymc</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">coda</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pymc</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">coda</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
 
 <span class="go">Generating CODA output</span>
 <span class="go">==================================================</span>
@@ -386,8 +385,8 @@ stochastics in the sampler (Figure 7.5). This allows users to
 examine the relationship among successive samples within sampled chains.
 Significant autocorrelation suggests that chains require thinning prior to use
 of the posterior statistics for inference.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">autocorrelation</span><span class="p">(</span><span class="n">pymc_object</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">maxlag</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="s">&#39;png&#39;</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s">&#39;-acf&#39;</span><span class="p">,</span>
-<span class="n">path</span><span class="o">=</span><span class="s">&#39;./&#39;</span><span class="p">,</span> <span class="n">fontmap</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span><span class="mi">4</span><span class="p">},</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">autocorrelation</span><span class="p">(</span><span class="n">pymc_object</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">maxlag</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;png&#39;</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s1">&#39;-acf&#39;</span><span class="p">,</span>
+<span class="n">path</span><span class="o">=</span><span class="s1">&#39;./&#39;</span><span class="p">,</span> <span class="n">fontmap</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span><span class="mi">4</span><span class="p">},</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -404,7 +403,7 @@ the graphic.</li>
 </ul>
 <p>Autocorrelation plots can be obtained simply by passing the sampler to the
 <cite>autocorrelation</cite> function (within the <cite>Matplot</cite> module) directly:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">MCMC</span><span class="p">(</span><span class="n">gelman_bioassay</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">MCMC</span><span class="p">(</span><span class="n">gelman_bioassay</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="n">burn</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pymc</span><span class="o">.</span><span class="n">Matplot</span><span class="o">.</span><span class="n">autocorrelation</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
 </pre></div>
@@ -412,11 +411,11 @@ the graphic.</li>
 <p>Alternatively, variables within a model can be plotted individually. For
 example, the parameter <cite>beta</cite> that was estimated using sampler <cite>S</cite> for the
 <cite>gelman_bioassay</cite> model will yield a correlation plot as follows:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">pymc</span><span class="o">.</span><span class="n">Matplot</span><span class="o">.</span><span class="n">autocorrelation</span><span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">beta</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pymc</span><span class="o">.</span><span class="n">Matplot</span><span class="o">.</span><span class="n">autocorrelation</span><span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">beta</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="figure align-center" id="id17">
-<span id="autocorr"></span><a class="reference internal image-reference" href="_images/autocorr.png"><img alt="Autocorrelation figure" src="_images/autocorr.png" style="width: 560.0px;" /></a>
+<span id="autocorr"></span><a class="reference internal image-reference" href="_images/autocorr.png"><img alt="Autocorrelation figure" src="_images/autocorr.png" style="width: 560.0px; height: 560.0px;" /></a>
 <p class="caption"><span class="caption-text">Sample autocorrelation plot for the switchpoint variable from the coal
 mining disasters example model.</span></p>
 </div>
@@ -444,31 +443,31 @@ statistical likelihoods should be replaced by random number generators. As an
 example, consider a simple dose-response model, where deaths are modeled as a
 binomial random variable for which the probability of death is a logit-linear
 function of the dose of a particular drug:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">n</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">*</span><span class="mi">4</span>
-<span class="n">dose</span> <span class="o">=</span> <span class="p">[</span><span class="o">-.</span><span class="mi">86</span><span class="p">,</span><span class="o">-.</span><span class="mi">3</span><span class="p">,</span><span class="o">-.</span><span class="mo">05</span><span class="p">,</span><span class="o">.</span><span class="mi">73</span><span class="p">]</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">*</span><span class="mi">4</span>
+<span class="n">dose</span> <span class="o">=</span> <span class="p">[</span><span class="o">-.</span><span class="mi">86</span><span class="p">,</span><span class="o">-.</span><span class="mi">3</span><span class="p">,</span><span class="o">-.</span><span class="mi">05</span><span class="p">,</span><span class="o">.</span><span class="mi">73</span><span class="p">]</span>
 <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
 
-<span class="n">alpha</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s">&#39;alpha&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">tau</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
-<span class="n">beta</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s">&#39;beta&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">tau</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s1">&#39;alpha&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">tau</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s1">&#39;beta&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">tau</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
 
-<span class="nd">@pymc.deterministic</span>
+<span class="nd">@pymc</span><span class="o">.</span><span class="n">deterministic</span>
 <span class="k">def</span> <span class="nf">theta</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">beta</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">dose</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;theta = inv_logit(a+b)&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">pymc</span><span class="o">.</span><span class="n">invlogit</span><span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">*</span><span class="n">d</span><span class="p">)</span>
 
-<span class="c"># deaths ~ binomial(n, p)</span>
-<span class="n">deaths</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Binomial</span><span class="p">(</span><span class="s">&#39;deaths&#39;</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">theta</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="c1"># deaths ~ binomial(n, p)</span>
+<span class="n">deaths</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Binomial</span><span class="p">(</span><span class="s1">&#39;deaths&#39;</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">theta</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The posterior predictive distribution of deaths uses the same functional form
 as the data likelihood, in this case a binomial stochastic. Here is the
 corresponding sample from the posterior predictive distribution:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">deaths_sim</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Binomial</span><span class="p">(</span><span class="s">&#39;deaths_sim&#39;</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">theta</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">deaths_sim</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Binomial</span><span class="p">(</span><span class="s1">&#39;deaths_sim&#39;</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">theta</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Notice that the observed stochastic <cite>pymc.Binomial</cite> has been replaced with a
 stochastic node that is identical in every respect to <cite>deaths</cite>, except that its
-values are not fixed to be the observed data &#8211; they are left to vary according
+values are not fixed to be the observed data – they are left to vary according
 to the values of the fitted parameters.</p>
 <p>The degree to which simulated data correspond to observations can be evaluated
 in at least two ways. First, these quantities can simply be compared visually.
@@ -478,7 +477,7 @@ the tails of the histogram of replicated data, while a good fit will tend to
 show the true data in high-probability regions of the posterior predictive
 distribution (Figure 7.6).</p>
 <div class="figure align-center" id="id18">
-<span id="gof"></span><a class="reference internal image-reference" href="_images/gof.png"><img alt="GOF figure" src="_images/gof.png" style="width: 560.0px;" /></a>
+<span id="gof"></span><a class="reference internal image-reference" href="_images/gof.png"><img alt="GOF figure" src="_images/gof.png" style="width: 560.0px; height: 560.0px;" /></a>
 <p class="caption"><span class="caption-text">Data sampled from the posterior predictive distribution of a binomial random
 variate. The observed value (1) is shown by the dotted red line.</span></p>
 </div>
@@ -486,7 +485,7 @@ variate. The observed value (1) is shown by the dotted red line.</span></p>
 the <code class="docutils literal"><span class="pre">gof_plot</span></code> function. To illustrate, consider a single data point <code class="docutils literal"><span class="pre">x</span></code>
 and an array of values <code class="docutils literal"><span class="pre">x_sim</span></code> sampled from the posterior predictive
 distribution. The histogram is generated by calling:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">pymc</span><span class="o">.</span><span class="n">Matplot</span><span class="o">.</span><span class="n">gof_plot</span><span class="p">(</span><span class="n">x_sim</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;x&#39;</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pymc</span><span class="o">.</span><span class="n">Matplot</span><span class="o">.</span><span class="n">gof_plot</span><span class="p">(</span><span class="n">x_sim</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>A second approach for evaluating goodness of fit using samples from the
@@ -504,14 +503,14 @@ expect the difference between them to be zero; hence, the Bayesian <em>p</em> va
 simply the proportion of simulated discrepancies that are larger than their
 corresponding observed discrepancies:</p>
 <div class="math">
-\[\begin{split}p = Pr[ D(x_{\text{sim}}|\theta) &gt; D(x_{\text{obs}}|\theta) ]\end{split}\]</div>
+\[p = Pr[ D(x_{\text{sim}}|\theta) &gt; D(x_{\text{obs}}|\theta) ]\]</div>
 <p>If <span class="math">\(p\)</span> is very large (e.g. <span class="math">\(&gt;0.975\)</span>) or very small (e.g.
 <span class="math">\(&lt;0.025\)</span>) this implies that the model is not consistent with the data,
 and thus is evidence of lack of fit. Graphically, data and simulated
 discrepancies plotted together should be clustered along a 45 degree line
 passing through the origin, as shown in Figure 7.7.</p>
 <div class="figure align-center" id="id19">
-<span id="deviate"></span><a class="reference internal image-reference" href="_images/deviates.png"><img alt="deviates figure" src="_images/deviates.png" style="width: 640.0px;" /></a>
+<span id="deviate"></span><a class="reference internal image-reference" href="_images/deviates.png"><img alt="deviates figure" src="_images/deviates.png" style="width: 640.0px; height: 640.0px;" /></a>
 <p class="caption"><span class="caption-text">Plot of deviates of observed and simulated data from expected values.
 The cluster of points symmetrically about the 45 degree line (and the
 reported p-value) suggests acceptable fit for the modeled parameter.</span></p>
@@ -519,7 +518,7 @@ reported p-value) suggests acceptable fit for the modeled parameter.</span></p>
 <p>The <code class="docutils literal"><span class="pre">discrepancy</span></code> function in the <code class="docutils literal"><span class="pre">diagnostics</span></code> package can be used to
 generate discrepancy statistics from arrays of data, simulated values, and
 expected values:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">D</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">discrepancy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x_sim</span><span class="p">,</span> <span class="n">x_exp</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">D</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">discrepancy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x_sim</span><span class="p">,</span> <span class="n">x_exp</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>For a dataset of size <span class="math">\(n\)</span> and an MCMC chain of length <span class="math">\(r\)</span>, this
@@ -528,7 +527,7 @@ is either size <code class="docutils literal"><span class="pre">(r,)</span></cod
 arrays of discrepancy values (simulated and observed), which can be passed to
 the <code class="docutils literal"><span class="pre">discrepancy_plot</span></code> function in the <cite>Matplot</cite> module to generate a scatter
 plot, and if desired, a <em>p</em> value:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">pymc</span><span class="o">.</span><span class="n">Matplot</span><span class="o">.</span><span class="n">discrepancy_plot</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="n">report_p</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pymc</span><span class="o">.</span><span class="n">Matplot</span><span class="o">.</span><span class="n">discrepancy_plot</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="n">report_p</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Additional optional arguments for <code class="docutils literal"><span class="pre">discrepancy_plot</span></code> are identical to other
@@ -576,21 +575,18 @@ stays relatively constant over some arbitrary period.</td></tr>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/modelchecking.txt"
+      <li><a href="_sources/modelchecking.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -612,12 +608,12 @@ stays relatively constant over some arbitrary period.</td></tr>
         <li class="right" >
           <a href="database.html" title="6. Saving and managing sampling results"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">PyMC 2.3.6 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">PyMC 2.3.7rc1 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2014, Christopher J. Fonnesbeck.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+        &#169; Copyright 2014, Christopher J. Fonnesbeck.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
     </div>
   </body>
 </html>

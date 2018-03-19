@@ -1,34 +1,33 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>6. Saving and managing sampling results &mdash; PyMC 2.3.6 documentation</title>
-    
+    <title>6. Saving and managing sampling results &#8212; PyMC 2.3.7rc1 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '2.3.6',
+        VERSION:     '2.3.7rc1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="PyMC 2.3.6 documentation" href="index.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="7. Model checking and diagnostics" href="modelchecking.html" />
     <link rel="prev" title="5. Fitting Models" href="modelfitting.html" /> 
   </head>
-  <body role="document">
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -44,7 +43,7 @@
         <li class="right" >
           <a href="modelfitting.html" title="5. Fitting Models"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">PyMC 2.3.6 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">PyMC 2.3.7rc1 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -59,28 +58,28 @@
 <span id="accessing-data"></span><h2>6.1. Accessing Sampled Data<a class="headerlink" href="#accessing-sampled-data" title="Permalink to this headline">¶</a></h2>
 <p>The recommended way to access data from an MCMC run, irrespective of the
 database backend, is to use the <code class="docutils literal"><span class="pre">trace</span></code> method:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pymc.examples</span> <span class="kn">import</span> <span class="n">disaster_model</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pymc</span> <span class="kn">import</span> <span class="n">MCMC</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pymc.examples</span> <span class="k">import</span> <span class="n">disaster_model</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pymc</span> <span class="k">import</span> <span class="n">MCMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">M</span> <span class="o">=</span> <span class="n">MCMC</span><span class="p">(</span><span class="n">disaster_model</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">M</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 <span class="go">Sampling: 100% [00000000000000000000000000000000000000000000000000] Iterations: 10</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">M</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s">&#39;early_mean&#39;</span><span class="p">)[:]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">M</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s1">&#39;early_mean&#39;</span><span class="p">)[:]</span>
 <span class="go">array([ 2.28320992,  2.28320992,  2.28320992,  2.28320992,  2.28320992,</span>
 <span class="go">        2.36982455,  2.36982455,  3.1669422 ,  3.1669422 ,  3.14499489])</span>
 </pre></div>
 </div>
 <p><code class="docutils literal"><span class="pre">M.trace('early_mean')</span></code> returns a copy of the <code class="docutils literal"><span class="pre">Trace</span></code> instance associated
 with the tallyable object <cite>early_mean</cite>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">M</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s">&#39;early_mean&#39;</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">M</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s1">&#39;early_mean&#39;</span><span class="p">)</span>
 <span class="go">&lt;pymc.database.ram.Trace object at 0x7fa4877a8b50&gt;</span>
 </pre></div>
 </div>
 <p>Particular subsamples from the trace are obtained using the slice notation
 <code class="docutils literal"><span class="pre">[]</span></code>, similar to NumPy arrays. By default, <code class="docutils literal"><span class="pre">trace</span></code> returns the samples from
 the last chain. To return the samples from all the chains, use <code class="docutils literal"><span class="pre">chain=None</span></code>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">M</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">M</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 <span class="go">Sampling: 100% [000000000000000000000000000000000000000000000000000] Iterations: 5</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">M</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s">&#39;early_mean&#39;</span><span class="p">,</span> <span class="n">chain</span><span class="o">=</span><span class="bp">None</span><span class="p">)[:]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">M</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s1">&#39;early_mean&#39;</span><span class="p">,</span> <span class="n">chain</span><span class="o">=</span><span class="kc">None</span><span class="p">)[:]</span>
 <span class="go">array([ 2.28320992,  2.28320992,  2.28320992,  2.28320992,  2.28320992,</span>
 <span class="go">      2.36982455,  2.36982455,  3.1669422 ,  3.1669422 ,  3.14499489,</span>
 <span class="go">      3.14499489,  3.14499489,  3.14499489,  2.94672454,  3.10767686])</span>
@@ -93,7 +92,7 @@ summaries of the model, or particular member nodes, rather than the entire
 trace. The <code class="docutils literal"><span class="pre">summary</span></code> method can be used to generate a pretty-printed summary
 of posterior quantities. For example, if we want a statistical snapshot of the
 <code class="docutils literal"><span class="pre">early_mean</span></code> node:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">M</span><span class="o">.</span><span class="n">early_mean</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">M</span><span class="o">.</span><span class="n">early_mean</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
 
 <span class="go">early_mean:</span>
 
@@ -115,11 +114,11 @@ every node in the model.</p>
 may be imported into a spreadsheet or plotting package. In that case,
 <code class="docutils literal"><span class="pre">write_csv</span></code> may be called to generate a comma-separated values (csv) file
 containing all available statistics for each node:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">M</span><span class="o">.</span><span class="n">write_csv</span><span class="p">(</span><span class="s">&quot;disasters.csv&quot;</span><span class="p">,</span> <span class="n">variables</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;early_mean&quot;</span><span class="p">,</span> <span class="s">&quot;late_mean&quot;</span><span class="p">,</span> <span class="s">&quot;switchpoint&quot;</span><span class="p">])</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">M</span><span class="o">.</span><span class="n">write_csv</span><span class="p">(</span><span class="s2">&quot;disasters.csv&quot;</span><span class="p">,</span> <span class="n">variables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;early_mean&quot;</span><span class="p">,</span> <span class="s2">&quot;late_mean&quot;</span><span class="p">,</span> <span class="s2">&quot;switchpoint&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 <div class="figure align-center" id="id4">
-<span id="write-csv"></span><a class="reference internal image-reference" href="_images/write_csv.png"><img alt="Table of summary stats" src="_images/write_csv.png" /></a>
+<span id="write-csv"></span><a class="reference internal image-reference" href="_images/write_csv.png"><img alt="Table of summary stats" src="_images/write_csv.png" style="width: 745.2px; height: 81.0px;" /></a>
 <p class="caption"><span class="caption-text">Summary statistics of stochastics from the <code class="docutils literal"><span class="pre">disaster_model</span></code> example,
 shown in a spreadsheet.</span></p>
 </div>
@@ -135,7 +134,7 @@ credible intervalse (defaults to 0.05).</p>
 <p>By default, the database backend selected by the <code class="docutils literal"><span class="pre">MCMC</span></code> sampler is the
 <code class="docutils literal"><span class="pre">ram</span></code> backend, which simply holds the data in memory. Now, we will create a
 sampler that instead will write data to a pickle file:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">M</span> <span class="o">=</span> <span class="n">MCMC</span><span class="p">(</span><span class="n">disaster_model</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="s">&#39;pickle&#39;</span><span class="p">,</span> <span class="n">dbname</span><span class="o">=</span><span class="s">&#39;Disaster.pickle&#39;</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">M</span> <span class="o">=</span> <span class="n">MCMC</span><span class="p">(</span><span class="n">disaster_model</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="s1">&#39;pickle&#39;</span><span class="p">,</span> <span class="n">dbname</span><span class="o">=</span><span class="s1">&#39;Disaster.pickle&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">M</span><span class="o">.</span><span class="n">db</span>
 <span class="go">&lt;pymc.database.pickle.Database object at 0x7fa486623d90&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">M</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
@@ -159,21 +158,21 @@ state they were in at the end of the last trace.</p>
 <span id="reloading-database"></span><h2>6.3. Reloading a Database<a class="headerlink" href="#reloading-a-database" title="Permalink to this headline">¶</a></h2>
 <p>To load a file created in a previous session, use the <code class="docutils literal"><span class="pre">load</span></code> function from
 the backend:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">db</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">database</span><span class="o">.</span><span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s">&#39;Disaster.pickle&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s">&#39;early_mean&#39;</span><span class="p">)[:])</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">db</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">database</span><span class="o">.</span><span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;Disaster.pickle&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s1">&#39;early_mean&#39;</span><span class="p">)[:])</span>
 <span class="go">10</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal"><span class="pre">db</span></code> object also has a <code class="docutils literal"><span class="pre">trace</span></code> method identical to that of <code class="docutils literal"><span class="pre">Sampler</span></code>.
-You can hence inspect the results of a model, even when you don&#8217;t have the
+You can hence inspect the results of a model, even when you don’t have the
 model around.</p>
 <p>To add a new trace to this file, we need to create an MCMC instance. This time,
 instead of setting <code class="docutils literal"><span class="pre">db='pickle'</span></code>, we will pass the existing <code class="docutils literal"><span class="pre">Database</span></code>
 instance and sample as usual. A new trace will be appended to the first:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">M</span> <span class="o">=</span> <span class="n">MCMC</span><span class="p">(</span><span class="n">disaster_model</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="n">db</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">M</span> <span class="o">=</span> <span class="n">MCMC</span><span class="p">(</span><span class="n">disaster_model</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="n">db</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">M</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 <span class="go">Sampling: 100% [000000000000000000000000000000000000000000000000000] Iterations: 5</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">M</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s">&#39;early_model&#39;</span><span class="p">,</span> <span class="n">chain</span><span class="o">=</span><span class="bp">None</span><span class="p">)[:])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">M</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s1">&#39;early_model&#39;</span><span class="p">,</span> <span class="n">chain</span><span class="o">=</span><span class="kc">None</span><span class="p">)[:])</span>
 <span class="go">15</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">M</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
@@ -196,23 +195,23 @@ applications.</p>
 precisely, the <code class="docutils literal"><span class="pre">dbname</span></code> argument is used to create a top directory into which
 chain directories, called <code class="docutils literal"><span class="pre">Chain_&lt;#&gt;</span></code>, are going to be created each time
 <code class="docutils literal"><span class="pre">sample</span></code> is called:</p>
-<div class="highlight-python"><div class="highlight"><pre>dbname/
-  Chain_0/
-    &lt;object0 name&gt;.txt
-    &lt;object1 name&gt;.txt
-    ...
-  Chain_1/
-    &lt;object0 name&gt;.txt
-    &lt;object1 name&gt;.txt
-    ...
-  ...
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">dbname</span><span class="o">/</span>
+  <span class="n">Chain_0</span><span class="o">/</span>
+    <span class="o">&lt;</span><span class="n">object0</span> <span class="n">name</span><span class="o">&gt;.</span><span class="n">txt</span>
+    <span class="o">&lt;</span><span class="n">object1</span> <span class="n">name</span><span class="o">&gt;.</span><span class="n">txt</span>
+    <span class="o">...</span>
+  <span class="n">Chain_1</span><span class="o">/</span>
+    <span class="o">&lt;</span><span class="n">object0</span> <span class="n">name</span><span class="o">&gt;.</span><span class="n">txt</span>
+    <span class="o">&lt;</span><span class="n">object1</span> <span class="n">name</span><span class="o">&gt;.</span><span class="n">txt</span>
+    <span class="o">...</span>
+  <span class="o">...</span>
 </pre></div>
 </div>
 <p>In each one of these chain directories, files named <code class="docutils literal"><span class="pre">&lt;variable</span> <span class="pre">name&gt;.txt</span></code> are
 created, storing the values of the variable as rows of text:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="c"># Variable: e</span>
-<span class="c"># Sample shape: (5,)</span>
-<span class="c"># Date: 2008-11-18 17:19:13.554188</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Variable: e</span>
+<span class="c1"># Sample shape: (5,)</span>
+<span class="c1"># Date: 2008-11-18 17:19:13.554188</span>
 <span class="mf">3.033672373807017486e+00</span>
 <span class="mf">3.033672373807017486e+00</span>
 <span class="o">...</span>
@@ -229,7 +228,7 @@ Use of this backend is appropriate for small-scale, short-lived projects. For
 longer term or larger projects, the <code class="docutils literal"><span class="pre">pickle</span></code> backend should be avoided since
 generated files might be unreadable across different Python versions. The
 <cite>pickled</cite> file is a simple dump of a dictionary containing the NumPy arrays
-storing the traces, as well as the state of the <code class="docutils literal"><span class="pre">Sampler</span></code>&#8216;s step methods.</p>
+storing the traces, as well as the state of the <code class="docutils literal"><span class="pre">Sampler</span></code>’s step methods.</p>
 </div>
 <div class="section" id="the-sqlite-backend">
 <h3>6.3.5. The <code class="docutils literal"><span class="pre">sqlite</span></code> backend<a class="headerlink" href="#the-sqlite-backend" title="Permalink to this headline">¶</a></h3>
@@ -237,7 +236,7 @@ storing the traces, as well as the state of the <code class="docutils literal"><
 Python versions greater than 2.4) . It opens an SQL database named <code class="docutils literal"><span class="pre">dbname</span></code>,
 and creates one table per tallyable objects. The rows of this table store a
 key, the chain index and the values of the objects:</p>
-<div class="highlight-python"><div class="highlight"><pre>key (INTT), trace (INT),  v1 (FLOAT), v2 (FLOAT), v3 (FLOAT) ...
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">key</span> <span class="p">(</span><span class="n">INTT</span><span class="p">),</span> <span class="n">trace</span> <span class="p">(</span><span class="n">INT</span><span class="p">),</span>  <span class="n">v1</span> <span class="p">(</span><span class="n">FLOAT</span><span class="p">),</span> <span class="n">v2</span> <span class="p">(</span><span class="n">FLOAT</span><span class="p">),</span> <span class="n">v3</span> <span class="p">(</span><span class="n">FLOAT</span><span class="p">)</span> <span class="o">...</span>
 </pre></div>
 </div>
 <p>The key is autoincremented each time a new row is added to the table, that is,
@@ -247,7 +246,7 @@ stored internally in the database.</p>
 </div>
 <div class="section" id="the-hdf5-backend">
 <h3>6.3.6. The <code class="docutils literal"><span class="pre">hdf5</span></code> backend<a class="headerlink" href="#the-hdf5-backend" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal"><span class="pre">hdf5</span></code> backend uses <a class="reference external" href="http://www.pytables.org/moin">pyTables</a> to save data in binary HDF5 format. The
+<p>The <code class="docutils literal"><span class="pre">hdf5</span></code> backend uses <a class="reference external" href="http://www.pytables.org/">pyTables</a> to save data in binary HDF5 format. The
 <code class="docutils literal"><span class="pre">hdf5</span></code> database is fast and can store huge traces, far larger than the
 available RAM. Data can be compressed and decompressed on the fly to reduce the
 disk footprint. Another feature of this backends is that it can store arbitrary
@@ -256,15 +255,15 @@ can tally any object that can be pickled, opening the door for powerful and
 exotic applications (see <code class="docutils literal"><span class="pre">pymc.gp</span></code>).</p>
 <p>The internal structure of an HDF5 file storing both numerical values and
 arbitrary objects is as follows:</p>
-<div class="highlight-python"><div class="highlight"><pre>/ (root)
-  /chain0/ (Group) &#39;Chain #0&#39;
-    /chain0/PyMCSamples (Table(N,)) &#39;PyMC Samples&#39;
-    /chain0/group0 (Group) &#39;Group storing objects.&#39;
-      /chain0/group0/&lt;object0 name&gt; (VLArray(N,)) &#39;&lt;object0 name&gt; samples.&#39;
-      /chain0/group0/&lt;object1 name&gt; (VLArray(N,)) &#39;&lt;object1 name&gt; samples.&#39;
-      ...
-  /chain1/ (Group) &#39;Chain #1&#39;
-    ...
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="p">(</span><span class="n">root</span><span class="p">)</span>
+  <span class="o">/</span><span class="n">chain0</span><span class="o">/</span> <span class="p">(</span><span class="n">Group</span><span class="p">)</span> <span class="s1">&#39;Chain #0&#39;</span>
+    <span class="o">/</span><span class="n">chain0</span><span class="o">/</span><span class="n">PyMCSamples</span> <span class="p">(</span><span class="n">Table</span><span class="p">(</span><span class="n">N</span><span class="p">,))</span> <span class="s1">&#39;PyMC Samples&#39;</span>
+    <span class="o">/</span><span class="n">chain0</span><span class="o">/</span><span class="n">group0</span> <span class="p">(</span><span class="n">Group</span><span class="p">)</span> <span class="s1">&#39;Group storing objects.&#39;</span>
+      <span class="o">/</span><span class="n">chain0</span><span class="o">/</span><span class="n">group0</span><span class="o">/&lt;</span><span class="n">object0</span> <span class="n">name</span><span class="o">&gt;</span> <span class="p">(</span><span class="n">VLArray</span><span class="p">(</span><span class="n">N</span><span class="p">,))</span> <span class="s1">&#39;&lt;object0 name&gt; samples.&#39;</span>
+      <span class="o">/</span><span class="n">chain0</span><span class="o">/</span><span class="n">group0</span><span class="o">/&lt;</span><span class="n">object1</span> <span class="n">name</span><span class="o">&gt;</span> <span class="p">(</span><span class="n">VLArray</span><span class="p">(</span><span class="n">N</span><span class="p">,))</span> <span class="s1">&#39;&lt;object1 name&gt; samples.&#39;</span>
+      <span class="o">...</span>
+  <span class="o">/</span><span class="n">chain1</span><span class="o">/</span> <span class="p">(</span><span class="n">Group</span><span class="p">)</span> <span class="s1">&#39;Chain #1&#39;</span>
+    <span class="o">...</span>
 </pre></div>
 </div>
 <p>All standard numerical values are stored in a <code class="docutils literal"><span class="pre">Table</span></code>, while <code class="docutils literal"><span class="pre">objects</span></code> are
@@ -277,12 +276,12 @@ read-only.</li>
 <li><code class="docutils literal"><span class="pre">dbcomplevel</span></code> (<cite>int</cite> (0-9)) Compression level, 0: no compression.</li>
 <li><code class="docutils literal"><span class="pre">dbcomplib</span></code> (<cite>string</cite>) Compression library (<code class="docutils literal"><span class="pre">zlib</span></code>, <code class="docutils literal"><span class="pre">bzip2</span></code>, <code class="docutils literal"><span class="pre">lzo</span></code>)</li>
 </ul>
-<p>According the the <a class="reference external" href="http://www.pytables.org/moin">pyTables</a> manual, <cite>zlib</cite> (<a class="reference internal" href="references.html#roelofs2010" id="id1">[Roelofs2010]</a>) has a fast
+<p>According the the <a class="reference external" href="http://www.pytables.org/">pyTables</a> manual, <cite>zlib</cite> (<a class="reference internal" href="references.html#roelofs2010" id="id1">[Roelofs2010]</a>) has a fast
 decompression, relatively slow compression, and a good compression ratio. <cite>LZO</cite>
 (<a class="reference internal" href="references.html#oberhumer2008" id="id2">[Oberhumer2008]</a>) has a fast compression, but a low compression ratio.
 <cite>bzip2</cite> (<a class="reference internal" href="references.html#seward2007" id="id3">[Seward2007]</a>) has an excellent compression ratio but requires more
 CPU. Note that some of these compression algorithms require additional software
-to work (see the <a class="reference external" href="http://www.pytables.org/moin">pyTables</a> manual).</p>
+to work (see the <a class="reference external" href="http://www.pytables.org/">pyTables</a> manual).</p>
 </div>
 </div>
 <div class="section" id="writing-a-new-backend">
@@ -337,21 +336,18 @@ basic features required of all backends are implemented and working properly.</p
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/database.txt"
+      <li><a href="_sources/database.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -373,12 +369,12 @@ basic features required of all backends are implemented and working properly.</p
         <li class="right" >
           <a href="modelfitting.html" title="5. Fitting Models"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">PyMC 2.3.6 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">PyMC 2.3.7rc1 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2014, Christopher J. Fonnesbeck.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+        &#169; Copyright 2014, Christopher J. Fonnesbeck.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
     </div>
   </body>
 </html>

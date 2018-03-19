@@ -1,34 +1,33 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>2. Installation &mdash; PyMC 2.3.6 documentation</title>
-    
+    <title>2. Installation &#8212; PyMC 2.3.7rc1 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '2.3.6',
+        VERSION:     '2.3.7rc1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="PyMC 2.3.6 documentation" href="index.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="3. Tutorial" href="tutorial.html" />
     <link rel="prev" title="1. Introduction" href="README.html" /> 
   </head>
-  <body role="document">
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -44,7 +43,7 @@
         <li class="right" >
           <a href="README.html" title="1. Introduction"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">PyMC 2.3.6 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">PyMC 2.3.7rc1 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -71,14 +70,14 @@
 </tr>
 <tr class="field-even field"><th class="field-name">License:</th><td class="field-body">PyMC is released under the Academic Free license.</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Version:</th><td class="field-body">2.3.6</td>
+<tr class="field-odd field"><th class="field-name">Version:</th><td class="field-body">2.3.7</td>
 </tr>
 </tbody>
 </table>
 <p>PyMC is known to run on Mac OS X, Linux and Windows, but in theory should be
 able to work on just about any platform for which Python, a Fortran compiler
 and the NumPy module are available. However, installing some extra depencies
-can greatly improve PyMC&#8217;s performance and versatility. The following describes
+can greatly improve PyMC’s performance and versatility. The following describes
 the required and optional dependencies and takes you through the installation
 process.</p>
 <div class="section" id="dependencies">
@@ -98,7 +97,7 @@ engineering.</li>
 <li><a class="reference external" href="http://www.pytables.org/moin">pyTables</a> (optional): Package for managing hierarchical datasets and
 designed to efficiently and easily cope with extremely large amounts of data.
 Requires the <a class="reference external" href="http://www.hdfgroup.org/HDF5/">HDF5</a> library.</li>
-<li><a class="reference external" href="http://code.google.com/p/pydot/">pydot</a> (optional): Python interface to Graphviz&#8217;s Dot language, it allows
+<li><a class="reference external" href="http://code.google.com/p/pydot/">pydot</a> (optional): Python interface to Graphviz’s Dot language, it allows
 PyMC to create both directed and non-directed graphical representations of
 models. Requires the <a class="reference external" href="http://www.graphviz.org/">Graphviz</a> library.</li>
 <li><a class="reference external" href="http://ipython.scipy.org/">IPython</a> (optional): An enhanced interactive Python shell and an
@@ -118,7 +117,7 @@ not been tested with PyMC but may work nonetheless.</p>
 <div class="section" id="installation-using-easyinstall">
 <h2>2.2. Installation using EasyInstall<a class="headerlink" href="#installation-using-easyinstall" title="Permalink to this headline">¶</a></h2>
 <p>The easiest way to install PyMC is to type in a terminal:</p>
-<div class="highlight-python"><div class="highlight"><pre>easy_install pymc
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">easy_install</span> <span class="n">pymc</span>
 </pre></div>
 </div>
 <p>Provided <a class="reference external" href="http://peak.telecommunity.com/DevCenter/EasyInstall">EasyInstall</a> (part of the <a class="reference external" href="http://peak.telecommunity.com/DevCenter/setuptools">setuptools</a> module) is installed and in
@@ -162,7 +161,7 @@ instructions. Then download and install <a class="reference external" href="http
 follow the on-screen instructions.</p>
 <p>Once this is done, launch the MSYS console, change into the PyMC directory and
 type:</p>
-<div class="highlight-python"><div class="highlight"><pre>python setup.py install
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
 </pre></div>
 </div>
 <p>This will build the C and Fortran extension and copy the libraries and python
@@ -170,7 +169,7 @@ modules in the <cite>site-packages</cite> directory of your Python distribution.
 <p>Some Windows users have reported problems building PyMC with MinGW,
 particularly under Enthought Python. An alternative approach in this case is
 to use the gcc and gfortran compilers that are bundled with EPD (located in the
-Scripts directory). In order to do this, you should add the EPD &#8220;Scripts&#8221;
+Scripts directory). In order to do this, you should add the EPD “Scripts”
 directory to your PATH environment variable (ensuring that it appears ahead of
 the MinGW binary directory, if it exists on your PATH). Then build PyMC using
 the install command above.</p>
@@ -180,8 +179,8 @@ the install command above.</p>
 <div class="section" id="mac-os-x-or-linux">
 <h3>2.4.2. Mac OS X or Linux<a class="headerlink" href="#mac-os-x-or-linux" title="Permalink to this headline">¶</a></h3>
 <p>In a terminal, type:</p>
-<div class="highlight-python"><div class="highlight"><pre>python setup.py config_fc --fcompiler gfortran build
-python setup.py install
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">config_fc</span> <span class="o">--</span><span class="n">fcompiler</span> <span class="n">gfortran</span> <span class="n">build</span>
+<span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
 </pre></div>
 </div>
 <p>The above syntax also assumes that you have gFortran installed and available.
@@ -194,7 +193,7 @@ The <cite>sudo</cite> command may be required to install PyMC into the Python
 <h2>2.5. Installing from GitHub<a class="headerlink" href="#installing-from-github" title="Permalink to this headline">¶</a></h2>
 <p>You can check out PyMC from the <a class="reference external" href="https://github.com/pymc-devs/pymc">GitHub</a>
 repository:</p>
-<div class="highlight-python"><div class="highlight"><pre>git clone git://github.com/pymc-devs/pymc.git
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pymc</span><span class="o">-</span><span class="n">devs</span><span class="o">/</span><span class="n">pymc</span><span class="o">.</span><span class="n">git</span>
 </pre></div>
 </div>
 <p>Previous versions are available in the <code class="docutils literal"><span class="pre">/tags</span></code> directory.</p>
@@ -204,12 +203,12 @@ repository:</p>
 <p><code class="docutils literal"><span class="pre">pymc</span></code> comes with a set of tests that verify that the critical components of
 the code work as expected. To run these tests, users must have <a class="reference external" href="http://readthedocs.org/docs/nose/en/latest/">nose</a>
 installed. The tests are launched from a python shell:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">pymc</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pymc</span>
 <span class="n">pymc</span><span class="o">.</span><span class="n">test</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>In case of failures, messages detailing the nature of these failures will
-appear. In case this happens (it shouldn&#8217;t), please report the problems on the
+appear. In case this happens (it shouldn’t), please report the problems on the
 <a class="reference external" href="http://github.com/pymc-devs/pymc/issues">issue tracker</a> (the issues tab on the GitHub page), specifying the
 version you are using and the environment.</p>
 </div>
@@ -217,7 +216,7 @@ version you are using and the environment.</p>
 <h2>2.7. Bugs and feature requests<a class="headerlink" href="#bugs-and-feature-requests" title="Permalink to this headline">¶</a></h2>
 <p>Report problems with the installation, bugs in the code or feature request at
 the <a class="reference external" href="http://github.com/pymc-devs/pymc/issues">issue tracker</a>. Comments and questions are welcome and should be
-addressed to PyMC&#8217;s <a class="reference external" href="mailto:pymc&#37;&#52;&#48;googlegroups&#46;com">mailing list</a>.</p>
+addressed to PyMC’s <a class="reference external" href="mailto:pymc&#37;&#52;&#48;googlegroups&#46;com">mailing list</a>.</p>
 </div>
 </div>
 
@@ -260,21 +259,18 @@ addressed to PyMC&#8217;s <a class="reference external" href="mailto:pymc&#37;&#
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/INSTALL.txt"
+      <li><a href="_sources/INSTALL.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -296,12 +292,12 @@ addressed to PyMC&#8217;s <a class="reference external" href="mailto:pymc&#37;&#
         <li class="right" >
           <a href="README.html" title="1. Introduction"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">PyMC 2.3.6 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">PyMC 2.3.7rc1 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2014, Christopher J. Fonnesbeck.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+        &#169; Copyright 2014, Christopher J. Fonnesbeck.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
     </div>
   </body>
 </html>

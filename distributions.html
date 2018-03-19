@@ -1,34 +1,33 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>9. Probability distributions &mdash; PyMC 2.3.6 documentation</title>
-    
+    <title>9. Probability distributions &#8212; PyMC 2.3.7rc1 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '2.3.6',
+        VERSION:     '2.3.7rc1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="PyMC 2.3.6 documentation" href="index.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="10. Conclusion" href="conclusion.html" />
     <link rel="prev" title="8. Extending PyMC" href="extending.html" /> 
   </head>
-  <body role="document">
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -44,7 +43,7 @@
         <li class="right" >
           <a href="extending.html" title="8. Extending PyMC"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">PyMC 2.3.6 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">PyMC 2.3.7rc1 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -83,7 +82,7 @@ failures (x=0).</p>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pymc</span> <span class="kn">import</span> <span class="n">bernoulli_like</span>
+<tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pymc</span> <span class="k">import</span> <span class="n">bernoulli_like</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">bernoulli_like</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="o">.</span><span class="mi">4</span><span class="p">)</span>
 <span class="go">-2.854232711280291</span>
 </pre></div>
@@ -157,13 +156,13 @@ each of which yields success with probability p.</p>
 <code class="descclassname">pymc.distributions.</code><code class="descname">discrete_uniform_like</code><span class="sig-paren">(</span><em>x</em>, <em>lower</em>, <em>upper</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#discrete_uniform_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.discrete_uniform_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Discrete uniform log-likelihood.</p>
 <div class="math">
-\[f(x \mid lower, upper) = \frac{1}{upper-lower}\]</div>
+\[f(x \mid lower, upper) = \frac{1}{upper-lower+1}\]</div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><cite>x</cite> : [int] <span class="math">\(lower \leq x \leq upper\)</span></li>
+<li><cite>x</cite> : [int] <span class="math">\(x \in \{lower, lower+1, \ldots, upper-1, upper\}\)</span></li>
 <li><cite>lower</cite> : Lower limit.</li>
 <li><cite>upper</cite> : Upper limit (upper &gt; lower).</li>
 </ul>
@@ -177,7 +176,7 @@ each of which yields success with probability p.</p>
 <dt id="pymc.distributions.geometric_like">
 <code class="descclassname">pymc.distributions.</code><code class="descname">geometric_like</code><span class="sig-paren">(</span><em>x</em>, <em>p</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#geometric_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.geometric_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Geometric log-likelihood. The probability that the first success in a
-sequence of Bernoulli trials occurs on the x&#8217;th trial.</p>
+sequence of Bernoulli trials occurs on the x’th trial.</p>
 <div class="math">
 \[f(x \mid p) = p(1-p)^{x-1}\]</div>
 <table class="docutils field-list" frame="void" rules="none">
@@ -238,7 +237,7 @@ a sequence of draws from a finite population without replacement.</p>
 <dd><p>Negative binomial log-likelihood.</p>
 <p>The negative binomial
 distribution describes a Poisson random variable whose rate
-parameter is gamma distributed. PyMC&#8217;s chosen parameterization is
+parameter is gamma distributed. PyMC’s chosen parameterization is
 based on this mixture interpretation.</p>
 <div class="math">
 \[f(x \mid \mu, \alpha) = \frac{\Gamma(x+\alpha)}{x! \Gamma(\alpha)} (\alpha/(\mu+\alpha))^\alpha (\mu/(\mu+\alpha))^x\]</div>
@@ -247,7 +246,7 @@ based on this mixture interpretation.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><cite>x</cite> : x = 0,1,2,...</li>
+<li><cite>x</cite> : x = 0,1,2,…</li>
 <li><cite>mu</cite> : mu &gt; 0</li>
 <li><cite>alpha</cite> : alpha &gt; 0</li>
 </ul>
@@ -259,7 +258,7 @@ based on this mixture interpretation.</p>
 <p class="first admonition-title">Note</p>
 <ul class="last simple">
 <li><span class="math">\(E[x]=\mu\)</span></li>
-<li>In Wikipedia&#8217;s parameterization,
+<li>In Wikipedia’s parameterization,
 <span class="math">\(r=\alpha\)</span>
 <span class="math">\(p=\alpha/(\mu+\alpha)\)</span>
 <span class="math">\(\mu=rp/(1-p)\)</span></li>
@@ -314,17 +313,14 @@ constrained to be non-negative.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last">
-<li><p class="first"><cite>x</cite> : [int] <span class="math">\(x \in {0,1,2,...}\)</span></p>
-</li>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><cite>x</cite> : [int] <span class="math">\(x \in {0,1,2,...}\)</span></li>
 <li><dl class="first docutils">
 <dt><cite>mu</cite> <span class="classifier-delimiter">:</span> <span class="classifier">Expected number of occurrences during the given interval,</span></dt>
-<dd><p class="first last"><span class="math">\(\mu \geq 0\)</span>.</p>
-</dd>
+<dd><span class="math">\(\mu \geq 0\)</span>.</dd>
 </dl>
 </li>
-<li><p class="first"><cite>k</cite> : Truncation point representing the minimum allowable value.</p>
-</li>
+<li><cite>k</cite> : Truncation point representing the minimum allowable value.</li>
 </ul>
 </td>
 </tr>
@@ -360,7 +356,7 @@ constrained to be non-negative.</p>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pymc</span> <span class="kn">import</span> <span class="n">beta_like</span>
+<tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pymc</span> <span class="k">import</span> <span class="n">beta_like</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">beta_like</span><span class="p">(</span><span class="o">.</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
 <span class="go">0.182321556793954</span>
 </pre></div>
@@ -477,7 +473,7 @@ with alpha=1. It often describes the time until an event.</p>
 <ul class="last simple">
 <li><span class="math">\(E(X) = 1/\beta\)</span></li>
 <li><span class="math">\(Var(X) = 1/\beta^2\)</span></li>
-<li>PyMC&#8217;s beta is named &#8216;lambda&#8217; by Wikipedia, SciPy, Wolfram MathWorld and other sources.</li>
+<li>PyMC’s beta is named ‘lambda’ by Wikipedia, SciPy, Wolfram MathWorld and other sources.</li>
 </ul>
 </div>
 </dd></dl>
@@ -706,7 +702,7 @@ of as the multiplicative product of many small independent factors.</p>
 <dl class="function">
 <dt id="pymc.distributions.noncentral_t_like">
 <code class="descclassname">pymc.distributions.</code><code class="descname">noncentral_t_like</code><span class="sig-paren">(</span><em>x</em>, <em>mu</em>, <em>lam</em>, <em>nu</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#noncentral_t_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.noncentral_t_like" title="Permalink to this definition">¶</a></dt>
-<dd><p>Non-central Student&#8217;s T log-likelihood.</p>
+<dd><p>Non-central Student’s T log-likelihood.</p>
 <p>Describes a normal variable whose precision is gamma distributed.</p>
 <div class="math">
 \[f(x|\mu,\lambda,\nu) = \frac{\Gamma(\frac{\nu +
@@ -792,7 +788,7 @@ to characterize wealth distribution, or other examples of the
 <dl class="function">
 <dt id="pymc.distributions.skew_normal_like">
 <code class="descclassname">pymc.distributions.</code><code class="descname">skew_normal_like</code><span class="sig-paren">(</span><em>x</em>, <em>mu</em>, <em>tau</em>, <em>alpha</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#skew_normal_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.skew_normal_like" title="Permalink to this definition">¶</a></dt>
-<dd><p>Azzalini&#8217;s skew-normal log-likelihood</p>
+<dd><p>Azzalini’s skew-normal log-likelihood</p>
 <div class="math">
 \[f(x \mid \mu, \tau, \alpha) = 2 \Phi((x-\mu)\sqrt{\tau}\alpha) \phi(x,\mu,\tau)\]</div>
 <p>where :math:Phi is the normal CDF and :math: phi is the normal PDF.</p>
@@ -819,7 +815,7 @@ to characterize wealth distribution, or other examples of the
 <dl class="function">
 <dt id="pymc.distributions.t_like">
 <code class="descclassname">pymc.distributions.</code><code class="descname">t_like</code><span class="sig-paren">(</span><em>x</em>, <em>nu</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#t_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.t_like" title="Permalink to this definition">¶</a></dt>
-<dd><p>Student&#8217;s T log-likelihood.</p>
+<dd><p>Student’s T log-likelihood.</p>
 <p>Describes a zero-mean normal variable
 whose precision is gamma distributed. Alternatively, describes the
 mean of several zero-mean normal random variables divided by their
@@ -1000,9 +996,9 @@ when the number of items in each category is given by m.</p>
 <code class="descclassname">pymc.distributions.</code><code class="descname">multinomial_like</code><span class="sig-paren">(</span><em>x</em>, <em>n</em>, <em>p</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymc/distributions.html#multinomial_like"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymc.distributions.multinomial_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Multinomial log-likelihood.</p>
 <p>Generalization of the binomial
-distribution, but instead of each trial resulting in &#8220;success&#8221; or
-&#8220;failure&#8221;, each one results in exactly one of some fixed finite number k
-of possible outcomes over n independent trials. &#8216;x[i]&#8217; indicates the number
+distribution, but instead of each trial resulting in “success” or
+“failure”, each one results in exactly one of some fixed finite number k
+of possible outcomes over n independent trials. ‘x[i]’ indicates the number
 of times outcome number i was observed over the n trials.</p>
 <div class="math">
 \[f(x \mid n, p) = \frac{n!}{\prod_{i=1}^k x_i!} \prod_{i=1}^k p_i^{x_i}\]</div>
@@ -1256,21 +1252,18 @@ is identical to the chi-square distribution with n degrees of freedom.</p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/distributions.txt"
+      <li><a href="_sources/distributions.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -1292,12 +1285,12 @@ is identical to the chi-square distribution with n degrees of freedom.</p>
         <li class="right" >
           <a href="extending.html" title="8. Extending PyMC"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">PyMC 2.3.6 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">PyMC 2.3.7rc1 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2014, Christopher J. Fonnesbeck.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+        &#169; Copyright 2014, Christopher J. Fonnesbeck.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
     </div>
   </body>
 </html>

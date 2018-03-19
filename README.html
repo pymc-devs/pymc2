@@ -1,34 +1,33 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>1. Introduction &mdash; PyMC 2.3.6 documentation</title>
-    
+    <title>1. Introduction &#8212; PyMC 2.3.7rc1 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '2.3.6',
+        VERSION:     '2.3.7rc1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="PyMC 2.3.6 documentation" href="index.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="2. Installation" href="INSTALL.html" />
     <link rel="prev" title="PyMC User’s Guide" href="index.html" /> 
   </head>
-  <body role="document">
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -44,7 +43,7 @@
         <li class="right" >
           <a href="index.html" title="PyMC User’s Guide"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">PyMC 2.3.6 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">PyMC 2.3.7rc1 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -71,7 +70,7 @@
 </tr>
 <tr class="field-even field"><th class="field-name">License:</th><td class="field-body">PyMC is released under the Academic Free License.</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Version:</th><td class="field-body">2.3.6</td>
+<tr class="field-odd field"><th class="field-name">Version:</th><td class="field-body">7</td>
 </tr>
 </tbody>
 </table>
@@ -105,7 +104,7 @@ with the full power of Python.</li>
 </ul>
 </div>
 <div class="section" id="what-s-new-in-version-2">
-<h2>1.3. What&#8217;s new in version 2<a class="headerlink" href="#what-s-new-in-version-2" title="Permalink to this headline">¶</a></h2>
+<h2>1.3. What’s new in version 2<a class="headerlink" href="#what-s-new-in-version-2" title="Permalink to this headline">¶</a></h2>
 <p>This second version of PyMC benefits from a major rewrite effort. Substantial
 improvements in code extensibility, user interface as well as in raw
 performance have been achieved. Most notably, the PyMC 2 series provides:</p>
@@ -122,34 +121,34 @@ computed, and these are cached.</li>
 <div class="section" id="usage">
 <h2>1.4. Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
 <p>First, define your model in a file, say mymodel.py (with comments, of course!):</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="c"># Import relevant modules</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Import relevant modules</span>
 <span class="kn">import</span> <span class="nn">pymc</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="c"># Some data</span>
+<span class="c1"># Some data</span>
 <span class="n">n</span> <span class="o">=</span> <span class="mi">5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-.</span><span class="mi">86</span><span class="p">,</span><span class="o">-.</span><span class="mi">3</span><span class="p">,</span><span class="o">-.</span><span class="mo">05</span><span class="p">,</span><span class="o">.</span><span class="mi">73</span><span class="p">])</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-.</span><span class="mi">86</span><span class="p">,</span><span class="o">-.</span><span class="mi">3</span><span class="p">,</span><span class="o">-.</span><span class="mi">05</span><span class="p">,</span><span class="o">.</span><span class="mi">73</span><span class="p">])</span>
 
-<span class="c"># Priors on unknown parameters</span>
-<span class="n">alpha</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s">&#39;alpha&#39;</span><span class="p">,</span><span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">tau</span><span class="o">=.</span><span class="mo">01</span><span class="p">)</span>
-<span class="n">beta</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s">&#39;beta&#39;</span><span class="p">,</span><span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">tau</span><span class="o">=.</span><span class="mo">01</span><span class="p">)</span>
+<span class="c1"># Priors on unknown parameters</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s1">&#39;alpha&#39;</span><span class="p">,</span><span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">tau</span><span class="o">=.</span><span class="mi">01</span><span class="p">)</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s1">&#39;beta&#39;</span><span class="p">,</span><span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">tau</span><span class="o">=.</span><span class="mi">01</span><span class="p">)</span>
 
-<span class="c"># Arbitrary deterministic function of parameters</span>
-<span class="nd">@pymc.deterministic</span>
+<span class="c1"># Arbitrary deterministic function of parameters</span>
+<span class="nd">@pymc</span><span class="o">.</span><span class="n">deterministic</span>
 <span class="k">def</span> <span class="nf">theta</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">beta</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;theta = logit^{-1}(a+b)&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">pymc</span><span class="o">.</span><span class="n">invlogit</span><span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
 
-<span class="c"># Binomial likelihood for data</span>
-<span class="n">d</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Binomial</span><span class="p">(</span><span class="s">&#39;d&#39;</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">theta</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">3.</span><span class="p">,</span><span class="mf">5.</span><span class="p">]),</span>\
-                  <span class="n">observed</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="c1"># Binomial likelihood for data</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Binomial</span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">theta</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">3.</span><span class="p">,</span><span class="mf">5.</span><span class="p">]),</span>\
+                  <span class="n">observed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Save this file, then from a python shell (or another file in the same directory), call:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">pymc</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pymc</span>
 <span class="kn">import</span> <span class="nn">mymodel</span>
 
-<span class="n">S</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">MCMC</span><span class="p">(</span><span class="n">mymodel</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="s">&#39;pickle&#39;</span><span class="p">)</span>
+<span class="n">S</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">MCMC</span><span class="p">(</span><span class="n">mymodel</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="s1">&#39;pickle&#39;</span><span class="p">)</span>
 <span class="n">S</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">iter</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">burn</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">thin</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">pymc</span><span class="o">.</span><span class="n">Matplot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
 </pre></div>
@@ -195,7 +194,7 @@ more recently, <a class="reference external" href="http://code.google.com/p/stan
 packages because of the unlimited variety in Bayesian probability models and
 flavors of the MCMC algorithm. However, it is possible to anticipate how it
 will perform in broad terms.</p>
-<p>PyMC&#8217;s number-crunching is done using a combination of industry-standard
+<p>PyMC’s number-crunching is done using a combination of industry-standard
 libraries (NumPy and the linear algebra libraries on which it depends) and
 hand-optimized Fortran routines. For models that are composed of variables
 valued as large arrays, PyMC will spend most of its time in these fast
@@ -209,7 +208,7 @@ required for sampling is often quite reasonable despite this poorer performance.
 <p>We have chosen to spend time developing PyMC rather than using an existing
 package primarily because it allows us to build and efficiently fit any model
 we like within a productuve Python environment. We have emphasized
-extensibility throughout PyMC&#8217;s design, so if it doesn&#8217;t meet your needs out of
+extensibility throughout PyMC’s design, so if it doesn’t meet your needs out of
 the box, chances are you can make it do so with a relatively small amount of
 code. See the <a class="reference external" href="https://github.com/pymc-devs/pymc/wiki/Testimonials">testimonials</a> page on the wiki for reasons why other users have
 chosen PyMC.</p>
@@ -237,7 +236,7 @@ available. More <a class="reference external" href="https://github.com/pymc-devs
 <li><a class="reference internal" href="#">1. Introduction</a><ul>
 <li><a class="reference internal" href="#purpose">1.1. Purpose</a></li>
 <li><a class="reference internal" href="#features">1.2. Features</a></li>
-<li><a class="reference internal" href="#what-s-new-in-version-2">1.3. What&#8217;s new in version 2</a></li>
+<li><a class="reference internal" href="#what-s-new-in-version-2">1.3. What’s new in version 2</a></li>
 <li><a class="reference internal" href="#usage">1.4. Usage</a></li>
 <li><a class="reference internal" href="#history">1.5. History</a></li>
 <li><a class="reference internal" href="#relationship-to-other-packages">1.6. Relationship to other packages</a></li>
@@ -248,28 +247,25 @@ available. More <a class="reference external" href="https://github.com/pymc-devs
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="index.html"
-                        title="previous chapter">PyMC User&#8217;s Guide</a></p>
+                        title="previous chapter">PyMC User’s Guide</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="INSTALL.html"
                         title="next chapter">2. Installation</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/README.txt"
+      <li><a href="_sources/README.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -291,12 +287,12 @@ available. More <a class="reference external" href="https://github.com/pymc-devs
         <li class="right" >
           <a href="index.html" title="PyMC User’s Guide"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">PyMC 2.3.6 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">PyMC 2.3.7rc1 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2014, Christopher J. Fonnesbeck.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+        &#169; Copyright 2014, Christopher J. Fonnesbeck.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
     </div>
   </body>
 </html>

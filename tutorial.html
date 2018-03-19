@@ -1,34 +1,33 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>3. Tutorial &mdash; PyMC 2.3.6 documentation</title>
-    
+    <title>3. Tutorial &#8212; PyMC 2.3.7rc1 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '2.3.6',
+        VERSION:     '2.3.7rc1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="PyMC 2.3.6 documentation" href="index.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="4. Building models" href="modelbuilding.html" />
     <link rel="prev" title="2. Installation" href="INSTALL.html" /> 
   </head>
-  <body role="document">
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -44,7 +43,7 @@
         <li class="right" >
           <a href="INSTALL.html" title="2. Installation"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">PyMC 2.3.6 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">PyMC 2.3.7rc1 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -73,8 +72,8 @@ series, and from one with a smaller rate in the later part. We are interested
 in locating the change point in the series, which perhaps is related to changes
 in mining safety regulations.</p>
 <p>We represent our conceptual model formally as a statistical model:</p>
-<div class="math">
-\[\begin{split}\begin{array}{ccc}  (D_t | s, e, l) \sim\text{Poisson}\left(r_t\right), &amp; r_t=\left\{\begin{array}{lll}             e &amp;\text{if}&amp; t&lt; s\\ l &amp;\text{if}&amp; t\ge s             \end{array}\right.,&amp;t\in[t_l,t_h]\\         s\sim \text{Discrete Uniform}(t_l, t_h)\\         e\sim \text{Exponential}(r_e)\\         l\sim \text{Exponential}(r_l)     \end{array}\end{split}\]</div>
+<div class="math" id="equation-disaster_model">
+<span class="eqno">(1)<a class="headerlink" href="#equation-disaster_model" title="Permalink to this equation">¶</a></span>\[\begin{split}     \begin{array}{ccc}  (D_t | s, e, l) \sim\text{Poisson}\left(r_t\right), &amp; r_t=\left\{\begin{array}{lll}             e &amp;\text{if}&amp; t&lt; s\\ l &amp;\text{if}&amp; t\ge s             \end{array}\right.,&amp;t\in[t_l,t_h]\\         s\sim \text{Discrete Uniform}(t_l, t_h)\\         e\sim \text{Exponential}(r_e)\\         l\sim \text{Exponential}(r_l)     \end{array}\end{split}\]</div>
 <p>The symbols are defined as:</p>
 <blockquote>
 <div><ul class="simple">
@@ -89,8 +88,8 @@ and late rates, respectively.</li>
 </ul>
 </div></blockquote>
 <p>Because we have defined <span class="math">\(D\)</span> by its dependence on <span class="math">\(s\)</span>, <span class="math">\(e\)</span> and
-<span class="math">\(l\)</span>, the latter three are known as the &#8220;parents&#8221; of <span class="math">\(D\)</span> and
-<span class="math">\(D\)</span> is called their &#8220;child&#8221;. Similarly, the parents of <span class="math">\(s\)</span> are
+<span class="math">\(l\)</span>, the latter three are known as the “parents” of <span class="math">\(D\)</span> and
+<span class="math">\(D\)</span> is called their “child”. Similarly, the parents of <span class="math">\(s\)</span> are
 <span class="math">\(t_l\)</span> and <span class="math">\(t_h\)</span>, and <span class="math">\(s\)</span> is the child of <span class="math">\(t_l\)</span> and
 <span class="math">\(t_h\)</span>.</p>
 </div>
@@ -98,15 +97,15 @@ and late rates, respectively.</li>
 <h2>3.2. Two types of variables<a class="headerlink" href="#two-types-of-variables" title="Permalink to this headline">¶</a></h2>
 <p>At the model-specification stage (before the data are observed), <span class="math">\(D\)</span>,
 <span class="math">\(s\)</span>, <span class="math">\(e\)</span>, <span class="math">\(r\)</span> and <span class="math">\(l\)</span> are all random variables.
-Bayesian &#8220;random&#8221; variables have not necessarily arisen from a physical random
+Bayesian “random” variables have not necessarily arisen from a physical random
 process. The Bayesian interpretation of probability is <em>epistemic</em>, meaning
-random variable <span class="math">\(x\)</span>&#8216;s probability distribution <span class="math">\(p(x)\)</span> represents
-our knowledge and uncertainty about <span class="math">\(x\)</span>&#8216;s value <a class="reference internal" href="references.html#jaynes2003" id="id4">[Jaynes2003]</a>. Candidate
+random variable <span class="math">\(x\)</span>‘s probability distribution <span class="math">\(p(x)\)</span> represents
+our knowledge and uncertainty about <span class="math">\(x\)</span>‘s value <a class="reference internal" href="references.html#jaynes2003" id="id4">[Jaynes2003]</a>. Candidate
 values of <span class="math">\(x\)</span> for which <span class="math">\(p(x)\)</span> is high are relatively more
 probable, given what we know. Random variables are represented in PyMC by the
 classes <code class="docutils literal"><span class="pre">Stochastic</span></code> and <code class="docutils literal"><span class="pre">Deterministic</span></code>.</p>
 <p>The only <code class="docutils literal"><span class="pre">Deterministic</span></code> in the model is <span class="math">\(r\)</span>. If we knew the values of
-<span class="math">\(r\)</span>&#8216;s parents (<span class="math">\(s\)</span>, <span class="math">\(l\)</span> and <span class="math">\(e\)</span>), we could compute the
+<span class="math">\(r\)</span>‘s parents (<span class="math">\(s\)</span>, <span class="math">\(l\)</span> and <span class="math">\(e\)</span>), we could compute the
 value of <span class="math">\(r\)</span> exactly. A <code class="docutils literal"><span class="pre">Deterministic</span></code> like <span class="math">\(r\)</span> is defined by a
 mathematical function that returns its value given values for its parents.
 <code class="docutils literal"><span class="pre">Deterministic</span></code> variables are sometimes called the <em>systemic</em> part of the
@@ -121,11 +120,11 @@ variables are characterized by probability distributions that express how
 plausible their candidate values are, given values for their parents. The
 <code class="docutils literal"><span class="pre">Stochastic</span></code> class represents these variables. A more descriptive name for
 these objects might be <code class="docutils literal"><span class="pre">RandomEvenGivenValuesOfParents</span></code>.</p>
-<p>We can represent model <a href="#equation-disaster_model">(?)</a> in a file called
+<p>We can represent model <a class="reference internal" href="#equation-disaster_model">(1)</a> in a file called
 <code class="docutils literal"><span class="pre">disaster_model.py</span></code> (the actual file can be found in <code class="docutils literal"><span class="pre">pymc/examples/</span></code>) as
 follows. First, we import the PyMC and NumPy namespaces:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pymc</span> <span class="kn">import</span> <span class="n">DiscreteUniform</span><span class="p">,</span> <span class="n">Exponential</span><span class="p">,</span> <span class="n">deterministic</span><span class="p">,</span> <span class="n">Poisson</span><span class="p">,</span> <span class="n">Uniform</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pymc</span> <span class="k">import</span> <span class="n">DiscreteUniform</span><span class="p">,</span> <span class="n">Exponential</span><span class="p">,</span> <span class="n">deterministic</span><span class="p">,</span> <span class="n">Poisson</span><span class="p">,</span> <span class="n">Uniform</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
 <p>Notice that from <code class="docutils literal"><span class="pre">pymc</span></code> we have only imported a select few objects that are
@@ -134,7 +133,7 @@ been imported, and conveniently given a shorter name. Objects from NumPy are
 subsequently accessed by prefixing <code class="docutils literal"><span class="pre">np.</span></code> to the name. Either approach is
 acceptable.</p>
 <p>Next, we enter the actual data values into an array:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">disasters_array</span> <span class="o">=</span>   \
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">disasters_array</span> <span class="o">=</span>   \
      <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span>
                    <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span>
                    <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
@@ -144,10 +143,10 @@ acceptable.</p>
                    <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
-<p>Note that you don&#8217;t have to type in this entire array to follow along; the code
-is available in the source tree, in <a class="reference download internal" href="_downloads/disaster_model.py"><code class="xref download docutils literal"><span class="pre">this</span> <span class="pre">example</span> <span class="pre">script</span></code></a>. Next, we create the switchpoint variable
+<p>Note that you don’t have to type in this entire array to follow along; the code
+is available in the source tree, in <a class="reference download internal" href="_downloads/disaster_model.py" download=""><code class="xref download docutils literal"><span class="pre">this</span> <span class="pre">example</span> <span class="pre">script</span></code></a>. Next, we create the switchpoint variable
 <code class="docutils literal"><span class="pre">switchpoint</span></code></p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">switchpoint</span> <span class="o">=</span> <span class="n">DiscreteUniform</span><span class="p">(</span><span class="s">&#39;switchpoint&#39;</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">110</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&#39;Switchpoint[year]&#39;</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">switchpoint</span> <span class="o">=</span> <span class="n">DiscreteUniform</span><span class="p">(</span><span class="s1">&#39;switchpoint&#39;</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">110</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s1">&#39;Switchpoint[year]&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><code class="docutils literal"><span class="pre">DiscreteUniform</span></code> is a subclass of <code class="docutils literal"><span class="pre">Stochastic</span></code> that represents
@@ -156,8 +155,8 @@ that we have no preference <code class="docutils literal"><span class="pre">a</s
 switchpoint; all values are equally likely. Now we create the
 exponentially-distributed variables <code class="docutils literal"><span class="pre">early_mean</span></code> and <code class="docutils literal"><span class="pre">late_mean</span></code> for the
 early and late Poisson rates, respectively:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">early_mean</span> <span class="o">=</span> <span class="n">Exponential</span><span class="p">(</span><span class="s">&#39;early_mean&#39;</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span>
-<span class="n">late_mean</span> <span class="o">=</span> <span class="n">Exponential</span><span class="p">(</span><span class="s">&#39;late_mean&#39;</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">early_mean</span> <span class="o">=</span> <span class="n">Exponential</span><span class="p">(</span><span class="s1">&#39;early_mean&#39;</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span>
+<span class="n">late_mean</span> <span class="o">=</span> <span class="n">Exponential</span><span class="p">(</span><span class="s1">&#39;late_mean&#39;</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Next, we define the variable <code class="docutils literal"><span class="pre">rate</span></code>, which selects the early rate
@@ -165,7 +164,7 @@ early and late Poisson rates, respectively:</p>
 for times after <code class="docutils literal"><span class="pre">switchpoint</span></code>. We create <code class="docutils literal"><span class="pre">rate</span></code> using the <code class="docutils literal"><span class="pre">deterministic</span></code>
 decorator, which converts the ordinary Python function <code class="docutils literal"><span class="pre">rate</span></code> into a
 <code class="docutils literal"><span class="pre">Deterministic</span></code> object.:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="nd">@deterministic</span><span class="p">(</span><span class="n">plot</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nd">@deterministic</span><span class="p">(</span><span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">rate</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="n">switchpoint</span><span class="p">,</span> <span class="n">e</span><span class="o">=</span><span class="n">early_mean</span><span class="p">,</span> <span class="n">l</span><span class="o">=</span><span class="n">late_mean</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39; Concatenate Poisson means &#39;&#39;&#39;</span>
     <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">disasters_array</span><span class="p">))</span>
@@ -178,27 +177,27 @@ decorator, which converts the ordinary Python function <code class="docutils lit
 stochastic variable but unlike <code class="docutils literal"><span class="pre">switchpoint</span></code>, <code class="docutils literal"><span class="pre">early_mean</span></code> and
 <code class="docutils literal"><span class="pre">late_mean</span></code> we have observed its value. To express this, we set the argument
 <code class="docutils literal"><span class="pre">observed</span></code> to <code class="docutils literal"><span class="pre">True</span></code> (it is set to <code class="docutils literal"><span class="pre">False</span></code> by default). This tells PyMC
-that this object&#8217;s value should not be changed:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">disasters</span> <span class="o">=</span> <span class="n">Poisson</span><span class="p">(</span><span class="s">&#39;disasters&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">rate</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">disasters_array</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+that this object’s value should not be changed:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">disasters</span> <span class="o">=</span> <span class="n">Poisson</span><span class="p">(</span><span class="s1">&#39;disasters&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">rate</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">disasters_array</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="section" id="why-are-data-and-unknown-variables-represented-by-the-same-object">
 <h3>3.2.1. Why are data and unknown variables represented by the same object?<a class="headerlink" href="#why-are-data-and-unknown-variables-represented-by-the-same-object" title="Permalink to this headline">¶</a></h3>
 <p>Since its represented by a <code class="docutils literal"><span class="pre">Stochastic</span></code> object, <cite>disasters</cite> is defined by its
-dependence on its parent <code class="docutils literal"><span class="pre">rate</span></code> even though its value is fixed. This isn&#8217;t
-just a quirk of PyMC&#8217;s syntax; Bayesian hierarchical notation itself makes no
+dependence on its parent <code class="docutils literal"><span class="pre">rate</span></code> even though its value is fixed. This isn’t
+just a quirk of PyMC’s syntax; Bayesian hierarchical notation itself makes no
 distinction between random variables and data. The reason is simple: to use
-Bayes&#8217; theorem to compute the posterior <span class="math">\(p(e,s,l \mid D)\)</span> of model
-<a href="#equation-disaster_model">(?)</a>, we require the likelihood <span class="math">\(p(D \mid e,s,l)\)</span>. Even
-though <cite>disasters</cite>&#8216;s value is known and fixed, we need to formally assign it a
+Bayes’ theorem to compute the posterior <span class="math">\(p(e,s,l \mid D)\)</span> of model
+<a class="reference internal" href="#equation-disaster_model">(1)</a>, we require the likelihood <span class="math">\(p(D \mid e,s,l)\)</span>. Even
+though <cite>disasters</cite>’s value is known and fixed, we need to formally assign it a
 probability distribution as if it were a random variable. Remember, the
 likelihood and the probability function are essentially the same, except that
 the former is regarded as a function of the parameters and the latter as a
 function of the data.</p>
-<p>This point can be counterintuitive at first, as many peoples&#8217; instinct is to
+<p>This point can be counterintuitive at first, as many peoples’ instinct is to
 regard data as fixed a priori and unknown variables as dependent on the data.
 One way to understand this is to think of statistical models like
-<a href="#equation-disaster_model">(?)</a> as predictive models for data, or as models of the
+<a class="reference internal" href="#equation-disaster_model">(1)</a> as predictive models for data, or as models of the
 processes that gave rise to data. Before observing the value of <cite>disasters</cite>, we
 could have sampled from its prior predictive distribution <span class="math">\(p(D)\)</span> (<em>i.e.</em>
 the marginal distribution of the data) as follows:</p>
@@ -210,7 +209,7 @@ the marginal distribution of the data) as follows:</p>
 </div></blockquote>
 <p>Even after we observe the value of <cite>disasters</cite>, we need to use this process
 model to make inferences about <code class="docutils literal"><span class="pre">early_mean</span></code> , <code class="docutils literal"><span class="pre">switchpoint</span></code> and
-<code class="docutils literal"><span class="pre">late_mean</span></code> because it&#8217;s the only information we have about how the variables
+<code class="docutils literal"><span class="pre">late_mean</span></code> because it’s the only information we have about how the variables
 are related.</p>
 </div>
 </div>
@@ -218,24 +217,24 @@ are related.</p>
 <h2>3.3. Parents and children<a class="headerlink" href="#parents-and-children" title="Permalink to this headline">¶</a></h2>
 <p>We have above created a PyMC probability model, which is simply a linked
 collection of variables. To see the nature of the links, import or run
-<code class="docutils literal"><span class="pre">disaster_model.py</span></code> and examine <code class="docutils literal"><span class="pre">switchpoint</span></code>&#8216;s <code class="docutils literal"><span class="pre">parents</span></code> attribute from
+<code class="docutils literal"><span class="pre">disaster_model.py</span></code> and examine <code class="docutils literal"><span class="pre">switchpoint</span></code>’s <code class="docutils literal"><span class="pre">parents</span></code> attribute from
 the Python prompt:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pymc.examples</span> <span class="kn">import</span> <span class="n">disaster_model</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pymc.examples</span> <span class="k">import</span> <span class="n">disaster_model</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disaster_model</span><span class="o">.</span><span class="n">switchpoint</span><span class="o">.</span><span class="n">parents</span>
 <span class="go">{&#39;lower&#39;: 0, &#39;upper&#39;: 110}</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal"><span class="pre">parents</span></code> dictionary shows us the distributional parameters of
-<code class="docutils literal"><span class="pre">switchpoint</span></code>, which are constants. Now let&#8217;s examine <cite>disasters</cite>&#8216;s parents:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">disaster_model</span><span class="o">.</span><span class="n">disasters</span><span class="o">.</span><span class="n">parents</span>
+<code class="docutils literal"><span class="pre">switchpoint</span></code>, which are constants. Now let’s examine <cite>disasters</cite>’s parents:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">disaster_model</span><span class="o">.</span><span class="n">disasters</span><span class="o">.</span><span class="n">parents</span>
 <span class="go">{&#39;mu&#39;: &lt;pymc.PyMCObjects.Deterministic &#39;rate&#39; at 0x10623da50&gt;}</span>
 </pre></div>
 </div>
 <p>We are using <code class="docutils literal"><span class="pre">rate</span></code> as a distributional parameter of <cite>disasters</cite> (<em>i.e.</em>
-<code class="docutils literal"><span class="pre">rate</span></code> is <cite>disasters</cite>&#8216;s parent). <cite>disasters</cite> internally labels <code class="docutils literal"><span class="pre">rate</span></code> as
-<code class="docutils literal"><span class="pre">mu</span></code>, meaning <code class="docutils literal"><span class="pre">rate</span></code> plays the role of the rate parameter in <cite>disasters</cite>&#8216;s
-Poisson distribution. Now examine <code class="docutils literal"><span class="pre">rate</span></code>&#8216;s <code class="docutils literal"><span class="pre">children</span></code> attribute:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">disaster_model</span><span class="o">.</span><span class="n">rate</span><span class="o">.</span><span class="n">children</span>
+<code class="docutils literal"><span class="pre">rate</span></code> is <cite>disasters</cite>’s parent). <cite>disasters</cite> internally labels <code class="docutils literal"><span class="pre">rate</span></code> as
+<code class="docutils literal"><span class="pre">mu</span></code>, meaning <code class="docutils literal"><span class="pre">rate</span></code> plays the role of the rate parameter in <cite>disasters</cite>’s
+Poisson distribution. Now examine <code class="docutils literal"><span class="pre">rate</span></code>’s <code class="docutils literal"><span class="pre">children</span></code> attribute:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">disaster_model</span><span class="o">.</span><span class="n">rate</span><span class="o">.</span><span class="n">children</span>
 <span class="go">set([&lt;pymc.distributions.Poisson &#39;disasters&#39; at 0x10623da90&gt;])</span>
 </pre></div>
 </div>
@@ -249,7 +248,7 @@ relationships in the model. Unobserved stochastic variables <code class="docutil
 <code class="docutils literal"><span class="pre">early_mean</span></code> and <code class="docutils literal"><span class="pre">late_mean</span></code> are open ellipses, observed stochastic
 variable <cite>disasters</cite> is a filled ellipse and deterministic variable <code class="docutils literal"><span class="pre">rate</span></code> is
 a triangle. Arrows point from parent to child and display the label that the
-child assigns to the parent. See section <a class="reference internal" href="modelbuilding.html#graphical"><span>Graphing models</span></a> for more details.</p>
+child assigns to the parent. See section <a class="reference internal" href="modelbuilding.html#graphical"><span class="std std-ref">Graphing models</span></a> for more details.</p>
 <div class="figure" id="id12">
 <span id="dag"></span><a class="reference internal image-reference" href="_images/DisasterModel2.png"><img alt="_images/DisasterModel2.png" src="_images/DisasterModel2.png" style="width: 600px;" /></a>
 <p class="caption"><span class="caption-text">Directed acyclic graph of the relationships in the coal mining disaster model example.</span></p>
@@ -271,11 +270,11 @@ pymc uses references to the objects themselves, not their names, to identify
 variables.</p>
 </div>
 <div class="section" id="variables-values-and-log-probabilities">
-<h2>3.4. Variables&#8217; values and log-probabilities<a class="headerlink" href="#variables-values-and-log-probabilities" title="Permalink to this headline">¶</a></h2>
+<h2>3.4. Variables’ values and log-probabilities<a class="headerlink" href="#variables-values-and-log-probabilities" title="Permalink to this headline">¶</a></h2>
 <p>All PyMC variables have an attribute called <code class="docutils literal"><span class="pre">value</span></code> that stores the current
-value of that variable. Try examining <cite>disasters</cite>&#8216;s value, and you&#8217;ll see the
+value of that variable. Try examining <cite>disasters</cite>’s value, and you’ll see the
 initial value we provided for it:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">disaster_model</span><span class="o">.</span><span class="n">disasters</span><span class="o">.</span><span class="n">value</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">disaster_model</span><span class="o">.</span><span class="n">disasters</span><span class="o">.</span><span class="n">value</span>
 <span class="go">array([4, 5, 4, 0, 1, 4, 3, 4, 0, 6, 3, 3, 4, 0, 2, 6, 3, 3, 5, 4, 5, 3, 1,</span>
 <span class="go">       4, 4, 1, 5, 5, 3, 4, 2, 5, 2, 2, 3, 4, 2, 1, 3, 2, 2, 1, 1, 1, 1, 3,</span>
 <span class="go">       0, 0, 1, 0, 1, 1, 0, 0, 3, 1, 0, 3, 2, 2, 0, 1, 1, 1, 0, 1, 0, 1, 0,</span>
@@ -284,8 +283,8 @@ initial value we provided for it:</p>
 </pre></div>
 </div>
 <p>If you check the values of <code class="docutils literal"><span class="pre">early_mean</span></code>, <code class="docutils literal"><span class="pre">switchpoint</span></code> and <code class="docutils literal"><span class="pre">late_mean</span></code>,
-you&#8217;ll see random initial values generated by PyMC:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">disaster_model</span><span class="o">.</span><span class="n">switchpoint</span><span class="o">.</span><span class="n">value</span>
+you’ll see random initial values generated by PyMC:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">disaster_model</span><span class="o">.</span><span class="n">switchpoint</span><span class="o">.</span><span class="n">value</span>
 <span class="go">44</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disaster_model</span><span class="o">.</span><span class="n">early_mean</span><span class="o">.</span><span class="n">value</span>
@@ -296,10 +295,10 @@ you&#8217;ll see random initial values generated by PyMC:</p>
 </pre></div>
 </div>
 <p>Of course, since these are <code class="docutils literal"><span class="pre">Stochastic</span></code> elements, your values will be
-different than these. If you check <code class="docutils literal"><span class="pre">rate</span></code>&#8216;s value, you&#8217;ll see an array whose
+different than these. If you check <code class="docutils literal"><span class="pre">rate</span></code>’s value, you’ll see an array whose
 first <code class="docutils literal"><span class="pre">switchpoint</span></code> elements are <code class="docutils literal"><span class="pre">early_mean</span></code> (here 0.33464706), and whose
 remaining elements are <code class="docutils literal"><span class="pre">late_mean</span></code> (here 2.64919368):</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">disaster_model</span><span class="o">.</span><span class="n">rate</span><span class="o">.</span><span class="n">value</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">disaster_model</span><span class="o">.</span><span class="n">rate</span><span class="o">.</span><span class="n">value</span>
 <span class="go">array([ 0.33464706,  0.33464706,  0.33464706,  0.33464706,  0.33464706,</span>
 <span class="go">        0.33464706,  0.33464706,  0.33464706,  0.33464706,  0.33464706,</span>
 <span class="go">        0.33464706,  0.33464706,  0.33464706,  0.33464706,  0.33464706,</span>
@@ -328,13 +327,13 @@ remaining elements are <code class="docutils literal"><span class="pre">late_mea
 in the values of its parents.</p>
 <p><code class="docutils literal"><span class="pre">Stochastic</span></code> objects can evaluate their probability mass or density functions
 at their current values given the values of their parents. The logarithm of a
-stochastic object&#8217;s probability mass or density can be accessed via the
+stochastic object’s probability mass or density can be accessed via the
 <code class="docutils literal"><span class="pre">logp</span></code> attribute. For vector-valued variables like <code class="docutils literal"><span class="pre">disasters</span></code>, the
 <code class="docutils literal"><span class="pre">logp</span></code> attribute returns the sum of the logarithms of the joint probability
-or density of all elements of the value. Try examining <code class="docutils literal"><span class="pre">switchpoint</span></code>&#8216;s and
-<code class="docutils literal"><span class="pre">disasters</span></code>&#8216;s log-probabilities and <code class="docutils literal"><span class="pre">early_mean</span></code> &#8216;s and <code class="docutils literal"><span class="pre">late_mean</span></code>&#8216;s
+or density of all elements of the value. Try examining <code class="docutils literal"><span class="pre">switchpoint</span></code>’s and
+<code class="docutils literal"><span class="pre">disasters</span></code>’s log-probabilities and <code class="docutils literal"><span class="pre">early_mean</span></code> ‘s and <code class="docutils literal"><span class="pre">late_mean</span></code>’s
 log-densities:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">disaster_model</span><span class="o">.</span><span class="n">switchpoint</span><span class="o">.</span><span class="n">logp</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">disaster_model</span><span class="o">.</span><span class="n">switchpoint</span><span class="o">.</span><span class="n">logp</span>
 <span class="go">-4.7095302013123339</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disaster_model</span><span class="o">.</span><span class="n">disasters</span><span class="o">.</span><span class="n">logp</span>
@@ -350,14 +349,14 @@ log-densities:</p>
 <p><code class="docutils literal"><span class="pre">Stochastic</span></code> objects need to call an internal function to compute their
 <code class="docutils literal"><span class="pre">logp</span></code> attributes, as <code class="docutils literal"><span class="pre">rate</span></code> needed to call an internal function to compute
 its value. Just as we created <code class="docutils literal"><span class="pre">rate</span></code> by decorating a function that computes
-its value, it&#8217;s possible to create custom <code class="docutils literal"><span class="pre">Stochastic</span></code> objects by decorating
+its value, it’s possible to create custom <code class="docutils literal"><span class="pre">Stochastic</span></code> objects by decorating
 functions that compute their log-probabilities or densities (see chapter
-<a class="reference internal" href="modelbuilding.html#chap-modelbuilding"><span>Building models</span></a>). Users are thus not limited to the set of
+<a class="reference internal" href="modelbuilding.html#chap-modelbuilding"><span class="std std-ref">Building models</span></a>). Users are thus not limited to the set of
 statistical distributions provided by PyMC.</p>
 <div class="section" id="using-variables-as-parents-of-other-variables">
 <h3>3.4.1. Using Variables as parents of other Variables<a class="headerlink" href="#using-variables-as-parents-of-other-variables" title="Permalink to this headline">¶</a></h3>
-<p>Let&#8217;s take a closer look at our definition of <code class="docutils literal"><span class="pre">rate</span></code>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="nd">@deterministic</span><span class="p">(</span><span class="n">plot</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<p>Let’s take a closer look at our definition of <code class="docutils literal"><span class="pre">rate</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nd">@deterministic</span><span class="p">(</span><span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">rate</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="n">switchpoint</span><span class="p">,</span> <span class="n">e</span><span class="o">=</span><span class="n">early_mean</span><span class="p">,</span> <span class="n">l</span><span class="o">=</span><span class="n">late_mean</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39; Concatenate Poisson means &#39;&#39;&#39;</span>
     <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">disasters_array</span><span class="p">))</span>
@@ -367,11 +366,11 @@ statistical distributions provided by PyMC.</p>
 </pre></div>
 </div>
 <p>The arguments <code class="docutils literal"><span class="pre">switchpoint</span></code>, <code class="docutils literal"><span class="pre">early_mean</span></code> and <code class="docutils literal"><span class="pre">late_mean</span></code> are
-<code class="docutils literal"><span class="pre">Stochastic</span></code> objects, not numbers. If that is so, why aren&#8217;t errors raised
+<code class="docutils literal"><span class="pre">Stochastic</span></code> objects, not numbers. If that is so, why aren’t errors raised
 when we attempt to slice array <code class="docutils literal"><span class="pre">out</span></code> up to a <code class="docutils literal"><span class="pre">Stochastic</span></code> object?</p>
 <p>Whenever a variable is used as a parent for a child variable, PyMC replaces it
-with its <code class="docutils literal"><span class="pre">value</span></code> attribute when the child&#8217;s value or log-probability is
-computed. When <code class="docutils literal"><span class="pre">rate</span></code>&#8216;s value is recomputed, <code class="docutils literal"><span class="pre">s.value</span></code> is passed to the
+with its <code class="docutils literal"><span class="pre">value</span></code> attribute when the child’s value or log-probability is
+computed. When <code class="docutils literal"><span class="pre">rate</span></code>’s value is recomputed, <code class="docutils literal"><span class="pre">s.value</span></code> is passed to the
 function as argument <code class="docutils literal"><span class="pre">switchpoint</span></code>. To see the values of the parents of
 <code class="docutils literal"><span class="pre">rate</span></code> all together, look at <code class="docutils literal"><span class="pre">rate.parents.value</span></code>.</p>
 </div>
@@ -383,18 +382,18 @@ of variables) like ours. The primary such object, <code class="docutils literal"
 Markov chain Monte Carlo algorithm <a class="reference internal" href="references.html#gamerman1997" id="id5">[Gamerman1997]</a>. To create an <code class="docutils literal"><span class="pre">MCMC</span></code>
 object to handle our model, import <code class="docutils literal"><span class="pre">disaster_model.py</span></code> and use it as an
 argument for <code class="docutils literal"><span class="pre">MCMC</span></code>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pymc.examples</span> <span class="kn">import</span> <span class="n">disaster_model</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pymc</span> <span class="kn">import</span> <span class="n">MCMC</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pymc.examples</span> <span class="k">import</span> <span class="n">disaster_model</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pymc</span> <span class="k">import</span> <span class="n">MCMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">M</span> <span class="o">=</span> <span class="n">MCMC</span><span class="p">(</span><span class="n">disaster_model</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>In this case <code class="docutils literal"><span class="pre">M</span></code> will expose variables <code class="docutils literal"><span class="pre">switchpoint</span></code>, <code class="docutils literal"><span class="pre">early_mean</span></code>,
 <code class="docutils literal"><span class="pre">late_mean</span></code> and <code class="docutils literal"><span class="pre">disasters</span></code> as attributes; that is, <code class="docutils literal"><span class="pre">M.switchpoint</span></code> will
 be the same object as <code class="docutils literal"><span class="pre">disaster_model.switchpoint</span></code>.</p>
-<p>To run the sampler, call the MCMC object&#8217;s <code class="docutils literal"><span class="pre">sample()</span></code> (or <code class="docutils literal"><span class="pre">isample()</span></code>, for
+<p>To run the sampler, call the MCMC object’s <code class="docutils literal"><span class="pre">sample()</span></code> (or <code class="docutils literal"><span class="pre">isample()</span></code>, for
 interactive sampling) method with arguments for the number of iterations,
 burn-in length, and thinning interval (if desired):</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">M</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">iter</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">burn</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">thin</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">M</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">iter</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">burn</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">thin</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>After a few seconds, you should see that sampling has finished normally. The
@@ -413,7 +412,7 @@ stationary distribution. In other words, their values can be considered as
 random draws from the posterior <span class="math">\(p(s,e,l|D)\)</span>. PyMC assumes that the
 <code class="docutils literal"><span class="pre">burn</span></code> parameter specifies a <cite>sufficiently large</cite> number of iterations for
 the algorithm to converge, so it is up to the user to verify that this is the
-case (see chapter <a class="reference internal" href="modelchecking.html#chap-modelchecking"><span>Model checking and diagnostics</span></a>). Consecutive values sampled from
+case (see chapter <a class="reference internal" href="modelchecking.html#chap-modelchecking"><span class="std std-ref">Model checking and diagnostics</span></a>). Consecutive values sampled from
 <code class="docutils literal"><span class="pre">switchpoint</span></code>, <code class="docutils literal"><span class="pre">early_mean</span></code> and <code class="docutils literal"><span class="pre">late_mean</span></code> are always serially
 dependent, since it is a Markov chain. MCMC often results in strong
 autocorrelation among samples that can result in imprecise posterior inference.
@@ -431,7 +430,7 @@ the samples after examining the traces (the series of samples). See
 <p>The output of the MCMC algorithm is a <cite>trace</cite>, the sequence of retained samples
 for each variable in the model. These traces can be accessed using the
 <code class="docutils literal"><span class="pre">trace(name,</span> <span class="pre">chain=-1)</span></code> method. For example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">M</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s">&#39;switchpoint&#39;</span><span class="p">)[:]</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">M</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s1">&#39;switchpoint&#39;</span><span class="p">)[:]</span>
 <span class="go">array([41, 40, 40, ..., 43, 44, 44])</span>
 </pre></div>
 </div>
@@ -445,8 +444,8 @@ trace from all chains, simply use <code class="docutils literal"><span class="pr
 <h3>3.5.3. Sampling output<a class="headerlink" href="#sampling-output" title="Permalink to this headline">¶</a></h3>
 <p>You can examine the marginal posterior of any variable by plotting a histogram
 of its trace:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pylab</span> <span class="kn">import</span> <span class="n">hist</span><span class="p">,</span> <span class="n">show</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">hist</span><span class="p">(</span><span class="n">M</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s">&#39;late_mean&#39;</span><span class="p">)[:])</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pylab</span> <span class="k">import</span> <span class="n">hist</span><span class="p">,</span> <span class="n">show</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hist</span><span class="p">(</span><span class="n">M</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s1">&#39;late_mean&#39;</span><span class="p">)[:])</span>
 <span class="go">(array([   8,   52,  565, 1624, 2563, 2105, 1292,  488,  258,   45]),</span>
 <span class="go"> array([ 0.52721865,  0.60788251,  0.68854637,  0.76921023,  0.84987409,</span>
 <span class="go">        0.93053795,  1.01120181,  1.09186567,  1.17252953,  1.25319339]),</span>
@@ -462,7 +461,7 @@ of its trace:</p>
 <p>PyMC has its own plotting functionality, via the optional <code class="docutils literal"><span class="pre">matplotlib</span></code> module
 as noted in the installation notes. The <code class="docutils literal"><span class="pre">Matplot</span></code> module includes a <code class="docutils literal"><span class="pre">plot</span></code>
 function that takes the model (or a single parameter) as an argument:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pymc.Matplot</span> <span class="kn">import</span> <span class="n">plot</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pymc.Matplot</span> <span class="k">import</span> <span class="n">plot</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -476,7 +475,7 @@ this one for the switchpoint in the disasters model:</p>
 <p>The upper left-hand pane of this figure shows the temporal series of the
 samples from <code class="docutils literal"><span class="pre">switchpoint</span></code>, while below is an autocorrelation plot of the
 samples. The right-hand pane shows a histogram of the trace. The trace is
-useful for evaluating and diagnosing the algorithm&#8217;s performance (see
+useful for evaluating and diagnosing the algorithm’s performance (see
 <a class="reference internal" href="references.html#gelman1996" id="id9">[Gelman1996]</a>), while the histogram is useful for visualizing the posterior.</p>
 <p>For a non-graphical summary of the posterior, simply call <code class="docutils literal"><span class="pre">M.stats()</span></code>.</p>
 </div>
@@ -545,20 +544,20 @@ posterior predictive distribution to model the likely values of missing data.</p
 <p>Consider the coal mining disasters data introduced previously. Assume that two
 years of data are missing from the time series; we indicate this in the data
 array by the use of an arbitrary placeholder value, None.:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span>
 <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span>
-<span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+<span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
 <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
 <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span>
-<span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span>
+<span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span>
 <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>To estimate these values in PyMC, we generate a masked array. These are
 specialised NumPy arrays that contain a matching True or False value for each
 element to indicate if that value should be excluded from any computation.
-Masked arrays can be generated using NumPy&#8217;s <code class="docutils literal"><span class="pre">ma.masked_equal</span></code> function:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">masked_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_equal</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+Masked arrays can be generated using NumPy’s <code class="docutils literal"><span class="pre">ma.masked_equal</span></code> function:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">masked_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_equal</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">masked_values</span>
 <span class="go">masked_array(data = [4 5 4 0 1 4 3 4 0 6 3 3 4 0 2 6 3 3 5 4 5 3 1 4 4 1 5 5 3</span>
 <span class="go"> 4 2 5 2 2 3 4 2 1 3 -- 2 1 1 1 1 3 0 0 1 0 1 1 0 0 3 1 0 3 2 2 0 1 1 1 0 1 0</span>
@@ -577,12 +576,12 @@ Masked arrays can be generated using NumPy&#8217;s <code class="docutils literal
 <span class="go">      fill_value=?)</span>
 </pre></div>
 </div>
-<p>This masked array, in turn, can then be passed to one of PyMC&#8217;s data stochastic
+<p>This masked array, in turn, can then be passed to one of PyMC’s data stochastic
 variables, which recognizes the masked array and replaces the missing values
 with Stochastic variables of the desired type. For the coal mining disasters
 problem, recall that disaster events were modeled as Poisson variates:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pymc</span> <span class="kn">import</span> <span class="n">Poisson</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">disasters</span> <span class="o">=</span> <span class="n">Poisson</span><span class="p">(</span><span class="s">&#39;disasters&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">rate</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">masked_values</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pymc</span> <span class="k">import</span> <span class="n">Poisson</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disasters</span> <span class="o">=</span> <span class="n">Poisson</span><span class="p">(</span><span class="s1">&#39;disasters&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">rate</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">masked_values</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Here <code class="docutils literal"><span class="pre">rate</span></code> is an array of means for each year of data, allocated according
@@ -593,34 +592,34 @@ difference is that actual observations are data Stochastics
 latter are considered unknown, rather than fixed, and therefore estimated by
 the MCMC algorithm, just as unknown model parameters.</p>
 <p>The entire model looks very similar to the original model:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="c"># Switchpoint</span>
-<span class="n">switch</span> <span class="o">=</span> <span class="n">DiscreteUniform</span><span class="p">(</span><span class="s">&#39;switch&#39;</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">110</span><span class="p">)</span>
-<span class="c"># Early mean</span>
-<span class="n">early_mean</span> <span class="o">=</span> <span class="n">Exponential</span><span class="p">(</span><span class="s">&#39;early_mean&#39;</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="c"># Late mean</span>
-<span class="n">late_mean</span> <span class="o">=</span> <span class="n">Exponential</span><span class="p">(</span><span class="s">&#39;late_mean&#39;</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Switchpoint</span>
+<span class="n">switch</span> <span class="o">=</span> <span class="n">DiscreteUniform</span><span class="p">(</span><span class="s1">&#39;switch&#39;</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">110</span><span class="p">)</span>
+<span class="c1"># Early mean</span>
+<span class="n">early_mean</span> <span class="o">=</span> <span class="n">Exponential</span><span class="p">(</span><span class="s1">&#39;early_mean&#39;</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># Late mean</span>
+<span class="n">late_mean</span> <span class="o">=</span> <span class="n">Exponential</span><span class="p">(</span><span class="s1">&#39;late_mean&#39;</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="nd">@deterministic</span><span class="p">(</span><span class="n">plot</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="nd">@deterministic</span><span class="p">(</span><span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">rate</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="n">switch</span><span class="p">,</span> <span class="n">e</span><span class="o">=</span><span class="n">early_mean</span><span class="p">,</span> <span class="n">l</span><span class="o">=</span><span class="n">late_mean</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Allocate appropriate mean to time series&quot;&quot;&quot;</span>
     <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">disasters_array</span><span class="p">))</span>
-    <span class="c"># Early mean prior to switchpoint</span>
+    <span class="c1"># Early mean prior to switchpoint</span>
     <span class="n">out</span><span class="p">[:</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="n">e</span>
-    <span class="c"># Late mean following switchpoint</span>
+    <span class="c1"># Late mean following switchpoint</span>
     <span class="n">out</span><span class="p">[</span><span class="n">s</span><span class="p">:]</span> <span class="o">=</span> <span class="n">l</span>
     <span class="k">return</span> <span class="n">out</span>
 
 
-<span class="c"># The inefficient way, using the Impute function:</span>
-<span class="c"># D = Impute(&#39;D&#39;, Poisson, disasters_array, mu=r)</span>
-<span class="c">#</span>
-<span class="c"># The efficient way, using masked arrays:</span>
-<span class="c"># Generate masked array. Where the mask is true,</span>
-<span class="c"># the value is taken as missing.</span>
+<span class="c1"># The inefficient way, using the Impute function:</span>
+<span class="c1"># D = Impute(&#39;D&#39;, Poisson, disasters_array, mu=r)</span>
+<span class="c1">#</span>
+<span class="c1"># The efficient way, using masked arrays:</span>
+<span class="c1"># Generate masked array. Where the mask is true,</span>
+<span class="c1"># the value is taken as missing.</span>
 <span class="n">masked_values</span> <span class="o">=</span> <span class="n">masked_array</span><span class="p">(</span><span class="n">disasters_array</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">disasters_array</span><span class="o">==-</span><span class="mi">999</span><span class="p">)</span>
 
-<span class="c"># Pass masked array to data stochastic, and it does the right thing</span>
-<span class="n">disasters</span> <span class="o">=</span> <span class="n">Poisson</span><span class="p">(</span><span class="s">&#39;disasters&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">rate</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">masked_values</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="c1"># Pass masked array to data stochastic, and it does the right thing</span>
+<span class="n">disasters</span> <span class="o">=</span> <span class="n">Poisson</span><span class="p">(</span><span class="s1">&#39;disasters&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">rate</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">masked_values</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Here, we have used the <code class="docutils literal"><span class="pre">masked_array</span></code> function, rather than <code class="docutils literal"><span class="pre">masked_equal</span></code>,
@@ -639,7 +638,7 @@ how parameters are updated at each step of the MCMC algorithm. By default, step
 methods are automatically assigned to variables by PyMC. To see which step
 methods <span class="math">\(M\)</span> is using, look at its <code class="docutils literal"><span class="pre">step_method_dict</span></code> attribute with
 respect to each parameter:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">M</span><span class="o">.</span><span class="n">step_method_dict</span><span class="p">[</span><span class="n">disaster_model</span><span class="o">.</span><span class="n">switchpoint</span><span class="p">]</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">M</span><span class="o">.</span><span class="n">step_method_dict</span><span class="p">[</span><span class="n">disaster_model</span><span class="o">.</span><span class="n">switchpoint</span><span class="p">]</span>
 <span class="go">[&lt;pymc.StepMethods.DiscreteMetropolis object at 0x3e8cb50&gt;]</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">M</span><span class="o">.</span><span class="n">step_method_dict</span><span class="p">[</span><span class="n">disaster_model</span><span class="o">.</span><span class="n">early_mean</span><span class="p">]</span>
@@ -655,7 +654,7 @@ list of the step methods <span class="math">\(M\)</span> is using to handle that
 <code class="docutils literal"><span class="pre">M.use_step_method</span></code> before telling it to sample. The following call will
 cause <span class="math">\(M\)</span> to handle <code class="docutils literal"><span class="pre">late_mean</span></code> with a standard <code class="docutils literal"><span class="pre">Metropolis</span></code> step
 method, but with proposal standard deviation equal to <span class="math">\(2\)</span>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pymc</span> <span class="kn">import</span> <span class="n">Metropolis</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pymc</span> <span class="k">import</span> <span class="n">Metropolis</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">M</span><span class="o">.</span><span class="n">use_step_method</span><span class="p">(</span><span class="n">Metropolis</span><span class="p">,</span> <span class="n">disaster_model</span><span class="o">.</span><span class="n">late_mean</span><span class="p">,</span> <span class="n">proposal_sd</span><span class="o">=</span><span class="mf">2.</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -679,7 +678,7 @@ addition to <code class="docutils literal"><span class="pre">Stochastic</span></
 </ul>
 </div></blockquote>
 <p>Also, be sure to check out the documentation for the Gaussian process
-extension, which is available on PyMC&#8217;s <a class="reference external" href="https://github.com/pymc-devs/pymc/downloads">download</a> page.</p>
+extension, which is available on PyMC’s <a class="reference external" href="https://github.com/pymc-devs/pymc/downloads">download</a> page.</p>
 <table class="docutils footnote" frame="void" id="id10" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
@@ -710,7 +709,7 @@ no trace and calling <code class="docutils literal"><span class="pre">M.trace('d
 </ul>
 </li>
 <li><a class="reference internal" href="#parents-and-children">3.3. Parents and children</a></li>
-<li><a class="reference internal" href="#variables-values-and-log-probabilities">3.4. Variables&#8217; values and log-probabilities</a><ul>
+<li><a class="reference internal" href="#variables-values-and-log-probabilities">3.4. Variables’ values and log-probabilities</a><ul>
 <li><a class="reference internal" href="#using-variables-as-parents-of-other-variables">3.4.1. Using Variables as parents of other Variables</a></li>
 </ul>
 </li>
@@ -736,21 +735,18 @@ no trace and calling <code class="docutils literal"><span class="pre">M.trace('d
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/tutorial.txt"
+      <li><a href="_sources/tutorial.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -772,12 +768,12 @@ no trace and calling <code class="docutils literal"><span class="pre">M.trace('d
         <li class="right" >
           <a href="INSTALL.html" title="2. Installation"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">PyMC 2.3.6 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">PyMC 2.3.7rc1 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2014, Christopher J. Fonnesbeck.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+        &#169; Copyright 2014, Christopher J. Fonnesbeck.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
     </div>
   </body>
 </html>
