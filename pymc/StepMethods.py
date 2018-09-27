@@ -976,9 +976,9 @@ class BinaryMetropolis(Metropolis):
             # Locations where switches occur, according to p_jump
             switch_locs = where(rand_array < p_jump)
             if shape(new_value):
-                new_value[switch_locs] = True - new_value[switch_locs]
+                new_value[switch_locs] = True ^ new_value[switch_locs]
             else:
-                new_value = True - new_value
+                new_value = True ^ new_value
             self.stochastic.value = new_value
 
 
