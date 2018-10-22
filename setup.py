@@ -10,7 +10,7 @@ import os, sys
 
 dist = sys.argv[1]
 
-numpy_min_version = '1.8'
+numpy_min_version = '1.08'
 
 def get_numpy_status():
     """
