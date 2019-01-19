@@ -18,7 +18,7 @@ Introduction
 
 
 
-**NOTE**: The development version of PyMC (version 3) has been moved to its own repository called `pymc3`_.
+**NOTE**: The current version PyMC (version 3) has been moved to its own repository called `pymc3`_. Unless you have a good reason for using this package, we recommend all new users adopt PyMC3.
 
 Purpose
 =======
