@@ -10,6 +10,8 @@ Installation
 :License: PyMC is released under the Academic Free license.
 :Version: 2.3.7
 
+**NOTE: The current version PyMC (version 3) has been moved to its own repository called pymc3. Unless you have a good reason for using this package, we recommend all new users adopt PyMC3.**
+
 PyMC is known to run on Mac OS X, Linux and Windows, but in theory should be
 able to work on just about any platform for which Python, a Fortran compiler
 and the NumPy module are available. However, installing some extra depencies
