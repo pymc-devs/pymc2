@@ -130,7 +130,7 @@ def setup_pymc():
     config_dict = build_ext(Configuration('pymc',parent_package=None,top_path=None))
                               
     
-    setup(  version="2.3.7",
+    setup(  version="2.3.8",
             description="Markov Chain Monte Carlo sampling toolkit.",
             author="Christopher Fonnesbeck, Anand Patil and David Huard",
             author_email="fonnesbeck@gmail.com ",
