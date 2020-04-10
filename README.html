@@ -1,33 +1,25 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>1. Introduction &#8212; PyMC 2.3.7rc1 documentation</title>
+    <meta charset="utf-8" />
+    <title>1. Introduction &#8212; PyMC 2.3.8 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '2.3.7rc1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="2. Installation" href="INSTALL.html" />
     <link rel="prev" title="PyMC User’s Guide" href="index.html" /> 
-  </head>
-  <body>
+  </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -43,7 +35,7 @@
         <li class="right" >
           <a href="index.html" title="PyMC User’s Guide"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">PyMC 2.3.7rc1 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">PyMC 2.3.8 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -53,29 +45,32 @@
           <div class="body" role="main">
             
   <div class="section" id="introduction">
-<h1>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Date:</th><td class="field-body">15 September 2015</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Authors:</th><td class="field-body">Chris Fonnesbeck, Anand Patil, David Huard, John Salvatier</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Contact:</th><td class="field-body"><a class="reference external" href="mailto:chris&#46;fonnesbeck&#37;&#52;&#48;vanderbilt&#46;edu">chris<span>&#46;</span>fonnesbeck<span>&#64;</span>vanderbilt<span>&#46;</span>edu</a></td>
-</tr>
-<tr class="field-even field"><th class="field-name">Web site:</th><td class="field-body"><a class="reference external" href="http://github.com/pymc-devs/pymc">http://github.com/pymc-devs/pymc</a></td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Copyright:</th><td class="field-body">This document has been placed in the public domain.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">License:</th><td class="field-body">PyMC is released under the Academic Free License.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Version:</th><td class="field-body">7</td>
-</tr>
-</tbody>
-</table>
+<h1><span class="section-number">1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Date</dt>
+<dd class="field-odd"><p>15 September 2015</p>
+</dd>
+<dt class="field-even">Authors</dt>
+<dd class="field-even"><p>Chris Fonnesbeck, Anand Patil, David Huard, John Salvatier</p>
+</dd>
+<dt class="field-odd">Contact</dt>
+<dd class="field-odd"><p><a class="reference external" href="mailto:chris&#46;fonnesbeck&#37;&#52;&#48;vanderbilt&#46;edu">chris<span>&#46;</span>fonnesbeck<span>&#64;</span>vanderbilt<span>&#46;</span>edu</a></p>
+</dd>
+<dt class="field-even">Web site</dt>
+<dd class="field-even"><p><a class="reference external" href="http://github.com/pymc-devs/pymc">http://github.com/pymc-devs/pymc</a></p>
+</dd>
+<dt class="field-odd">Copyright</dt>
+<dd class="field-odd"><p>This document has been placed in the public domain.</p>
+</dd>
+<dt class="field-even">License</dt>
+<dd class="field-even"><p>PyMC is released under the Academic Free License.</p>
+</dd>
+<dt class="field-odd">Version</dt>
+<dd class="field-odd"><p>7</p>
+</dd>
+</dl>
 <div class="section" id="purpose">
-<h2>1.1. Purpose<a class="headerlink" href="#purpose" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.1. </span>Purpose<a class="headerlink" href="#purpose" title="Permalink to this headline">¶</a></h2>
 <p>PyMC is a python module that implements Bayesian statistical models and fitting
 algorithms, including Markov chain Monte Carlo. Its flexibility and
 extensibility make it applicable to a large suite of problems. Along with core
@@ -83,45 +78,45 @@ sampling functionality, PyMC includes methods for summarizing output, plotting,
 goodness-of-fit and convergence diagnostics.</p>
 </div>
 <div class="section" id="features">
-<h2>1.2. Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.2. </span>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
 <p>PyMC provides functionalities to make Bayesian analysis as painless as
 possible. Here is a short list of some of its features:</p>
 <ul class="simple">
-<li>Fits Bayesian statistical models with Markov chain Monte Carlo and
-other algorithms.</li>
-<li>Includes a large suite of well-documented statistical distributions.</li>
-<li>Uses NumPy for numerics wherever possible.</li>
-<li>Includes a module for modeling Gaussian processes.</li>
-<li>Sampling loops can be paused and tuned manually, or saved and restarted later.</li>
-<li>Creates summaries including tables and plots.</li>
-<li>Traces can be saved to the disk as plain text, Python pickles, SQLite or MySQL
-database, or hdf5 archives.</li>
-<li>Several convergence diagnostics are available.</li>
-<li>Extensible: easily incorporates custom step methods and unusual probability
-distributions.</li>
-<li>MCMC loops can be embedded in larger programs, and results can be analyzed
-with the full power of Python.</li>
+<li><p>Fits Bayesian statistical models with Markov chain Monte Carlo and
+other algorithms.</p></li>
+<li><p>Includes a large suite of well-documented statistical distributions.</p></li>
+<li><p>Uses NumPy for numerics wherever possible.</p></li>
+<li><p>Includes a module for modeling Gaussian processes.</p></li>
+<li><p>Sampling loops can be paused and tuned manually, or saved and restarted later.</p></li>
+<li><p>Creates summaries including tables and plots.</p></li>
+<li><p>Traces can be saved to the disk as plain text, Python pickles, SQLite or MySQL
+database, or hdf5 archives.</p></li>
+<li><p>Several convergence diagnostics are available.</p></li>
+<li><p>Extensible: easily incorporates custom step methods and unusual probability
+distributions.</p></li>
+<li><p>MCMC loops can be embedded in larger programs, and results can be analyzed
+with the full power of Python.</p></li>
 </ul>
 </div>
 <div class="section" id="what-s-new-in-version-2">
-<h2>1.3. What’s new in version 2<a class="headerlink" href="#what-s-new-in-version-2" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.3. </span>What’s new in version 2<a class="headerlink" href="#what-s-new-in-version-2" title="Permalink to this headline">¶</a></h2>
 <p>This second version of PyMC benefits from a major rewrite effort. Substantial
 improvements in code extensibility, user interface as well as in raw
 performance have been achieved. Most notably, the PyMC 2 series provides:</p>
 <ul class="simple">
-<li>New flexible object model and syntax (not backward-compatible).</li>
-<li>Reduced redundant computations: only relevant log-probability terms are
-computed, and these are cached.</li>
-<li>Optimized probability distributions.</li>
-<li>New adaptive blocked Metropolis step method.</li>
-<li>New slice sampler method.</li>
-<li>Much more!</li>
+<li><p>New flexible object model and syntax (not backward-compatible).</p></li>
+<li><p>Reduced redundant computations: only relevant log-probability terms are
+computed, and these are cached.</p></li>
+<li><p>Optimized probability distributions.</p></li>
+<li><p>New adaptive blocked Metropolis step method.</p></li>
+<li><p>New slice sampler method.</p></li>
+<li><p>Much more!</p></li>
 </ul>
 </div>
 <div class="section" id="usage">
-<h2>1.4. Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.4. </span>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
 <p>First, define your model in a file, say mymodel.py (with comments, of course!):</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Import relevant modules</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import relevant modules</span>
 <span class="kn">import</span> <span class="nn">pymc</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -145,7 +140,7 @@ computed, and these are cached.</li>
 </pre></div>
 </div>
 <p>Save this file, then from a python shell (or another file in the same directory), call:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pymc</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pymc</span>
 <span class="kn">import</span> <span class="nn">mymodel</span>
 
 <span class="n">S</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">MCMC</span><span class="p">(</span><span class="n">mymodel</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="s1">&#39;pickle&#39;</span><span class="p">)</span>
@@ -158,7 +153,7 @@ with the first half discarded as burn-in. The sample is stored in a Python
 serialization (pickle) database.</p>
 </div>
 <div class="section" id="history">
-<h2>1.5. History<a class="headerlink" href="#history" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.5. </span>History<a class="headerlink" href="#history" title="Permalink to this headline">¶</a></h2>
 <p>PyMC began development in 2003, as an effort to generalize the process of
 building Metropolis-Hastings samplers, with an aim to making Markov chain Monte
 Carlo (MCMC) more accessible to non-statisticians (particularly ecologists).
@@ -181,7 +176,7 @@ plots, and some important bug fixes.</p>
 <p>This user guide has been updated for version 2.3.</p>
 </div>
 <div class="section" id="relationship-to-other-packages">
-<h2>1.6. Relationship to other packages<a class="headerlink" href="#relationship-to-other-packages" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.6. </span>Relationship to other packages<a class="headerlink" href="#relationship-to-other-packages" title="Permalink to this headline">¶</a></h2>
 <p>PyMC in one of many general-purpose MCMC packages. The most prominent among
 them is <a class="reference external" href="http://www.mrc-bsu.cam.ac.uk/bugs/">WinBUGS</a>, which has made MCMC (and with it, Bayesian statistics)
 accessible to a huge user community. Unlike PyMC, WinBUGS is a stand-alone,
@@ -214,7 +209,7 @@ code. See the <a class="reference external" href="https://github.com/pymc-devs/p
 chosen PyMC.</p>
 </div>
 <div class="section" id="getting-started">
-<h2>1.7. Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.7. </span>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
 <p>This guide provides all the information needed to install PyMC, code a Bayesian
 statistical model, run the sampler, save and visualize the results. In
 addition, it contains a list of the statistical distributions currently
@@ -231,7 +226,7 @@ available. More <a class="reference external" href="https://github.com/pymc-devs
             <p class="logo"><a href="index.html">
               <img class="logo" src="_static/icon.png" alt="Logo"/>
             </a></p>
-  <h3><a href="index.html">Table Of Contents</a></h3>
+  <h3><a href="index.html">Table of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">1. Introduction</a><ul>
 <li><a class="reference internal" href="#purpose">1.1. Purpose</a></li>
@@ -250,7 +245,7 @@ available. More <a class="reference external" href="https://github.com/pymc-devs
                         title="previous chapter">PyMC User’s Guide</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="INSTALL.html"
-                        title="next chapter">2. Installation</a></p>
+                        title="next chapter"><span class="section-number">2. </span>Installation</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -259,15 +254,15 @@ available. More <a class="reference external" href="https://github.com/pymc-devs
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
     </form>
+    </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -287,12 +282,12 @@ available. More <a class="reference external" href="https://github.com/pymc-devs
         <li class="right" >
           <a href="index.html" title="PyMC User’s Guide"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">PyMC 2.3.7rc1 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">PyMC 2.3.8 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2014, Christopher J. Fonnesbeck.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.
     </div>
   </body>
 </html>

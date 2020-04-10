@@ -1,33 +1,25 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>8. Extending PyMC &#8212; PyMC 2.3.7rc1 documentation</title>
+    <meta charset="utf-8" />
+    <title>8. Extending PyMC &#8212; PyMC 2.3.8 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '2.3.7rc1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="9. Probability distributions" href="distributions.html" />
     <link rel="prev" title="7. Model checking and diagnostics" href="modelchecking.html" /> 
-  </head>
-  <body>
+  </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -43,7 +35,7 @@
         <li class="right" >
           <a href="modelchecking.html" title="7. Model checking and diagnostics"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">PyMC 2.3.7rc1 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">PyMC 2.3.8 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -53,62 +45,62 @@
           <div class="body" role="main">
             
   <div class="section" id="extending-pymc">
-<span id="chap-extending"></span><h1>8. Extending PyMC<a class="headerlink" href="#extending-pymc" title="Permalink to this headline">¶</a></h1>
+<span id="chap-extending"></span><h1><span class="section-number">8. </span>Extending PyMC<a class="headerlink" href="#extending-pymc" title="Permalink to this headline">¶</a></h1>
 <p>PyMC tries to make standard things easy, but keep unusual things possible. Its
 openness, combined with Python’s flexibility, invite extensions from using new
 step methods to exotic stochastic processes (see the Gaussian process module).
 This chapter briefly reviews the ways PyMC is designed to be extended.</p>
 <div class="section" id="nonstandard-stochastics">
-<span id="nonstandard"></span><h2>8.1. Nonstandard Stochastics<a class="headerlink" href="#nonstandard-stochastics" title="Permalink to this headline">¶</a></h2>
-<p>The simplest way to create a <code class="docutils literal"><span class="pre">Stochastic</span></code> object with a nonstandard
+<span id="nonstandard"></span><h2><span class="section-number">8.1. </span>Nonstandard Stochastics<a class="headerlink" href="#nonstandard-stochastics" title="Permalink to this headline">¶</a></h2>
+<p>The simplest way to create a <code class="docutils literal notranslate"><span class="pre">Stochastic</span></code> object with a nonstandard
 distribution is to use the medium or long decorator syntax. See Chapter
 <a class="reference internal" href="modelbuilding.html#chap-modelbuilding"><span class="std std-ref">Building models</span></a>. If you want to create many stochastics with the same
 nonstandard distribution, the decorator syntax can become cumbersome. An actual
-subclass of <code class="docutils literal"><span class="pre">Stochastic</span></code> can be created using the class factory
-<code class="docutils literal"><span class="pre">stochastic_from_dist</span></code>. This function takes the following arguments:</p>
+subclass of <code class="docutils literal notranslate"><span class="pre">Stochastic</span></code> can be created using the class factory
+<code class="docutils literal notranslate"><span class="pre">stochastic_from_dist</span></code>. This function takes the following arguments:</p>
 <blockquote>
 <div><ul class="simple">
-<li>The name of the new class,</li>
-<li>A <code class="docutils literal"><span class="pre">logp</span></code> function,</li>
-<li>A <code class="docutils literal"><span class="pre">random</span></code> function,</li>
-<li>The NumPy datatype of the new class (for continuous distributions, this
-should be <code class="docutils literal"><span class="pre">float</span></code>; for discrete distributions, <code class="docutils literal"><span class="pre">int</span></code>; for variables
-valued as non-numerical objects, <code class="docutils literal"><span class="pre">object</span></code>),</li>
-<li>A flag indicating whether the resulting class represents a vector-valued
-variable.</li>
+<li><p>The name of the new class,</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">logp</span></code> function,</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">random</span></code> function,</p></li>
+<li><p>The NumPy datatype of the new class (for continuous distributions, this
+should be <code class="docutils literal notranslate"><span class="pre">float</span></code>; for discrete distributions, <code class="docutils literal notranslate"><span class="pre">int</span></code>; for variables
+valued as non-numerical objects, <code class="docutils literal notranslate"><span class="pre">object</span></code>),</p></li>
+<li><p>A flag indicating whether the resulting class represents a vector-valued
+variable.</p></li>
 </ul>
 </div></blockquote>
-<p>The necessary parent labels are read from the <code class="docutils literal"><span class="pre">logp</span></code> function, and a
+<p>The necessary parent labels are read from the <code class="docutils literal notranslate"><span class="pre">logp</span></code> function, and a
 docstring for the new class is automatically generated. Instances of the new
 class can be created in one line.</p>
-<p>Full subclasses of <code class="docutils literal"><span class="pre">Stochastic</span></code> may be necessary to provide nonstandard
-behaviors (see <code class="docutils literal"><span class="pre">gp.GP</span></code>).</p>
+<p>Full subclasses of <code class="docutils literal notranslate"><span class="pre">Stochastic</span></code> may be necessary to provide nonstandard
+behaviors (see <code class="docutils literal notranslate"><span class="pre">gp.GP</span></code>).</p>
 </div>
 <div class="section" id="user-defined-step-methods">
-<span id="custom-stepper"></span><h2>8.2. User-defined step methods<a class="headerlink" href="#user-defined-step-methods" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal"><span class="pre">StepMethod</span></code> class is meant to be subclassed. There are an enormous number of MCMC step methods in the literature, whereas PyMC provides only about half a dozen. Most user-defined step methods will be either Metropolis-Hastings or Gibbs step methods, and these should subclass <code class="docutils literal"><span class="pre">Metropolis</span></code> or <code class="docutils literal"><span class="pre">Gibbs</span></code> respectively. More unusual step methods should subclass <code class="docutils literal"><span class="pre">StepMethod</span></code> directly.</p>
+<span id="custom-stepper"></span><h2><span class="section-number">8.2. </span>User-defined step methods<a class="headerlink" href="#user-defined-step-methods" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">StepMethod</span></code> class is meant to be subclassed. There are an enormous number of MCMC step methods in the literature, whereas PyMC provides only about half a dozen. Most user-defined step methods will be either Metropolis-Hastings or Gibbs step methods, and these should subclass <code class="docutils literal notranslate"><span class="pre">Metropolis</span></code> or <code class="docutils literal notranslate"><span class="pre">Gibbs</span></code> respectively. More unusual step methods should subclass <code class="docutils literal notranslate"><span class="pre">StepMethod</span></code> directly.</p>
 <div class="section" id="example-an-asymmetric-metropolis-step">
-<h3>8.2.1. Example: an asymmetric Metropolis step<a class="headerlink" href="#example-an-asymmetric-metropolis-step" title="Permalink to this headline">¶</a></h3>
-<p>Consider the probability model in <code class="file docutils literal"><span class="pre">examples/custom_step.py</span></code>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mu</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s1">&#39;mu&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">.</span><span class="mi">01</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<h3><span class="section-number">8.2.1. </span>Example: an asymmetric Metropolis step<a class="headerlink" href="#example-an-asymmetric-metropolis-step" title="Permalink to this headline">¶</a></h3>
+<p>Consider the probability model in <code class="file docutils literal notranslate"><span class="pre">examples/custom_step.py</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mu</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s1">&#39;mu&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">.</span><span class="mi">01</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">tau</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="s1">&#39;tau&#39;</span><span class="p">,</span><span class="o">.</span><span class="mi">01</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">cutoff</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="s1">&#39;cutoff&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">1.3</span><span class="p">)</span>
 <span class="n">D</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Truncnorm</span><span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">,</span><span class="n">mu</span><span class="p">,</span><span class="n">tau</span><span class="p">,</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span><span class="n">cutoff</span><span class="p">,</span><span class="n">value</span><span class="o">=</span><span class="n">data</span><span class="p">,</span><span class="n">observed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The stochastic variable <code class="docutils literal"><span class="pre">cutoff</span></code> cannot be smaller than the largest element
-of <span class="math">\(D\)</span>, otherwise <span class="math">\(D\)</span>‘s density would be zero. The standard
-<code class="docutils literal"><span class="pre">Metropolis</span></code> step method can handle this case without problems; it will
+<p>The stochastic variable <code class="docutils literal notranslate"><span class="pre">cutoff</span></code> cannot be smaller than the largest element
+of <span class="math notranslate nohighlight">\(D\)</span>, otherwise <span class="math notranslate nohighlight">\(D\)</span>’s density would be zero. The standard
+<code class="docutils literal notranslate"><span class="pre">Metropolis</span></code> step method can handle this case without problems; it will
 propose illegal values occasionally, but these will be rejected.</p>
-<p>Suppose we want to handle <code class="docutils literal"><span class="pre">cutoff</span></code> with a smarter step method that doesn’t
+<p>Suppose we want to handle <code class="docutils literal notranslate"><span class="pre">cutoff</span></code> with a smarter step method that doesn’t
 propose illegal values. Specifically, we want to use the nonsymmetric proposal
 distribution:</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \begin{eqnarray*}
       x_p | x \sim \textup{Truncnorm}(x, \sigma, \max(D), \infty).
 \end{eqnarray*}</div><p>We can implement this Metropolis-Hastings algorithm with the following step method class:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TruncatedMetropolis</span><span class="p">(</span><span class="n">pymc</span><span class="o">.</span><span class="n">Metropolis</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stochastic</span><span class="p">,</span> <span class="n">low_bound</span><span class="p">,</span> <span class="n">up_bound</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TruncatedMetropolis</span><span class="p">(</span><span class="n">pymc</span><span class="o">.</span><span class="n">Metropolis</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stochastic</span><span class="p">,</span> <span class="n">low_bound</span><span class="p">,</span> <span class="n">up_bound</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">low_bound</span> <span class="o">=</span> <span class="n">low_bound</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">up_bound</span> <span class="o">=</span> <span class="n">up_bound</span>
         <span class="n">pymc</span><span class="o">.</span><span class="n">Metropolis</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stochastic</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -131,77 +123,76 @@ distribution:</p>
         <span class="k">return</span> <span class="n">lp_bak</span> <span class="o">-</span> <span class="n">lp_for</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal"><span class="pre">propose</span></code> method sets the step method’s stochastic’s value to a new
+<p>The <code class="docutils literal notranslate"><span class="pre">propose</span></code> method sets the step method’s stochastic’s value to a new
 value, drawn from a truncated normal distribution. The precision of this
-distribution is computed from two factors: <code class="docutils literal"><span class="pre">self.proposal_sd</span></code>, which can be
-set with an input argument to Metropolis, and <code class="docutils literal"><span class="pre">self.adaptive_scale_factor</span></code>.
+distribution is computed from two factors: <code class="docutils literal notranslate"><span class="pre">self.proposal_sd</span></code>, which can be
+set with an input argument to Metropolis, and <code class="docutils literal notranslate"><span class="pre">self.adaptive_scale_factor</span></code>.
 Metropolis step methods’ default tuning behavior is to reduce
-<code class="docutils literal"><span class="pre">adaptive_scale_factor</span></code> if the acceptance rate is too low, and to increase
-<code class="docutils literal"><span class="pre">adaptive_scale_factor</span></code> if it is too high. By incorporating
-<code class="docutils literal"><span class="pre">adaptive_scale_factor</span></code> into the proposal standard deviation, we avoid having
+<code class="docutils literal notranslate"><span class="pre">adaptive_scale_factor</span></code> if the acceptance rate is too low, and to increase
+<code class="docutils literal notranslate"><span class="pre">adaptive_scale_factor</span></code> if it is too high. By incorporating
+<code class="docutils literal notranslate"><span class="pre">adaptive_scale_factor</span></code> into the proposal standard deviation, we avoid having
 to write our own tuning infrastructure. If we don’t want the proposal to tune,
-we don’t have to use <code class="docutils literal"><span class="pre">adaptive_scale_factor</span></code>.</p>
-<p>The <code class="docutils literal"><span class="pre">hastings_factor</span></code> method adjusts for the asymmetric proposal distribution
-<a class="reference internal" href="references.html#gelman2004" id="id1">[Gelman2004]</a>. It computes the log of the quotient of the ‘backward’ density
+we don’t have to use <code class="docutils literal notranslate"><span class="pre">adaptive_scale_factor</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">hastings_factor</span></code> method adjusts for the asymmetric proposal distribution
+<a class="reference internal" href="references.html#gelman2004" id="id1"><span>[Gelman2004]</span></a>. It computes the log of the quotient of the ‘backward’ density
 and the ‘forward’ density. For symmetric proposal distributions, this quotient
 is 1, so its log is zero.</p>
 <p>Having created our custom step method, we need to tell MCMC instances to use it
-to handle the variable <code class="docutils literal"><span class="pre">cutoff</span></code>. This is done in <code class="file docutils literal"><span class="pre">custom_step.py</span></code> with
+to handle the variable <code class="docutils literal notranslate"><span class="pre">cutoff</span></code>. This is done in <code class="file docutils literal notranslate"><span class="pre">custom_step.py</span></code> with
 the following line:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">M</span><span class="o">.</span><span class="n">use_step_method</span><span class="p">(</span><span class="n">TruncatedMetropolis</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">,</span> <span class="n">D</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">M</span><span class="o">.</span><span class="n">use_step_method</span><span class="p">(</span><span class="n">TruncatedMetropolis</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">,</span> <span class="n">D</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>This call causes <span class="math">\(M\)</span> to pass the arguments <code class="docutils literal"><span class="pre">cutoff</span></code>, <code class="docutils literal"><span class="pre">D.value.max()</span></code>,
-and <code class="docutils literal"><span class="pre">np.inf</span></code> to a <code class="docutils literal"><span class="pre">TruncatedMetropolis</span></code> object’s <code class="docutils literal"><span class="pre">__init__</span></code> method, and
-use the object to handle <code class="docutils literal"><span class="pre">cutoff</span></code>.</p>
+<p>This call causes <span class="math notranslate nohighlight">\(M\)</span> to pass the arguments <code class="docutils literal notranslate"><span class="pre">cutoff</span></code>, <code class="docutils literal notranslate"><span class="pre">D.value.max()</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">np.inf</span></code> to a <code class="docutils literal notranslate"><span class="pre">TruncatedMetropolis</span></code> object’s <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method, and
+use the object to handle <code class="docutils literal notranslate"><span class="pre">cutoff</span></code>.</p>
 <p>Its often convenient to get a handle to a custom step method instance directly
-for debugging purposes. <code class="docutils literal"><span class="pre">M.step_method_dict[cutoff]</span></code> returns a list of all
-the step methods <span class="math">\(M\)</span> will use to handle <code class="docutils literal"><span class="pre">cutoff</span></code>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">M</span><span class="o">.</span><span class="n">step_method_dict</span><span class="p">[</span><span class="n">cutoff</span><span class="p">]</span>
+for debugging purposes. <code class="docutils literal notranslate"><span class="pre">M.step_method_dict[cutoff]</span></code> returns a list of all
+the step methods <span class="math notranslate nohighlight">\(M\)</span> will use to handle <code class="docutils literal notranslate"><span class="pre">cutoff</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">M</span><span class="o">.</span><span class="n">step_method_dict</span><span class="p">[</span><span class="n">cutoff</span><span class="p">]</span>
 <span class="go">[&lt;custom_step.TruncatedMetropolis object at 0x3c91130&gt;]</span>
 </pre></div>
 </div>
 <p>There may be more than one, and conversely step methods may handle more than
-one stochastic variable. To see which variables step method <span class="math">\(S\)</span> is
+one stochastic variable. To see which variables step method <span class="math notranslate nohighlight">\(S\)</span> is
 handling, try:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">stochastics</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">stochastics</span>
 <span class="go">set([&lt;pymc.distributions.Exponential &#39;cutoff&#39; at 0x3cd6b90&gt;])</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="general-step-methods">
-<h3>8.2.2. General step methods<a class="headerlink" href="#general-step-methods" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">8.2.2. </span>General step methods<a class="headerlink" href="#general-step-methods" title="Permalink to this headline">¶</a></h3>
 <p>All step methods must implement the following methods:</p>
-<dl class="docutils">
-<dt><code class="docutils literal"><span class="pre">step()</span></code>:</dt>
-<dd>Updates the values of <code class="docutils literal"><span class="pre">self.stochastics</span></code>.</dd>
-<dt><code class="docutils literal"><span class="pre">tune()</span></code>:</dt>
-<dd><p class="first">Tunes the jumping strategy based on performance so far. A default method is
-available that increases <code class="docutils literal"><span class="pre">self.adaptive_scale_factor</span></code> (see below) when
-acceptance rate is high, and decreases it when acceptance rate is low. This
-method should return <code class="docutils literal"><span class="pre">True</span></code> if additional tuning will be required later,</p>
-<blockquote class="last">
-<div>and <code class="docutils literal"><span class="pre">False</span></code> otherwise.</div></blockquote>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">step()</span></code>:</dt><dd><p>Updates the values of <code class="docutils literal notranslate"><span class="pre">self.stochastics</span></code>.</p>
 </dd>
-<dt><code class="docutils literal"><span class="pre">competence(s):</span></code></dt>
-<dd><dl class="first docutils">
-<dt>A class method that examines stochastic variable <span class="math">\(s\)</span> and returns a</dt>
-<dd>value from 0 to 3 expressing the step method’s ability to handle the
-variable. This method is used by <code class="docutils literal"><span class="pre">MCMC</span></code> instances when automatically
-assigning step methods. Conventions are:</dd>
-<dt>0</dt>
-<dd>I cannot safely handle this variable.</dd>
-<dt>1</dt>
-<dd>I can handle the variable about as well as the standard <code class="docutils literal"><span class="pre">Metropolis</span></code> step method.</dd>
-<dt>2</dt>
-<dd>I can do better than <code class="docutils literal"><span class="pre">Metropolis</span></code>.</dd>
-<dt>3</dt>
-<dd>I am the best step method you are likely to find for this variable in most cases.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">tune()</span></code>:</dt><dd><p>Tunes the jumping strategy based on performance so far. A default method is
+available that increases <code class="docutils literal notranslate"><span class="pre">self.adaptive_scale_factor</span></code> (see below) when
+acceptance rate is high, and decreases it when acceptance rate is low. This
+method should return <code class="docutils literal notranslate"><span class="pre">True</span></code> if additional tuning will be required later,</p>
+<blockquote>
+<div><p>and <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
+</div></blockquote>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">competence(s):</span></code></dt><dd><dl class="simple">
+<dt>A class method that examines stochastic variable <span class="math notranslate nohighlight">\(s\)</span> and returns a</dt><dd><p>value from 0 to 3 expressing the step method’s ability to handle the
+variable. This method is used by <code class="docutils literal notranslate"><span class="pre">MCMC</span></code> instances when automatically
+assigning step methods. Conventions are:</p>
+</dd>
+<dt>0</dt><dd><p>I cannot safely handle this variable.</p>
+</dd>
+<dt>1</dt><dd><p>I can handle the variable about as well as the standard <code class="docutils literal notranslate"><span class="pre">Metropolis</span></code> step method.</p>
+</dd>
+<dt>2</dt><dd><p>I can do better than <code class="docutils literal notranslate"><span class="pre">Metropolis</span></code>.</p>
+</dd>
+<dt>3</dt><dd><p>I am the best step method you are likely to find for this variable in most cases.</p>
+</dd>
 </dl>
 <p>For example, if you write a step method that can handle
-<code class="docutils literal"><span class="pre">MyStochasticSubclass</span></code> well, the competence method might look like this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyStepMethod</span><span class="p">(</span><span class="n">pymc</span><span class="o">.</span><span class="n">StepMethod</span><span class="p">):</span>
-   <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stochastic</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<code class="docutils literal notranslate"><span class="pre">MyStochasticSubclass</span></code> well, the competence method might look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyStepMethod</span><span class="p">(</span><span class="n">pymc</span><span class="o">.</span><span class="n">StepMethod</span><span class="p">):</span>
+   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stochastic</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
       <span class="o">...</span>
 
    <span class="nd">@classmethod</span>
@@ -212,82 +203,78 @@ assigning step methods. Conventions are:</dd>
          <span class="k">return</span> <span class="mi">0</span>
 </pre></div>
 </div>
-<p class="last">Note that PyMC will not even attempt to assign a step method automatically
-if its <code class="docutils literal"><span class="pre">__init__</span></code> method cannot be called with a single stochastic
-instance, that is <code class="docutils literal"><span class="pre">MyStepMethod(x)</span></code> is a legal call. The list of step
+<p>Note that PyMC will not even attempt to assign a step method automatically
+if its <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method cannot be called with a single stochastic
+instance, that is <code class="docutils literal notranslate"><span class="pre">MyStepMethod(x)</span></code> is a legal call. The list of step
 methods that PyMC will consider assigning automatically is called
-<code class="docutils literal"><span class="pre">pymc.StepMethodRegistry</span></code>.</p>
+<code class="docutils literal notranslate"><span class="pre">pymc.StepMethodRegistry</span></code>.</p>
 </dd>
-<dt><code class="docutils literal"><span class="pre">current_state()</span></code>:</dt>
-<dd><p class="first">This method is easiest to explain by showing the code:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">state</span> <span class="o">=</span> <span class="p">{}</span>
+<dt><code class="docutils literal notranslate"><span class="pre">current_state()</span></code>:</dt><dd><p>This method is easiest to explain by showing the code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">state</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="p">:</span>
     <span class="n">state</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
 <span class="k">return</span> <span class="n">state</span>
 </pre></div>
 </div>
-<p class="last"><code class="docutils literal"><span class="pre">self._state</span></code> should be a list containing the names of the attributes
-needed to reproduce the current jumping strategy. If an <code class="docutils literal"><span class="pre">MCMC</span></code> object
+<p><code class="docutils literal notranslate"><span class="pre">self._state</span></code> should be a list containing the names of the attributes
+needed to reproduce the current jumping strategy. If an <code class="docutils literal notranslate"><span class="pre">MCMC</span></code> object
 writes its state out to a database, these attributes will be preserved. If
-an <code class="docutils literal"><span class="pre">MCMC</span></code> object restores its state from the database later, the
+an <code class="docutils literal notranslate"><span class="pre">MCMC</span></code> object restores its state from the database later, the
 corresponding step method will have these attributes set to their saved
 values.</p>
 </dd>
 </dl>
 <p>Step methods should also maintain the following attributes:</p>
-<dl class="docutils">
-<dt><code class="docutils literal"><span class="pre">_id</span></code>:</dt>
-<dd><dl class="first last docutils">
-<dt>A string that can identify each step method uniquely (usually something</dt>
-<dd>like <code class="docutils literal"><span class="pre">&lt;class_name&gt;_&lt;stochastic_name&gt;</span></code>).</dd>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">_id</span></code>:</dt><dd><dl class="simple">
+<dt>A string that can identify each step method uniquely (usually something</dt><dd><p>like <code class="docutils literal notranslate"><span class="pre">&lt;class_name&gt;_&lt;stochastic_name&gt;</span></code>).</p>
+</dd>
 </dl>
 </dd>
-<dt><code class="docutils literal"><span class="pre">adaptive_scale_factor</span></code>:</dt>
-<dd>An ‘adaptive scale factor’. This attribute is only needed if the default
-<code class="docutils literal"><span class="pre">tune()</span></code> method is used.</dd>
-<dt><code class="docutils literal"><span class="pre">_tuning_info</span></code>:</dt>
-<dd><dl class="first last docutils">
-<dt>A list of strings giving the names of any tuning parameters. For</dt>
-<dd><code class="docutils literal"><span class="pre">Metropolis</span></code> instances, this would be <code class="docutils literal"><span class="pre">adaptive_scale_factor</span></code>. This
+<dt><code class="docutils literal notranslate"><span class="pre">adaptive_scale_factor</span></code>:</dt><dd><p>An ‘adaptive scale factor’. This attribute is only needed if the default
+<code class="docutils literal notranslate"><span class="pre">tune()</span></code> method is used.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">_tuning_info</span></code>:</dt><dd><dl class="simple">
+<dt>A list of strings giving the names of any tuning parameters. For</dt><dd><p><code class="docutils literal notranslate"><span class="pre">Metropolis</span></code> instances, this would be <code class="docutils literal notranslate"><span class="pre">adaptive_scale_factor</span></code>. This
 list is used to keep traces of tuning parameters in order to verify
-‘diminishing tuning’ <a class="reference internal" href="references.html#roberts2007" id="id2">[Roberts2007]</a>.</dd>
+‘diminishing tuning’ <a class="reference internal" href="references.html#roberts2007" id="id2"><span>[Roberts2007]</span></a>.</p>
+</dd>
 </dl>
 </dd>
 </dl>
-<p>All step methods have a property called <code class="docutils literal"><span class="pre">loglike</span></code>, which returns the sum of
+<p>All step methods have a property called <code class="docutils literal notranslate"><span class="pre">loglike</span></code>, which returns the sum of
 the log-probabilities of the union of the extended children of
-<code class="docutils literal"><span class="pre">self.stochastics</span></code>. This quantity is one term in the log of the Metropolis-
-Hastings acceptance ratio. The <code class="docutils literal"><span class="pre">logp_plus_loglike</span></code> property gives the sum of
-that and the log-probabilities of <code class="docutils literal"><span class="pre">self.stochastics</span></code>.</p>
+<code class="docutils literal notranslate"><span class="pre">self.stochastics</span></code>. This quantity is one term in the log of the Metropolis-
+Hastings acceptance ratio. The <code class="docutils literal notranslate"><span class="pre">logp_plus_loglike</span></code> property gives the sum of
+that and the log-probabilities of <code class="docutils literal notranslate"><span class="pre">self.stochastics</span></code>.</p>
 </div>
 <div class="section" id="metropolis-hastings-step-methods">
-<span id="user-metro"></span><h3>8.2.3. Metropolis-Hastings step methods<a class="headerlink" href="#metropolis-hastings-step-methods" title="Permalink to this headline">¶</a></h3>
+<span id="user-metro"></span><h3><span class="section-number">8.2.3. </span>Metropolis-Hastings step methods<a class="headerlink" href="#metropolis-hastings-step-methods" title="Permalink to this headline">¶</a></h3>
 <p>A Metropolis-Hastings step method only needs to implement the following
-methods, which are called by <code class="docutils literal"><span class="pre">Metropolis.step()</span></code>:</p>
-<dl class="docutils">
-<dt><code class="docutils literal"><span class="pre">reject()</span></code>:</dt>
-<dd><p class="first">Usually just</p>
-<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">reject</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+methods, which are called by <code class="docutils literal notranslate"><span class="pre">Metropolis.step()</span></code>:</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">reject()</span></code>:</dt><dd><p>Usually just</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">reject</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">rejected</span> <span class="o">+=</span> <span class="mi">1</span>
     <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">last_value</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">stochastics</span><span class="p">]</span>
 </pre></div>
 </div>
 </dd>
-<dt><code class="docutils literal"><span class="pre">propose():</span></code></dt>
-<dd>Sets the values of all <code class="docutils literal"><span class="pre">self.stochastics</span></code> to new, proposed values. This
-method may use the <code class="docutils literal"><span class="pre">adaptive_scale_factor</span></code> attribute to take advantage of
-the standard tuning scheme.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">propose():</span></code></dt><dd><p>Sets the values of all <code class="docutils literal notranslate"><span class="pre">self.stochastics</span></code> to new, proposed values. This
+method may use the <code class="docutils literal notranslate"><span class="pre">adaptive_scale_factor</span></code> attribute to take advantage of
+the standard tuning scheme.</p>
+</dd>
 </dl>
-<p>Metropolis-Hastings step methods may also override the <code class="docutils literal"><span class="pre">tune</span></code> and <code class="docutils literal"><span class="pre">competence</span></code> methods.</p>
+<p>Metropolis-Hastings step methods may also override the <code class="docutils literal notranslate"><span class="pre">tune</span></code> and <code class="docutils literal notranslate"><span class="pre">competence</span></code> methods.</p>
 <p>Metropolis-Hastings step methods with asymmetric jumping distributions may
-implement a method called <code class="docutils literal"><span class="pre">hastings_factor()</span></code>, which returns the log of the
+implement a method called <code class="docutils literal notranslate"><span class="pre">hastings_factor()</span></code>, which returns the log of the
 ratio of the ‘reverse’ and ‘forward’ proposal probabilities. Note that no
-<code class="docutils literal"><span class="pre">accept()</span></code> method is needed or used.</p>
+<code class="docutils literal notranslate"><span class="pre">accept()</span></code> method is needed or used.</p>
 <p>By convention, Metropolis-Hastings step methods use attributes called
-<code class="docutils literal"><span class="pre">accepted</span></code> and <code class="docutils literal"><span class="pre">rejected</span></code> to log their performance.</p>
+<code class="docutils literal notranslate"><span class="pre">accepted</span></code> and <code class="docutils literal notranslate"><span class="pre">rejected</span></code> to log their performance.</p>
 </div>
 <div class="section" id="gibbs-step-methods">
-<span id="user-gibbs"></span><h3>8.2.4. Gibbs step methods<a class="headerlink" href="#gibbs-step-methods" title="Permalink to this headline">¶</a></h3>
+<span id="user-gibbs"></span><h3><span class="section-number">8.2.4. </span>Gibbs step methods<a class="headerlink" href="#gibbs-step-methods" title="Permalink to this headline">¶</a></h3>
 <p>Gibbs step methods handle conjugate submodels. These models usually have two
 components: the ‘parent’ and the ‘children’. For example, a gamma-distributed
 variable serving as the precision of several normally-distributed variables is
@@ -296,112 +283,108 @@ are the children.</p>
 <p>This section describes PyMC’s current scheme for Gibbs step methods, several of
 which are in a semi-working state in the <em>sandbox</em> directory. It is meant to be
 as generic as possible to minimize code duplication, but it is admittedly
-complicated. Feel free to subclass <code class="docutils literal"><span class="pre">StepMethod</span></code> directly when writing Gibbs
+complicated. Feel free to subclass <code class="docutils literal notranslate"><span class="pre">StepMethod</span></code> directly when writing Gibbs
 step methods if you prefer.</p>
-<p>Gibbs step methods that subclass PyMC’s <code class="docutils literal"><span class="pre">Gibbs</span></code> should define the following
+<p>Gibbs step methods that subclass PyMC’s <code class="docutils literal notranslate"><span class="pre">Gibbs</span></code> should define the following
 class attributes:</p>
-<dl class="docutils">
-<dt><code class="docutils literal"><span class="pre">child_class</span></code>:</dt>
-<dd>The class of the children in the submodels the step method can handle.</dd>
-<dt><code class="docutils literal"><span class="pre">parent_class</span></code>:</dt>
-<dd>The class of the parent.</dd>
-<dt><code class="docutils literal"><span class="pre">parent_label</span></code>:</dt>
-<dd><dl class="first last docutils">
-<dt>The label the children would apply to the parent in a conjugate submodel.</dt>
-<dd>In the gamma-normal example, this would be <code class="docutils literal"><span class="pre">tau</span></code>.</dd>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">child_class</span></code>:</dt><dd><p>The class of the children in the submodels the step method can handle.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">parent_class</span></code>:</dt><dd><p>The class of the parent.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">parent_label</span></code>:</dt><dd><dl class="simple">
+<dt>The label the children would apply to the parent in a conjugate submodel.</dt><dd><p>In the gamma-normal example, this would be <code class="docutils literal notranslate"><span class="pre">tau</span></code>.</p>
+</dd>
 </dl>
 </dd>
-<dt><code class="docutils literal"><span class="pre">linear_OK</span></code>:</dt>
-<dd><dl class="first last docutils">
-<dt>A flag indicating whether the children can use linear combinations</dt>
-<dd>involving the parent as their actual parent without destroying the
-conjugacy.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">linear_OK</span></code>:</dt><dd><dl class="simple">
+<dt>A flag indicating whether the children can use linear combinations</dt><dd><p>involving the parent as their actual parent without destroying the
+conjugacy.</p>
+</dd>
 </dl>
 </dd>
 </dl>
-<p>A subclass of <code class="docutils literal"><span class="pre">Gibbs</span></code> that defines these attributes only needs to implement a
-<code class="docutils literal"><span class="pre">propose()</span></code> method, which will be called by <code class="docutils literal"><span class="pre">Gibbs.step()</span></code>. The resulting
+<p>A subclass of <code class="docutils literal notranslate"><span class="pre">Gibbs</span></code> that defines these attributes only needs to implement a
+<code class="docutils literal notranslate"><span class="pre">propose()</span></code> method, which will be called by <code class="docutils literal notranslate"><span class="pre">Gibbs.step()</span></code>. The resulting
 step method will be able to handle both conjugate and ‘non-conjugate’ cases.
 The conjugate case corresponds to an actual conjugate submodel. In the
 non-conjugate case all the children are of the required class, but the parent
 is not. In this case the parent’s value is proposed from the likelihood and
 accepted based on its prior. The acceptance rate in the non-conjugate case will
 be less than one.</p>
-<p>The inherited class method <code class="docutils literal"><span class="pre">Gibbs.competence</span></code> will determine the new step
-method’s ability to handle a variable <span class="math">\(x\)</span> by checking whether:</p>
+<p>The inherited class method <code class="docutils literal notranslate"><span class="pre">Gibbs.competence</span></code> will determine the new step
+method’s ability to handle a variable <span class="math notranslate nohighlight">\(x\)</span> by checking whether:</p>
 <blockquote>
 <div><ul class="simple">
-<li>all <span class="math">\(x\)</span>‘s children are of class <code class="docutils literal"><span class="pre">child_class</span></code>, and either apply
-<code class="docutils literal"><span class="pre">parent_label</span></code> to <span class="math">\(x\)</span> directly or (if <code class="docutils literal"><span class="pre">linear_OK=True</span></code>) to a
-<code class="docutils literal"><span class="pre">LinearCombination</span></code> object (chapter <a class="reference internal" href="modelbuilding.html#chap-modelbuilding"><span class="std std-ref">Building models</span></a>), one of
-whose parents contains <span class="math">\(x\)</span>.</li>
-<li><span class="math">\(x\)</span> is of class <code class="docutils literal"><span class="pre">parent_class</span></code></li>
+<li><p>all <span class="math notranslate nohighlight">\(x\)</span>’s children are of class <code class="docutils literal notranslate"><span class="pre">child_class</span></code>, and either apply
+<code class="docutils literal notranslate"><span class="pre">parent_label</span></code> to <span class="math notranslate nohighlight">\(x\)</span> directly or (if <code class="docutils literal notranslate"><span class="pre">linear_OK=True</span></code>) to a
+<code class="docutils literal notranslate"><span class="pre">LinearCombination</span></code> object (chapter <a class="reference internal" href="modelbuilding.html#chap-modelbuilding"><span class="std std-ref">Building models</span></a>), one of
+whose parents contains <span class="math notranslate nohighlight">\(x\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(x\)</span> is of class <code class="docutils literal notranslate"><span class="pre">parent_class</span></code></p></li>
 </ul>
 </div></blockquote>
-<p>If both conditions are met, <code class="docutils literal"><span class="pre">pymc.conjugate_Gibbs_competence</span></code> will be
-returned. If only the first is met, <code class="docutils literal"><span class="pre">pymc.nonconjugate_Gibbs_competence</span></code> will
+<p>If both conditions are met, <code class="docutils literal notranslate"><span class="pre">pymc.conjugate_Gibbs_competence</span></code> will be
+returned. If only the first is met, <code class="docutils literal notranslate"><span class="pre">pymc.nonconjugate_Gibbs_competence</span></code> will
 be returned.</p>
 </div>
 </div>
 <div class="section" id="new-fitting-algorithms">
-<span id="custom-model"></span><h2>8.3. New fitting algorithms<a class="headerlink" href="#new-fitting-algorithms" title="Permalink to this headline">¶</a></h2>
+<span id="custom-model"></span><h2><span class="section-number">8.3. </span>New fitting algorithms<a class="headerlink" href="#new-fitting-algorithms" title="Permalink to this headline">¶</a></h2>
 <p>PyMC provides a convenient platform for non-MCMC fitting algorithms in addition
 to MCMC. All fitting algorithms should be implemented by subclasses of
-<code class="docutils literal"><span class="pre">Model</span></code>. There are virtually no restrictions on fitting algorithms, but many
-of <code class="docutils literal"><span class="pre">Model</span></code>’s behaviors may be useful. See Chapter <a class="reference internal" href="modelfitting.html#chap-modelfitting"><span class="std std-ref">Fitting Models</span></a>.</p>
+<code class="docutils literal notranslate"><span class="pre">Model</span></code>. There are virtually no restrictions on fitting algorithms, but many
+of <code class="docutils literal notranslate"><span class="pre">Model</span></code>’s behaviors may be useful. See Chapter <a class="reference internal" href="modelfitting.html#chap-modelfitting"><span class="std std-ref">Fitting Models</span></a>.</p>
 <div class="section" id="monte-carlo-fitting-algorithms">
-<span id="custom-mc"></span><h3>8.3.1. Monte Carlo fitting algorithms<a class="headerlink" href="#monte-carlo-fitting-algorithms" title="Permalink to this headline">¶</a></h3>
+<span id="custom-mc"></span><h3><span class="section-number">8.3.1. </span>Monte Carlo fitting algorithms<a class="headerlink" href="#monte-carlo-fitting-algorithms" title="Permalink to this headline">¶</a></h3>
 <p>Unless there is a good reason to do otherwise, Monte Carlo fitting algorithms
-should be implemented by subclasses of <code class="docutils literal"><span class="pre">Sampler</span></code> to take advantage of the
+should be implemented by subclasses of <code class="docutils literal notranslate"><span class="pre">Sampler</span></code> to take advantage of the
 interactive sampling feature and database backends. Subclasses using the
-standard <code class="docutils literal"><span class="pre">sample()</span></code> and <code class="docutils literal"><span class="pre">isample()</span></code> methods must define one of two methods:</p>
-<dl class="docutils">
-<dt><code class="docutils literal"><span class="pre">draw()</span></code>:</dt>
-<dd><dl class="first last docutils">
-<dt>If it is possible to generate an independent sample from the posterior at</dt>
-<dd>every iteration, the <code class="docutils literal"><span class="pre">draw</span></code> method should do so. The default <code class="docutils literal"><span class="pre">_loop</span></code>
-method can be used in this case.</dd>
+standard <code class="docutils literal notranslate"><span class="pre">sample()</span></code> and <code class="docutils literal notranslate"><span class="pre">isample()</span></code> methods must define one of two methods:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">draw()</span></code>:</dt><dd><dl class="simple">
+<dt>If it is possible to generate an independent sample from the posterior at</dt><dd><p>every iteration, the <code class="docutils literal notranslate"><span class="pre">draw</span></code> method should do so. The default <code class="docutils literal notranslate"><span class="pre">_loop</span></code>
+method can be used in this case.</p>
+</dd>
 </dl>
 </dd>
-<dt><code class="docutils literal"><span class="pre">_loop()</span></code>:</dt>
-<dd><dl class="first last docutils">
-<dt>If it is not possible to implement a <code class="docutils literal"><span class="pre">draw()</span></code> method, but you want to</dt>
-<dd>take advantage of the interactive sampling option, you should override
-<code class="docutils literal"><span class="pre">_loop()</span></code>. This method is responsible for generating the posterior
-samples and calling <code class="docutils literal"><span class="pre">tally()</span></code> when it is appropriate to save the model’s
-state. In addition, <code class="docutils literal"><span class="pre">_loop</span></code> should monitor the sampler’s <code class="docutils literal"><span class="pre">status</span></code>
+<dt><code class="docutils literal notranslate"><span class="pre">_loop()</span></code>:</dt><dd><dl class="simple">
+<dt>If it is not possible to implement a <code class="docutils literal notranslate"><span class="pre">draw()</span></code> method, but you want to</dt><dd><p>take advantage of the interactive sampling option, you should override
+<code class="docutils literal notranslate"><span class="pre">_loop()</span></code>. This method is responsible for generating the posterior
+samples and calling <code class="docutils literal notranslate"><span class="pre">tally()</span></code> when it is appropriate to save the model’s
+state. In addition, <code class="docutils literal notranslate"><span class="pre">_loop</span></code> should monitor the sampler’s <code class="docutils literal notranslate"><span class="pre">status</span></code>
 attribute at every iteration and respond appropriately. The possible values
-of <code class="docutils literal"><span class="pre">status</span></code> are:</dd>
-<dt><code class="docutils literal"><span class="pre">'ready'</span></code>:</dt>
-<dd>Ready to sample.</dd>
-<dt><code class="docutils literal"><span class="pre">'running'</span></code>:</dt>
-<dd>Sampling should continue as normal.</dd>
-<dt><code class="docutils literal"><span class="pre">'halt'</span></code>:</dt>
-<dd>Sampling should halt as soon as possible. <code class="docutils literal"><span class="pre">_loop</span></code> should call the
-<code class="docutils literal"><span class="pre">halt()</span></code> method and return control. <code class="docutils literal"><span class="pre">_loop</span></code> can set the status to
-<code class="docutils literal"><span class="pre">'halt'</span></code> itself if appropriate (eg the database is full or a
-<code class="docutils literal"><span class="pre">KeyboardInterrupt</span></code> has been caught).</dd>
-<dt><code class="docutils literal"><span class="pre">'paused'</span></code>:</dt>
-<dd>Sampling should pause as soon as possible. <code class="docutils literal"><span class="pre">_loop</span></code> should return, but
-should be able to pick up where it left off next time it’s called.</dd>
+of <code class="docutils literal notranslate"><span class="pre">status</span></code> are:</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'ready'</span></code>:</dt><dd><p>Ready to sample.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'running'</span></code>:</dt><dd><p>Sampling should continue as normal.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'halt'</span></code>:</dt><dd><p>Sampling should halt as soon as possible. <code class="docutils literal notranslate"><span class="pre">_loop</span></code> should call the
+<code class="docutils literal notranslate"><span class="pre">halt()</span></code> method and return control. <code class="docutils literal notranslate"><span class="pre">_loop</span></code> can set the status to
+<code class="docutils literal notranslate"><span class="pre">'halt'</span></code> itself if appropriate (eg the database is full or a
+<code class="docutils literal notranslate"><span class="pre">KeyboardInterrupt</span></code> has been caught).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'paused'</span></code>:</dt><dd><p>Sampling should pause as soon as possible. <code class="docutils literal notranslate"><span class="pre">_loop</span></code> should return, but
+should be able to pick up where it left off next time it’s called.</p>
+</dd>
 </dl>
 </dd>
 </dl>
-<p>Samplers may alternatively want to override the default <code class="docutils literal"><span class="pre">sample()</span></code> method. In
-that case, they should call the <code class="docutils literal"><span class="pre">tally()</span></code> method whenever it is appropriate
-to save the current model state. Like custom <code class="docutils literal"><span class="pre">_loop()</span></code> methods, custom
-<code class="docutils literal"><span class="pre">sample()</span></code> methods should handle <code class="docutils literal"><span class="pre">KeyboardInterrupts</span></code> and call the
-<code class="docutils literal"><span class="pre">halt()</span></code> method when sampling terminates to finalize the traces.</p>
+<p>Samplers may alternatively want to override the default <code class="docutils literal notranslate"><span class="pre">sample()</span></code> method. In
+that case, they should call the <code class="docutils literal notranslate"><span class="pre">tally()</span></code> method whenever it is appropriate
+to save the current model state. Like custom <code class="docutils literal notranslate"><span class="pre">_loop()</span></code> methods, custom
+<code class="docutils literal notranslate"><span class="pre">sample()</span></code> methods should handle <code class="docutils literal notranslate"><span class="pre">KeyboardInterrupts</span></code> and call the
+<code class="docutils literal notranslate"><span class="pre">halt()</span></code> method when sampling terminates to finalize the traces.</p>
 </div>
 </div>
 <div class="section" id="a-second-warning-don-t-update-stochastic-variables-values-in-place">
-<span id="dont-update-in-place"></span><h2>8.4. A second warning: Don’t update stochastic variables’ values in-place<a class="headerlink" href="#a-second-warning-don-t-update-stochastic-variables-values-in-place" title="Permalink to this headline">¶</a></h2>
-<p>If you’re going to implement a new step method, fitting algorithm or unusual (non-numeric-valued) <code class="docutils literal"><span class="pre">Stochastic</span></code> subclass, you should understand the issues related to in-place updates of <code class="docutils literal"><span class="pre">Stochastic</span></code> objects’ values. Fitting methods should never update variables’ values in-place for two reasons:</p>
+<span id="dont-update-in-place"></span><h2><span class="section-number">8.4. </span>A second warning: Don’t update stochastic variables’ values in-place<a class="headerlink" href="#a-second-warning-don-t-update-stochastic-variables-values-in-place" title="Permalink to this headline">¶</a></h2>
+<p>If you’re going to implement a new step method, fitting algorithm or unusual (non-numeric-valued) <code class="docutils literal notranslate"><span class="pre">Stochastic</span></code> subclass, you should understand the issues related to in-place updates of <code class="docutils literal notranslate"><span class="pre">Stochastic</span></code> objects’ values. Fitting methods should never update variables’ values in-place for two reasons:</p>
 <ul class="simple">
-<li>In algorithms that involve accepting and rejecting proposals, the ‘pre-proposal’ value needs to be preserved uncorrupted. It would be possible to make a copy of the pre-proposal value and then allow in-place updates, but in PyMC we have chosen to store the pre-proposal value as <code class="docutils literal"><span class="pre">Stochastic.last_value</span></code> and require proposed values to be new objects. In-place updates would corrupt <code class="docutils literal"><span class="pre">Stochastic.last_value</span></code>, and this would cause problems.</li>
-<li><code class="docutils literal"><span class="pre">LazyFunction</span></code>’s caching scheme checks variables’ current values against its internal cache by reference. That means if you update a variable’s value in-place, it or its child may miss the update and incorrectly skip recomputing its value or log-probability.</li>
+<li><p>In algorithms that involve accepting and rejecting proposals, the ‘pre-proposal’ value needs to be preserved uncorrupted. It would be possible to make a copy of the pre-proposal value and then allow in-place updates, but in PyMC we have chosen to store the pre-proposal value as <code class="docutils literal notranslate"><span class="pre">Stochastic.last_value</span></code> and require proposed values to be new objects. In-place updates would corrupt <code class="docutils literal notranslate"><span class="pre">Stochastic.last_value</span></code>, and this would cause problems.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LazyFunction</span></code>’s caching scheme checks variables’ current values against its internal cache by reference. That means if you update a variable’s value in-place, it or its child may miss the update and incorrectly skip recomputing its value or log-probability.</p></li>
 </ul>
-<p>However, a <code class="docutils literal"><span class="pre">Stochastic</span></code> object’s value can make in-place updates to itself if the updates don’t change its identity. For example, the <code class="docutils literal"><span class="pre">Stochastic</span></code> subclass <code class="docutils literal"><span class="pre">gp.GP</span></code> is valued as a <code class="docutils literal"><span class="pre">gp.Realization</span></code> object. GP realizations represent random functions, which are infinite-dimensional stochastic processes, as literally as possible. The strategy they employ is to ‘self-discover’ on demand: when they are evaluated, they generate the required value conditional on previous evaluations and then make an internal note of it. This is an in-place update, but it is done to provide the same behavior as a single random function whose value everywhere has been determined since it was created.</p>
+<p>However, a <code class="docutils literal notranslate"><span class="pre">Stochastic</span></code> object’s value can make in-place updates to itself if the updates don’t change its identity. For example, the <code class="docutils literal notranslate"><span class="pre">Stochastic</span></code> subclass <code class="docutils literal notranslate"><span class="pre">gp.GP</span></code> is valued as a <code class="docutils literal notranslate"><span class="pre">gp.Realization</span></code> object. GP realizations represent random functions, which are infinite-dimensional stochastic processes, as literally as possible. The strategy they employ is to ‘self-discover’ on demand: when they are evaluated, they generate the required value conditional on previous evaluations and then make an internal note of it. This is an in-place update, but it is done to provide the same behavior as a single random function whose value everywhere has been determined since it was created.</p>
 </div>
 </div>
 
@@ -414,7 +397,7 @@ to save the current model state. Like custom <code class="docutils literal"><spa
             <p class="logo"><a href="index.html">
               <img class="logo" src="_static/icon.png" alt="Logo"/>
             </a></p>
-  <h3><a href="index.html">Table Of Contents</a></h3>
+  <h3><a href="index.html">Table of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">8. Extending PyMC</a><ul>
 <li><a class="reference internal" href="#nonstandard-stochastics">8.1. Nonstandard Stochastics</a></li>
@@ -436,10 +419,10 @@ to save the current model state. Like custom <code class="docutils literal"><spa
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="modelchecking.html"
-                        title="previous chapter">7. Model checking and diagnostics</a></p>
+                        title="previous chapter"><span class="section-number">7. </span>Model checking and diagnostics</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="distributions.html"
-                        title="next chapter">9. Probability distributions</a></p>
+                        title="next chapter"><span class="section-number">9. </span>Probability distributions</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -448,15 +431,15 @@ to save the current model state. Like custom <code class="docutils literal"><spa
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
     </form>
+    </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -476,12 +459,12 @@ to save the current model state. Like custom <code class="docutils literal"><spa
         <li class="right" >
           <a href="modelchecking.html" title="7. Model checking and diagnostics"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">PyMC 2.3.7rc1 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">PyMC 2.3.8 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2014, Christopher J. Fonnesbeck.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.
     </div>
   </body>
 </html>
