@@ -17,7 +17,7 @@ from pylab import setp, contourf, cm, title, colorbar, fill, text
 from pylab import errorbar
 
 # Import numpy functions
-from numpy import arange, ravel, rank, swapaxes, concatenate, asarray, ndim
+from numpy import arange, ravel, swapaxes, concatenate, asarray, ndim
 from numpy import mean, std, sort, prod, floor, shape, size, transpose
 from numpy import min as nmin, max as nmax, abs, log2, log, sqrt, isnan
 from numpy import append, ones, dtype, indices, array, unique, zeros, ndarray
